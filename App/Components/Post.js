@@ -19,6 +19,8 @@ export default class Post extends Component {
   // }
 
   render () {
+    const numComments = 6
+    const commentNoun = numComments == 1 ? 'comment' : 'comments'
     const score = 1
     let ratingColor
     switch(score) {
@@ -45,7 +47,7 @@ export default class Post extends Component {
             <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />
             <Text style={styles.headerText}> Victor Lin </Text>
           </View>
-          <Text> 6 comments <Icon style={styles.icon} name="message" size={30} /> </Text>
+          <Text> {numComments} {commentNoun} <Icon style={styles.icon} name="message" size={30} /> </Text>
         </View>
         <View style={styles.comment}>
           <View style={[ratingBackground, styles.rating]}><Text style={styles.ratingText}> {score} </Text></View>
