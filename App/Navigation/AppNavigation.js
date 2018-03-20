@@ -1,15 +1,16 @@
 import { StackNavigator } from 'react-navigation'
+import PostsStream from '../Containers/PostsStream'
 import LaunchScreen from '../Containers/LaunchScreen'
 
 import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
-  LaunchScreen: { screen: LaunchScreen }
+  PostsStream: { screen: PostsStream },
 }, {
   // Default config for all screens
   headerMode: 'none',
-  initialRouteName: 'LaunchScreen',
+  initialRouteName: 'PostsStream',
   navigationOptions: {
     headerStyle: styles.header
   }

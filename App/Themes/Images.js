@@ -9,6 +9,7 @@ const images = {
   tileBg: require('../Images/tile_bg.png'),
   background: require('../Images/BG.png'),
   buttonBackground: require('../Images/button-bg.png'),
+  defaultProfilePicture: require('../Images/nxj.png'),
   api: require('../Images/Icons/icon-api-testing.png'),
   components: require('../Images/Icons/icon-components.png'),
   deviceInfo: require('../Images/Icons/icon-device-information.png'),
@@ -19,7 +20,7 @@ const images = {
   chevronRight: require('../Images/Icons/chevron-right.png'),
   hamburger: require('../Images/Icons/hamburger.png'),
   backButton: require('../Images/Icons/back-button.png'),
-  closeButton: require('../Images/Icons/close-button.png')
+  closeButton: require('../Images/Icons/close-button.png'),
 }
 
 export default images
