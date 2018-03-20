@@ -42,19 +42,22 @@ export default StyleSheet.create({
   	paddingRight: 10
   },
   commentText: {
+  	marginLeft: 10,
   	flex: 1,
     ...Fonts.style.normal,	
   },
   rating: {
   	flexDirection: 'row',
-  	backgroundColor: "#790E8B",
-  	height: 30,
-  	width: 30,
-  	borderRadius: 15,
+  	alignItems: 'center',
+  	height: 26,
+  	width: 26,
+  	borderRadius: 13,
+  	paddingRight: 4,
   },
   ratingText: {
     ...Fonts.style.normal,
     backgroundColor: 'rgba(0,0,0,0)',
+    color: '#FFFFFF',
     textAlign: 'center',
     flex: 1
   }

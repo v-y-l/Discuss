@@ -25,6 +25,10 @@ const colors = {
   // Discuss App styles
   header: '#AB47BC',
   headerTitle: '#FFFFFF',
+  belowExpectations: '#B71C1C',
+  meetsExpectations: '#F57C00',
+  exceedsExpectations: '#7CB342', 
+  farExceedsExpectations: '#03A9F4'
 }
 
 export default colors
