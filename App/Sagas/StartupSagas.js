@@ -1,5 +1,6 @@
 import { put, select } from 'redux-saga/effects'
 import GithubActions, { GithubSelectors } from '../Redux/GithubRedux'
+import PostsActions from '../Redux/PostsRedux'
 import { is } from 'ramda'
 
 // exported to make available for tests
@@ -37,4 +38,8 @@ export function * startup (action) {
   if (!is(String, avatar)) {
     yield put(GithubActions.userRequest('GantMan'))
   }
+
+  // Discuss app start up actions
+  yield put(PostsActions.getPostsRequest())
+
 }

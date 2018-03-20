@@ -4,9 +4,13 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  postsRequest: ['data'],
-  postsSuccess: ['payload'],
-  postsFailure: null
+  getPostsRequest: null,
+  getPostsSuccess: ['payload'],
+  getPostsFailure: null,
+  selectPostRequest: ['postId'],
+  selectPostSuccess: ['postId'],
+  selectPostFailure: null,
+
 })
 
 export const PostsTypes = Types
@@ -15,38 +19,61 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  data: null,
   fetching: null,
-  payload: null,
+  posts: null,
+  postId: null,
   error: null
 })
 
 /* ------------- Selectors ------------- */
 
 export const PostsSelectors = {
-  getData: state => state.data
+  getPosts: state => state.posts.posts
 }
 
 /* ------------- Reducers ------------- */
 
+// ==========================================
+// Reducers that add posts data to the store
+// ==========================================
+
 // request the data from an api
-export const request = (state, { data }) =>
-  state.merge({ fetching: true, data, payload: null })
+export const getPostsRequest = (state, action) =>
+  state.merge({ fetching: true, posts: null, postId: null, error: null })
 
 // successful api lookup
-export const success = (state, action) => {
+export const getPostsSuccess = (state, action) => {
   const { payload } = action
-  return state.merge({ fetching: false, error: null, payload })
+  return state.merge({ fetching: false, posts: payload.posts, postId: null, error: null })
 }
 
 // Something went wrong somewhere.
-export const failure = state =>
-  state.merge({ fetching: false, error: true, payload: null })
+export const getPostsFailure = state =>
+  state.merge({ fetching: null, posts: null, postId: null, error: true })
+
+// ==================================================================================
+// Reducers that select the post whose comments will be viewed in the comments screen
+// ==================================================================================
+
+export const selectPostRequest = (state, action) => state
+
+// successful api lookup
+export const selectPostSuccess = (state, action) => {
+  const { postId } = action
+  return state.merge({ postId: postId })
+}
+
+// Something went wrong somewhere.
+export const selectPostFailure = state =>
+  state.merge({ postId: null, error: true })
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.POSTS_REQUEST]: request,
-  [Types.POSTS_SUCCESS]: success,
-  [Types.POSTS_FAILURE]: failure
+  [Types.GET_POSTS_REQUEST]: getPostsRequest,
+  [Types.GET_POSTS_SUCCESS]: getPostsSuccess,
+  [Types.GET_POSTS_FAILURE]: getPostsFailure,  
+  [Types.SELECT_POST_REQUEST]: selectPostRequest,
+  [Types.SELECT_POST_SUCCESS]: selectPostSuccess,
+  [Types.SELECT_POST_FAILURE]: selectPostFailure,
 })

@@ -15,18 +15,18 @@ import PostsActions from '../Redux/PostsRedux'
 // import { PostsSelectors } from '../Redux/PostsRedux'
 
 export function * getPosts (api, action) {
-  const { data } = action
+
   // get current data from Store
   // const currentData = yield select(PostsSelectors.getData)
   // make the call to the api
-  const response = yield call(api.getposts, data)
+  const response = yield call(api.getPosts)
 
   // success?
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(PostsActions.postsSuccess(response.data))
+    yield put(PostsActions.getPostsSuccess(response.data))
   } else {
-    yield put(PostsActions.postsFailure())
+    yield put(PostsActions.getPostsFailure())
   }
 }
