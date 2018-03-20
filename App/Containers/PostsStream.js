@@ -15,15 +15,7 @@ class PostsStream extends React.PureComponent {
   * Usually this should come from Redux mapStateToProps
   *************************************************************/
   state = {
-    dataObjects: [
-      {title: 'First Title', description: 'First Description'},
-      {title: 'Second Title', description: 'Second Description'},
-      {title: 'Third Title', description: 'Third Description'},
-      {title: 'Fourth Title', description: 'Fourth Description'},
-      {title: 'Fifth Title', description: 'Fifth Description'},
-      {title: 'Sixth Title', description: 'Sixth Description'},
-      {title: 'Seventh Title', description: 'Seventh Description'}
-    ]
+    dataObjects: Object.values(this.props.posts ? this.props.posts : {})
   }
 
   /* ***********************************************************
@@ -36,7 +28,7 @@ class PostsStream extends React.PureComponent {
   *************************************************************/
   renderRow ({item}) {
     return (
-      <Post />
+      <Post recipient={item.recipient} text={item.text} rating={+item.rating} numComments={item.comments.length} />
     )
   }
 
@@ -51,7 +43,8 @@ class PostsStream extends React.PureComponent {
 
   // Render a footer?
   renderFooter = () =>
-    <Text style={[styles.label, styles.sectionHeader]}> - Footer - </Text>
+    <View style={styles.separator}></View>
+
 
   // Show this when data is empty
   renderEmpty = () =>
@@ -83,6 +76,11 @@ class PostsStream extends React.PureComponent {
   // )}
 
   render () {
+
+    this.state = {
+      dataObjects: Object.values(this.props.posts ? this.props.posts : {})
+    }
+
     return (
       <View style={styles.container}>
         <FlatList
@@ -92,7 +90,7 @@ class PostsStream extends React.PureComponent {
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
           // ListHeaderComponent={this.renderHeader}
-          // ListFooterComponent={this.renderFooter}
+          ListFooterComponent={this.renderFooter}
           // ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
@@ -103,7 +101,7 @@ class PostsStream extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    // ...redux state to props here
+    posts: state.posts.posts
   }
 }
 

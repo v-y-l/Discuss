@@ -19,11 +19,11 @@ export default class Post extends Component {
   // }
 
   render () {
-    const numComments = 6
+    console.log(this.props)
+    const { recipient, text, rating, numComments } = this.props
     const commentNoun = numComments == 1 ? 'comment' : 'comments'
-    const score = 1
     let ratingColor
-    switch(score) {
+    switch(rating) {
       case 1:
         ratingColor = Colors.belowExpectations
         break
@@ -45,16 +45,13 @@ export default class Post extends Component {
         <View style={styles.header}>
           <View style={styles.profileBox}>
             <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />
-            <Text style={styles.headerText}> Victor Lin </Text>
+            <Text style={styles.headerText}> { recipient } </Text>
           </View>
           <Text> {numComments} {commentNoun} <Icon style={styles.icon} name="message" size={30} /> </Text>
         </View>
         <View style={styles.comment}>
-          <View style={[ratingBackground, styles.rating]}><Text style={styles.ratingText}> {score} </Text></View>
-          <Text style={styles.commentText}>
-            This is a test comment. It is long multiline comment.
-            Ideally, this would now be on line 2. Great.
-          </Text>
+          <View style={[ratingBackground, styles.rating]}><Text style={styles.ratingText}> {rating} </Text></View>
+          <Text style={styles.commentText}> {text} </Text>
         </View>
       </View>
     )
