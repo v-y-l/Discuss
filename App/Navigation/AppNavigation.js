@@ -9,10 +9,11 @@ const PrimaryNav = StackNavigator({
   PostsStream: { screen: PostsStream },
 }, {
   // Default config for all screens
-  headerMode: 'none',
   initialRouteName: 'PostsStream',
   navigationOptions: {
-    headerStyle: styles.header
+  	title: 'Discuss',
+    headerStyle: styles.header,
+    headerTitleStyle: styles.headerTitle,
   }
 })
 
