@@ -1,0 +1,18 @@
+{
+	"posts" : {
+		"post1" : {
+			"id" : "post1",
+			"recipient" : "Victor Lin",
+			"text" : "I like that you are owning the sandbox debriefs. It means you've got some GAS, man.",
+			"rating" : "2",
+			"comments" : ["comment1","comment2"]
+		},
+		"post2" : {
+			"id" : "post2",
+			"recipient" : "John Hilliard",
+			"text" : "As expected of the great leader John, your sandbox is pretty much production-ready and that is impressive.",
+			"rating" : "3",
+			"comments" : ["comment3"]
+		}
+	}
+}

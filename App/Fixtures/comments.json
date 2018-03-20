@@ -1,0 +1,19 @@
+{
+	"comments" : {
+		"comment1" : {
+			"id" : "comment1",
+			"author" : "Sam Skinner",
+			"text" : "It's good that you're doing this, but don't forget those OMM emails."
+		},
+		"comment2" : {
+			"id" : "comment2",
+			"author" : "Christian Lemieux",
+			"text" : "Just wanted to say hello from my honeymoon, y'all. But also, I think these things can be shorter."
+		},
+		"comment3" : {
+			"id" : "comment3",
+			"author" : "Eric Lee",
+			"text" : "I agree with this. John's presentation are always very to the point. It's good to have him start first and set the bar for the rest of the presentations."
+		},
+	}
+}

@@ -1,4 +1,17 @@
 export default {
+  //Fixtures for Discuss
+  getPosts: () => {
+    return {
+      ok: true,
+      data: require('../Fixtures/posts.json')
+    }
+  },  
+  getComments: () => {
+    return {
+      ok: true,
+      data: require('../Fixtures/comments.json')
+    }
+  },
   // Functions return fixtures
   getRoot: () => {
     return {
