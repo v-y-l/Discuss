@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, FlatList } from 'react-native'
 import Post from '../Components/Post'
+import PostsAction from '../Redux/PostsRedux'
 import { connect } from 'react-redux'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
@@ -15,8 +16,11 @@ class PostsStream extends React.PureComponent {
   * Usually this should come from Redux mapStateToProps
   *************************************************************/
   state = {
-    dataObjects: Object.values(this.props.posts ? this.props.posts : {})
+    dataObjects: Object.values(this.props.posts ? this.props.posts : {}),
   }
+
+  onPressItem = this.props.selectPost
+
 
   /* ***********************************************************
   * STEP 2
@@ -26,9 +30,15 @@ class PostsStream extends React.PureComponent {
   * e.g.
     return <MyCustomCell title={item.title} description={item.description} />
   *************************************************************/
-  renderRow ({item}) {
+  renderRow = ({item}) => {
     return (
-      <Post recipient={item.recipient} text={item.text} rating={+item.rating} numComments={item.comments.length} />
+      <Post 
+        recipient={item.recipient} 
+        text={item.text} rating={+item.rating} 
+        numComments={item.comments.length} 
+        postId={item.id}
+        onPressItem={this.props.selectPost}
+      />
     )
   }
 
@@ -44,7 +54,6 @@ class PostsStream extends React.PureComponent {
   // Render a footer?
   renderFooter = () =>
     <View style={styles.separator}></View>
-
 
   // Show this when data is empty
   renderEmpty = () =>
@@ -77,9 +86,8 @@ class PostsStream extends React.PureComponent {
 
   render () {
 
-    this.state = {
-      dataObjects: Object.values(this.props.posts ? this.props.posts : {})
-    }
+    this.state.dataObjects = Object.values(this.props.posts ? this.props.posts : {})
+    this.onPressItem = this.props.selectPost ? this.props.selectPost : null
 
     return (
       <View style={styles.container}>
@@ -107,6 +115,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    selectPost: (postId) => dispatch(PostsAction.selectPostRequest(postId))
   }
 }
 

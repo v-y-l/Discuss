@@ -30,3 +30,8 @@ export function * getPosts (api, action) {
     yield put(PostsActions.getPostsFailure())
   }
 }
+
+export function * selectPost (action) {
+  const { postId } = action
+  yield put(PostsActions.selectPostSuccess(postId))
+}

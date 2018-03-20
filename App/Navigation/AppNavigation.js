@@ -1,4 +1,5 @@
 import { StackNavigator } from 'react-navigation'
+import CommentsScreen from '../Containers/CommentsScreen'
 import PostsStream from '../Containers/PostsStream'
 import LaunchScreen from '../Containers/LaunchScreen'
 
@@ -6,6 +7,7 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
+  CommentsScreen: { screen: CommentsScreen },
   PostsStream: { screen: PostsStream },
 }, {
   // Default config for all screens

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import styles from './Styles/PostStyle'
 import Colors from '../Themes/Colors'
 import Images from '../Themes/Images'
@@ -19,8 +19,7 @@ export default class Post extends Component {
   // }
 
   render () {
-    console.log(this.props)
-    const { recipient, text, rating, numComments } = this.props
+    const { recipient, text, rating, numComments, postId, onPressItem } = this.props
     const commentNoun = numComments == 1 ? 'comment' : 'comments'
     let ratingColor
     switch(rating) {
@@ -41,7 +40,7 @@ export default class Post extends Component {
     const ratingBackground = {backgroundColor: ratingColor}
 
     return (
-      <View style={styles.container}>
+      <TouchableOpacity onPress={()=> onPressItem(postId)} style={styles.container}>
         <View style={styles.header}>
           <View style={styles.profileBox}>
             <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />
@@ -53,7 +52,7 @@ export default class Post extends Component {
           <View style={[ratingBackground, styles.rating]}><Text style={styles.ratingText}> {rating} </Text></View>
           <Text style={styles.commentText}> {text} </Text>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }
