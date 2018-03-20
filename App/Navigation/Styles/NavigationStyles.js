@@ -9,6 +9,5 @@ export default StyleSheet.create({
   headerTitle: {
   	...Fonts.style.h4,
   	color: Colors.headerTitle,
-
   }
 })

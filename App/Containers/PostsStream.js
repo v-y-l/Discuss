@@ -58,7 +58,7 @@ class PostsStream extends React.PureComponent {
     <Text style={styles.label}> - Nothing to See Here - </Text>
 
   renderSeparator = () =>
-    <Text style={styles.label}> - ~~~~~ - </Text>
+    <View style={styles.separator}></View>
 
   // The default function if no Key is provided is index
   // an identifiable key is important if you plan on
@@ -91,9 +91,9 @@ class PostsStream extends React.PureComponent {
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
-          ListHeaderComponent={this.renderHeader}
-          ListFooterComponent={this.renderFooter}
-          ListEmptyComponent={this.renderEmpty}
+          // ListHeaderComponent={this.renderHeader}
+          // ListFooterComponent={this.renderFooter}
+          // ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
       </View>
