@@ -12,6 +12,7 @@
 
 import { call, put } from 'redux-saga/effects'
 import PostsActions from '../Redux/PostsRedux'
+import {NavigationActions} from 'react-navigation'
 // import { PostsSelectors } from '../Redux/PostsRedux'
 
 export function * getPosts (api, action) {
@@ -34,4 +35,5 @@ export function * getPosts (api, action) {
 export function * selectPost (action) {
   const { postId } = action
   yield put(PostsActions.selectPostSuccess(postId))
+  yield put(NavigationActions.navigate({'routeName':'CommentsScreen'}))
 }
