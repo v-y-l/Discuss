@@ -21,13 +21,18 @@ export default class Post extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />
-          <Text style={styles.headerText}> Victor Lin </Text>
+          <View style={styles.profileBox}>
+            <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />
+            <Text style={styles.headerText}> Victor Lin </Text>
+          </View>
           <Icon style={styles.icon} name="message" size={30} />
         </View>
         <View style={styles.comment}>
           <View style={styles.rating}><Text style={styles.ratingText}> 3 </Text></View>
-          <Text style={styles.commentText}> This is a test comment </Text>
+          <Text style={styles.commentText}>
+            This is a test comment. It is long multiline comment.
+            Ideally, this would now be on line 2. Great.
+          </Text>
         </View>
       </View>
     )

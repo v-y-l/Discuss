@@ -4,23 +4,33 @@ import Fonts from '../../Themes/Fonts'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    marginLeft: 15
+    paddingLeft: 15,
+    paddingRight: 10,
   },
   //header
   header: {
   	flex: 1,
   	flexDirection: "row",
+  	justifyContent: "space-between",
+	alignItems: "center",
+  	paddingBottom: 10,
+  	marginBottom: 10,
+  	borderBottomWidth: 1,
+  	borderColor: "#E0E0E0"
+  },
+  profileBox: { 
+  	flexDirection: "row",
+  	alignItems: "center",
   },
   profilePicture: {
   	// flex: 1,
-  	borderRadius: 25,
-  	height: 50,
-  	width: 50
+  	borderRadius: 20,
+  	height: 40,
+  	width: 40,
+  	marginRight: 5
   },
   headerText: {
-    ...Fonts.style.normal,
-
-  	// flex: 3
+    ...Fonts.style.h5,
   },
   icon: {
   	color: "#000000",
@@ -28,9 +38,11 @@ export default StyleSheet.create({
   //comment
   comment: {
   	flex: 1,
-  	flexDirection: "row"
+  	flexDirection: "row",
+  	paddingRight: 10
   },
   commentText: {
+  	flex: 1,
     ...Fonts.style.normal,	
   },
   rating: {

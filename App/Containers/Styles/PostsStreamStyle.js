@@ -29,7 +29,8 @@ export default StyleSheet.create({
     marginTop: Metrics.baseMargin
   },
   separator: {
-    borderBottomWidth: 1,
+    borderBottomWidth: 3,
+    borderColor: "#E0E0E0",
     paddingBottom: 15,
     marginBottom: 15
   }
