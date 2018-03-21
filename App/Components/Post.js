@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import styles from './Styles/PostStyle'
 import Colors from '../Themes/Colors'
@@ -8,10 +8,14 @@ import Icon from 'react-native-vector-icons/Entypo'
 
 export default class Post extends Component {
   // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
+  static propTypes = {
+    recipient: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    numComments: PropTypes.number.isRequired,
+    postId: PropTypes.string.isRequired,
+    onPressItem: PropTypes.func.isRequired
+  }
   //
   // // Defaults for props
   // static defaultProps = {
