@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, KeyboardAvoidingView, TextInput, Button } from 'react-native'
+import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
 import styles from './Styles/AddCommentStyle'
 
 export default class AddComment extends Component {
@@ -17,9 +17,11 @@ export default class AddComment extends Component {
 
   render () {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={70}>
-        <TextInput style={styles.input} autoCorrect={false} value="Add a comment..." />
-        <Button style={styles.button} title="Post" />
+      <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={70}>
+        <View style={styles.container}>
+          <TextInput style={styles.input} autoCorrect={false} value="Add a comment..." />
+          <TouchableOpacity style={styles.button}> <Text> Post </Text> </TouchableOpacity>
+        </View>
       </KeyboardAvoidingView>
     )
   }
