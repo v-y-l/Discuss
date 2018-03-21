@@ -1,5 +1,5 @@
 const colors = {
-  background: '#1F0808',
+  background: '#FFFFFF',
   clear: 'rgba(0,0,0,0)',
   facebook: '#3b5998',
   transparent: 'rgba(0,0,0,0)',
@@ -28,7 +28,8 @@ const colors = {
   belowExpectations: '#B71C1C',
   meetsExpectations: '#F57C00',
   exceedsExpectations: '#7CB342', 
-  farExceedsExpectations: '#03A9F4'
+  farExceedsExpectations: '#03A9F4',
+  separator: "#E0E0E0"
 }
 
 export default colors

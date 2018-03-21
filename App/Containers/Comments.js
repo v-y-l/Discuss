@@ -59,12 +59,15 @@ class Comments extends React.PureComponent {
   *************************************************************/
   // Render a header?
   renderHeader = () =>
-    <Post 
-      recipient={this.props.post.recipient} 
-      text={this.props.post.text}
-      rating={+this.props.post.rating} 
-      numComments={this.props.post.comments.length} 
-    />
+    <View>
+      <Post 
+        recipient={this.props.post.recipient} 
+        text={this.props.post.text}
+        rating={+this.props.post.rating} 
+        numComments={this.props.post.comments.length} 
+      />
+      <View style={styles.separator}></View>
+    </View>
 
   // Render a footer?
   renderFooter = () =>

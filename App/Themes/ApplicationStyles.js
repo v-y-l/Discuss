@@ -44,6 +44,12 @@ const ApplicationStyles = {
       ...Fonts.style.h2,
       fontSize: 14,
       color: Colors.text
+    },
+    separator: {
+      borderBottomWidth: 3,
+      borderColor: "#E0E0E0",
+      paddingBottom: 15,
+      marginBottom: 15
     }
   },
   darkLabelContainer: {

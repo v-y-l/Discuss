@@ -5,7 +5,7 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: Colors.background,
     paddingTop: 10
   },
   row: {
@@ -27,11 +27,5 @@ export default StyleSheet.create({
   },
   listContent: {
     marginTop: Metrics.baseMargin
-  },
-  separator: {
-    borderBottomWidth: 3,
-    borderColor: "#E0E0E0",
-    paddingBottom: 15,
-    marginBottom: 15
   }
 })
