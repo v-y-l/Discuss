@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, FlatList } from 'react-native'
 import { connect } from 'react-redux'
+import Post from '../Components/Post'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
@@ -58,7 +59,12 @@ class Comments extends React.PureComponent {
   *************************************************************/
   // Render a header?
   renderHeader = () =>
-    <Text style={[styles.label, styles.sectionHeader]}> - Header - </Text>
+    <Post 
+      recipient={this.props.post.recipient} 
+      text={this.props.post.text}
+      rating={+this.props.post.rating} 
+      numComments={this.props.post.comments.length} 
+    />
 
   // Render a footer?
   renderFooter = () =>
@@ -114,7 +120,7 @@ class Comments extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    // ...redux state to props here
+    post: state.posts.posts[state.posts.postId]
   }
 }
 
