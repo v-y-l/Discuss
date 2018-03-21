@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import Post from '../Components/Post'
+import Comment from '../Components/Comment'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
@@ -45,10 +46,7 @@ class Comments extends React.PureComponent {
   *************************************************************/
   renderRow ({item}) {
     return (
-      <View style={styles.row}>
-        <Text style={styles.boldLabel}>{item.title}</Text>
-        <Text style={styles.label}>{item.description}</Text>
-      </View>
+      <Comment />
     )
   }
 
@@ -113,7 +111,7 @@ class Comments extends React.PureComponent {
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
           ListHeaderComponent={this.renderHeader}
-          ListFooterComponent={this.renderFooter}
+          // ListFooterComponent={this.renderFooter}
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />

@@ -28,6 +28,16 @@ const metrics = {
     medium: 40,
     large: 60,
     logo: 200
+  },
+  item: {
+    paddingLeft: 15,
+    paddingRight: 10,
+  },
+  profilePicture: {
+    borderRadius: 20,
+    height: 40,
+    width: 40,
+    marginRight: 5
   }
 }
 

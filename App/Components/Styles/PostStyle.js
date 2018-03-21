@@ -1,12 +1,13 @@
 import { StyleSheet } from 'react-native'
 import Fonts from '../../Themes/Fonts'
 import Colors from '../../Themes/Colors'
+import Metrics from '../../Themes/Metrics'
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingLeft: 15,
-    paddingRight: 10,
+    paddingLeft: Metrics.item.paddingLeft,
+    paddingRight: Metrics.item.paddingRight,
   },
   //header
   header: {
@@ -24,11 +25,10 @@ export default StyleSheet.create({
   	alignItems: "center",
   },
   profilePicture: {
-  	// flex: 1,
-  	borderRadius: 20,
-  	height: 40,
-  	width: 40,
-  	marginRight: 5
+  	borderRadius: Metrics.profilePicture.borderRadius,
+  	height: Metrics.profilePicture.height,
+  	width: Metrics.profilePicture.width,
+  	marginRight: Metrics.profilePicture.marginRight
   },
   headerText: {
     ...Fonts.style.h5,
