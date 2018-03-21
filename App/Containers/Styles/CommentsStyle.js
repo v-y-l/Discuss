@@ -27,6 +27,6 @@ export default StyleSheet.create({
     color: Colors.snow
   },
   listContent: {
-    marginTop: Metrics.baseMargin
+    marginTop: Metrics.baseMargin,
   }
 })
