@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, FlatList } from 'react-native'
-import Post from '../Components/Post'
+import TouchablePost from '../Components/TouchablePost'
 import PostsAction from '../Redux/PostsRedux'
 import { connect } from 'react-redux'
 
@@ -32,9 +32,10 @@ class PostsStream extends React.PureComponent {
   *************************************************************/
   renderRow = ({item}) => {
     return (
-      <Post 
+      <TouchablePost 
         recipient={item.recipient} 
-        text={item.text} rating={+item.rating} 
+        text={item.text}
+        rating={+item.rating} 
         numComments={item.comments.length} 
         postId={item.id}
         onPressItem={this.props.selectPost}
