@@ -17,11 +17,9 @@ export default class AddComment extends Component {
 
   render () {
     return (
-      <View style={styles.container}>
-        <KeyboardAvoidingView>
-          <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}} />
-        </KeyboardAvoidingView>
-      </View>
+      <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={70}>
+        <TextInput autoCorrect={false} value="Add a comment" style={{height: 40, borderColor: 'gray', borderWidth: 1}} />
+      </KeyboardAvoidingView>
     )
   }
 }

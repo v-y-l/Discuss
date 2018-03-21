@@ -114,6 +114,7 @@ class Comments extends React.PureComponent {
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
+        <AddComment/>
       </View>
     )
   }
