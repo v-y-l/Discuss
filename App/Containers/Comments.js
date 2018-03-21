@@ -63,7 +63,7 @@ class Comments extends React.PureComponent {
 
   // Render a footer?
   renderFooter = () =>
-    <Text style={[styles.label, styles.sectionHeader]}> - Footer - </Text>
+    <View style={styles.separator}></View>
 
   // Show this when data is empty
   renderEmpty = () =>
@@ -110,11 +110,10 @@ class Comments extends React.PureComponent {
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
           ListHeaderComponent={this.renderHeader}
-          // ListFooterComponent={this.renderFooter}
+          ListFooterComponent={this.renderFooter}
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
-        <AddComment />
       </View>
     )
   }

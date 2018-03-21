@@ -56,6 +56,7 @@ class PostsStream extends React.PureComponent {
   renderFooter = () =>
     <View style={styles.separator}></View>
 
+
   // Show this when data is empty
   renderEmpty = () =>
     <Text style={styles.label}> - Nothing to See Here - </Text>
