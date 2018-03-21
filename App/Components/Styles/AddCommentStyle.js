@@ -10,15 +10,22 @@ export default StyleSheet.create({
   	borderWidth: 1,    
   	marginLeft: 5,
     marginRight: 5,
-    paddingLeft: 10
+    paddingLeft: 10,
+    marginTop: 5
   },
   input: {
   	flex: 3,
-  	height: 40, 
+  	height: 40,
+    opacity: 0.5
   },
   button: {
-  	flex: 1,
-  	backgroundColor: 'rgba(0,0,0,0)'
+  	backgroundColor: 'rgba(0,0,0,0)',
+    paddingRight: 15,
+    paddingTop: 10,
+  },
+  buttonText: {
+    color: "#007AFF"
+
   }
 
 })
