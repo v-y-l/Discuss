@@ -25,15 +25,7 @@ class Comments extends React.PureComponent {
   * Usually this should come from Redux mapStateToProps
   *************************************************************/
   state = {
-    dataObjects: [
-      {title: 'First Title', description: 'First Description'},
-      {title: 'Second Title', description: 'Second Description'},
-      {title: 'Third Title', description: 'Third Description'},
-      {title: 'Fourth Title', description: 'Fourth Description'},
-      {title: 'Fifth Title', description: 'Fifth Description'},
-      {title: 'Sixth Title', description: 'Sixth Description'},
-      {title: 'Seventh Title', description: 'Seventh Description'}
-    ]
+    dataObjects: []
   }
 
   /* ***********************************************************
@@ -46,7 +38,7 @@ class Comments extends React.PureComponent {
   *************************************************************/
   renderRow ({item}) {
     return (
-      <Comment />
+      <Comment author={item.author} comment={item.text} />
     )
   }
 
@@ -102,6 +94,11 @@ class Comments extends React.PureComponent {
   // )}
 
   render () {
+    if (this.props.post && this.props.comments) {
+      for (let commentId of this.props.post.comments) {
+        this.state.dataObjects.push(this.props.comments[commentId])
+      }
+    }
     return (
       <View style={styles.container}>
         <FlatList
@@ -122,7 +119,8 @@ class Comments extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    post: state.posts.posts[state.posts.postId]
+    post: state.posts.posts[state.posts.postId],
+    comments: state.comments.comments
   }
 }
 

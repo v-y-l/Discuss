@@ -36,7 +36,6 @@ export default function * root () {
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
     takeLatest(PostsTypes.GET_POSTS_REQUEST, getPosts, fixture),
     takeLatest(CommentsTypes.GET_COMMENTS_REQUEST, getComments, fixture),
-
   	
   ])
 }
