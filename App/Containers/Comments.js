@@ -3,6 +3,7 @@ import { View, Text, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import Post from '../Components/Post'
 import Comment from '../Components/Comment'
+import AddComment from '../Components/AddComment'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
@@ -95,6 +96,7 @@ class Comments extends React.PureComponent {
 
   render () {
     if (this.props.post && this.props.comments) {
+      this.state.dataObjects = []
       for (let commentId of this.props.post.comments) {
         this.state.dataObjects.push(this.props.comments[commentId])
       }
@@ -112,6 +114,7 @@ class Comments extends React.PureComponent {
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
+        <AddComment />
       </View>
     )
   }
