@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
+import Images from '../Themes/Images'
 import styles from './Styles/CommentStyle'
 
 export default class Comment extends Component {
@@ -18,8 +19,13 @@ export default class Comment extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text>Profile Picture</Text>
-        <Text>Author - Comment</Text>
+        <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />
+        <Text style={styles.comment} >
+          <Text>Victor Lin </Text> 
+          <Text> - This is a very long comment. Very, very, very, very, very, very, very, 
+          very, very, very, very, very, very, very, very, very, very, very, very long comment.
+          </Text>
+        </Text>
       </View>
     )
   }
