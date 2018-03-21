@@ -17,10 +17,11 @@ export default class AddComment extends Component {
 
   render () {
     return (
-      <KeyboardAvoidingView style={styles.container}>
-        <Text>AddComment Component</Text>
-        <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}} />
-      </KeyboardAvoidingView>
+      <View style={styles.container}>
+        <KeyboardAvoidingView>
+          <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}} />
+        </KeyboardAvoidingView>
+      </View>
     )
   }
 }
