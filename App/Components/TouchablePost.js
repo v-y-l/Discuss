@@ -21,8 +21,6 @@ export default class TouchablePost extends Component {
   // }
 
   render () {
-    console.log('touchable')
-    console.log(this.props)
     return (
       <TouchableOpacity onPress={()=> this.props.onPressItem(this.props.postId)}> 
         <Post 

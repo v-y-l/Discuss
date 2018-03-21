@@ -35,5 +35,5 @@ export function * getPosts (api, action) {
 export function * selectPost (action) {
   const { postId } = action
   yield put(PostsActions.selectPostSuccess(postId))
-  yield put(NavigationActions.navigate({'routeName':'CommentsScreen'}))
+  yield put(NavigationActions.navigate({'routeName':'Comments'}))
 }
