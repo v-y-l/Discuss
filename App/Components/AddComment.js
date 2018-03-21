@@ -20,7 +20,7 @@ export default class AddComment extends Component {
       <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={70}>
         <View style={styles.container}>
           <TextInput style={styles.input} autoCorrect={false} value="Add a comment..." />
-          <TouchableOpacity style={styles.button}> <Text> Post </Text> </TouchableOpacity>
+          <TouchableOpacity style={styles.button}><Text> Post </Text></TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
     )
