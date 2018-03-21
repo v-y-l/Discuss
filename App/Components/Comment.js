@@ -18,7 +18,8 @@ export default class Comment extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text>Comment Component</Text>
+        <Text>Profile Picture</Text>
+        <Text>Author - Comment</Text>
       </View>
     )
   }

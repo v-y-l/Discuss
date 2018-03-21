@@ -77,7 +77,7 @@ class Comments extends React.PureComponent {
     <Text style={styles.label}> - Nothing to See Here - </Text>
 
   renderSeparator = () =>
-    <Text style={styles.label}> - ~~~~~ - </Text>
+    <View style={styles.separator}></View>
 
   // The default function if no Key is provided is index
   // an identifiable key is important if you plan on
