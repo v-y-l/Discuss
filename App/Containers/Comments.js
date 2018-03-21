@@ -64,7 +64,8 @@ class Comments extends React.PureComponent {
         recipient={this.props.post.recipient} 
         text={this.props.post.text}
         rating={+this.props.post.rating} 
-        numComments={this.props.post.comments.length} 
+        numComments={this.props.post.comments.length}
+        showNumComments={false}
       />
       <View style={styles.separator}></View>
     </View>

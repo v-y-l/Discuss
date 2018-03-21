@@ -13,15 +13,16 @@ export default class Post extends Component {
     text: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     numComments: PropTypes.number.isRequired,
+    showNumComments: PropTypes.bool
   }
-  //
+
   // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
+  static defaultProps = {
+    showNumComments: true
+  }
 
   render () {
-    const { recipient, text, rating, numComments } = this.props
+    const { recipient, text, rating, numComments, showNumComments } = this.props
     const commentNoun = numComments == 1 ? 'comment' : 'comments'
     let ratingColor
     switch(rating) {
@@ -48,7 +49,7 @@ export default class Post extends Component {
             <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />
             <Text style={styles.headerText}> { recipient } </Text>
           </View>
-          <Text> {numComments} {commentNoun} <Icon style={styles.icon} name="message" size={30} /> </Text>
+          {showNumComments && <Text> {numComments} {commentNoun} <Icon style={styles.icon} name="message" size={30} /> </Text>}
         </View>
         <View style={styles.comment}>
           <View style={[ratingBackground, styles.rating]}><Text style={styles.ratingText}> {rating} </Text></View>

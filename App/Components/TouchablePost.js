@@ -27,7 +27,7 @@ export default class TouchablePost extends Component {
           recipient={this.props.recipient} 
           text={this.props.text} 
           rating={this.props.rating} 
-          numComments={this.props.numComments} 
+          numComments={this.props.numComments}
         />
       </TouchableOpacity>
 

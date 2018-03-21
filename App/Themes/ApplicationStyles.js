@@ -47,7 +47,7 @@ const ApplicationStyles = {
     },
     separator: {
       borderBottomWidth: 3,
-      borderColor: "#E0E0E0",
+      borderColor: Colors.separator,
       paddingBottom: 15,
       marginBottom: 15
     }

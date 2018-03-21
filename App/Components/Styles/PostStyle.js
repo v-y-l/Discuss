@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native'
 import Fonts from '../../Themes/Fonts'
+import Colors from '../../Themes/Colors'
 
 export default StyleSheet.create({
   container: {
@@ -12,11 +13,11 @@ export default StyleSheet.create({
   	flex: 1,
   	flexDirection: "row",
   	justifyContent: "space-between",
-	alignItems: "center",
+  	alignItems: "center",
   	paddingBottom: 10,
   	marginBottom: 10,
-  	borderBottomWidth: 1,
-  	borderColor: "#E0E0E0"
+  	borderBottomWidth: 2,
+  	borderColor: Colors.separator
   },
   profileBox: { 
   	flexDirection: "row",
