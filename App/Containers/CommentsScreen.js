@@ -6,8 +6,17 @@ import { connect } from 'react-redux'
 
 // Styles
 import styles from './Styles/CommentsScreenStyle'
+import navigationStyles from '../Navigation/Styles/NavigationStyles'
 
 class CommentsScreen extends Component {
+
+  static navigationOptions= {
+    title: 'Comments',
+    headerStyle: navigationStyles.header,
+    headerTitleStyle: navigationStyles.headerTitle,
+    headerTintColor: navigationStyles.tintColor
+  }
+
   render () {
     return (
       <ScrollView style={styles.container}>

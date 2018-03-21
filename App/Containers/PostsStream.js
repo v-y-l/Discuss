@@ -87,7 +87,7 @@ class PostsStream extends React.PureComponent {
   render () {
 
     this.state.dataObjects = Object.values(this.props.posts ? this.props.posts : {})
-    this.onPressItem = this.props.selectPost ? this.props.selectPost : null
+    this.onPressItem = this.props.selectPost
 
     return (
       <View style={styles.container}>
