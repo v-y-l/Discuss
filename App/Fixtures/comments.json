@@ -8,12 +8,12 @@
 		"comment2" : {
 			"id" : "comment2",
 			"author" : "Christian Lemieux",
-			"text" : "Just wanted to say hello from my honeymoon, y'all. But also, I think these things can be shorter."
+			"text" : "Hello from my honeymoon. I'm sad that I missed out on this first debrief."
 		},
 		"comment3" : {
 			"id" : "comment3",
 			"author" : "Eric Lee",
-			"text" : "I agree with this. John's presentation are always very to the point. It's good to have him start first and set the bar for the rest of the presentations."
+			"text" : "I agree with this. Additionally, John's presentations usually cut to the point. It's good to have him start first because it sets the bar for the rest of the presentations."
 		},
 	}
 }

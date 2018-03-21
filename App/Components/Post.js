@@ -53,7 +53,7 @@ export default class Post extends Component {
         </View>
         <View style={styles.comment}>
           <View style={[ratingBackground, styles.rating]}><Text style={styles.ratingText}> {rating} </Text></View>
-          <Text style={styles.commentText}> {text} </Text>
+          <Text style={styles.commentText}>{text}</Text>
         </View>
       </View>
     )
