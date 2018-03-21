@@ -15,18 +15,19 @@ import CommentsActions from '../Redux/CommentsRedux'
 // import { CommentsSelectors } from '../Redux/CommentsRedux'
 
 export function * getComments (api, action) {
-  const { data } = action
   // get current data from Store
   // const currentData = yield select(CommentsSelectors.getData)
   // make the call to the api
-  const response = yield call(api.getcomments, data)
+
+  // fix: this method gets all comments - migrate to getting comments based on postId to scale
+  const response = yield call(api.getComments)
 
   // success?
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(CommentsActions.commentsSuccess(response.data))
+    yield put(CommentsActions.getCommentsSuccess(response.data))
   } else {
-    yield put(CommentsActions.commentsFailure())
+    yield put(CommentsActions.getCommentsFailure())
   }
 }

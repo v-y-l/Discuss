@@ -20,9 +20,9 @@ export default class Comment extends Component {
     return (
       <View style={styles.container}>
         <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />
-        <Text style={styles.comment} >
-          <Text>Victor Lin </Text> 
-          <Text> - This is a very long comment. Very, very, very, very, very, very, very, 
+        <Text style={styles.commentBox} >
+          <Text style={styles.author}>Victor Lin</Text> 
+          <Text style={styles.comment}> This is a very long comment. Very, very, very, very, very, very, very, 
           very, very, very, very, very, very, very, very, very, very, very, very long comment.
           </Text>
         </Text>

@@ -15,8 +15,11 @@ export default StyleSheet.create({
   	width: Metrics.profilePicture.width,
   	marginRight: 10
   },
-  comment: {
+  commentBox: {
   	flex: 1,
   	...Fonts.style.normal
+  },
+  author: {
+  	fontWeight: 'bold'
   }
 })

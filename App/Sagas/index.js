@@ -8,12 +8,14 @@ import DebugConfig from '../Config/DebugConfig'
 import { StartupTypes } from '../Redux/StartupRedux'
 import { GithubTypes } from '../Redux/GithubRedux'
 import { PostsTypes } from '../Redux/PostsRedux'
+import { CommentsTypes } from '../Redux/CommentsRedux'
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
 import { getUserAvatar } from './GithubSagas'
 import { getPosts, selectPost } from './PostsSagas'
+import { getComments } from './CommentsSagas'
 
 /* ------------- API ------------- */
 
@@ -32,7 +34,9 @@ export default function * root () {
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
-    takeLatest(PostsTypes.GET_POSTS_REQUEST, getPosts, fixture)
+    takeLatest(PostsTypes.GET_POSTS_REQUEST, getPosts, fixture),
+    takeLatest(CommentsTypes.GET_COMMENTS_REQUEST, getComments, fixture),
+
   	
   ])
 }

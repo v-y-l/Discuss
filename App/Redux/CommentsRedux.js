@@ -4,9 +4,9 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  commentsRequest: ['data'],
-  commentsSuccess: ['payload'],
-  commentsFailure: null
+  getCommentsRequest: null,
+  getCommentsSuccess: ['payload'],
+  getCommentsFailure: null
 })
 
 export const CommentsTypes = Types
@@ -15,38 +15,37 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  data: null,
+  comments: null,
   fetching: null,
-  payload: null,
   error: null
 })
 
 /* ------------- Selectors ------------- */
 
 export const CommentsSelectors = {
-  getData: state => state.data
+
 }
 
 /* ------------- Reducers ------------- */
 
 // request the data from an api
-export const request = (state, { data }) =>
-  state.merge({ fetching: true, data, payload: null })
+export const request = (state, action) =>
+  state.merge({ fetching: true })
 
 // successful api lookup
 export const success = (state, action) => {
   const { payload } = action
-  return state.merge({ fetching: false, error: null, payload })
+  return state.merge({ fetching: false, error: null, comments: payload.comments })
 }
 
 // Something went wrong somewhere.
 export const failure = state =>
-  state.merge({ fetching: false, error: true, payload: null })
+  state.merge({ fetching: false, error: true, comments: null })
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.COMMENTS_REQUEST]: request,
-  [Types.COMMENTS_SUCCESS]: success,
-  [Types.COMMENTS_FAILURE]: failure
+  [Types.GET_COMMENTS_REQUEST]: request,
+  [Types.GET_COMMENTS_SUCCESS]: success,
+  [Types.GET_COMMENTS_FAILURE]: failure
 })
