@@ -10,7 +10,9 @@ const { Types, Creators } = createActions({
   selectPostRequest: ['postId'],
   selectPostSuccess: ['postId'],
   selectPostFailure: null,
-
+  postCommentToPostRequest: ['postId', 'commentId'], //What you're sending to the server
+  postCommentToPostSuccess: ['payload'], //What you're getting from the server
+  postCommentToPostFailure: null,
 })
 
 export const PostsTypes = Types
@@ -67,6 +69,24 @@ export const selectPostSuccess = (state, action) => {
 export const selectPostFailure = state =>
   state.merge({ postId: null, error: true })
 
+// ==========================================
+// Reducers that add a comment to the post
+// ==========================================
+
+// request the data from an api
+export const postCommentToPostRequest = (state, action) =>
+  state.merge({ fetching: true })
+
+// successful api lookup
+export const postCommentToPostSuccess = (state, action) => {
+  const { payload } = action
+  return state.merge({ fetching: false, posts: payload.posts, error: null })
+}
+
+// Something went wrong somewhere.
+export const postCommentToPostFailure = state =>
+  state.merge({ fetching: null, error: true })
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -75,5 +95,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_POSTS_FAILURE]: getPostsFailure,  
   [Types.SELECT_POST_REQUEST]: selectPostRequest,
   [Types.SELECT_POST_SUCCESS]: selectPostSuccess,
-  [Types.SELECT_POST_FAILURE]: selectPostFailure,
+  [Types.SELECT_POST_FAILURE]: selectPostFailure,  
+  [Types.POST_COMMENT_TO_POST_REQUEST]: postCommentToPostRequest,
+  [Types.POST_COMMENT_TO_POST_SUCCESS]: postCommentToPostSuccess,
+  [Types.POST_COMMENT_TO_POST_FAILURE]: postCommentToPostFailure,
 })

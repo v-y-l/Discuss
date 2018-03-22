@@ -31,3 +31,24 @@ export function * getComments (api, action) {
     yield put(CommentsActions.getCommentsFailure())
   }
 }
+
+export function * postComment (api, action) {
+  // get current data from Store
+  // const currentData = yield select(CommentsSelectors.getData)
+  // make the call to the api
+
+  const {commentAuthor, commentText, postId} = action
+
+  const response = yield call(api.postComment, commentAuthor, commentText)
+  console.log("response")
+  console.log(response)
+  // success?
+  if (response.ok) {
+    // You might need to change the response here - do this with a 'transform',
+    // located in ../Transforms/. Otherwise, just pass the data back from the api.
+    // yield put(PostsActions.postCommentToPostRequest(response.data))
+    yield put(CommentsActions.postCommentSuccess(response.data))
+  } else {
+    yield put(CommentsActions.postCommentFailure())
+  }
+}

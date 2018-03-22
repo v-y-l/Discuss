@@ -12,6 +12,25 @@ export default {
       data: require('../Fixtures/comments.json')
     }
   },
+  postComment: (commentAuthor, commentText) => {
+    //just a mock endpoint and we can only mimic adding one comment
+    let data = require('../Fixtures/comments.json')
+    let commentId = `comment${Object.keys(data.comments).length}`
+    data['comments'][commentId] = { id: commentId, author: commentAuthor, text:commentText }
+    data['comments']['newCommentId'] = commentId
+    return {
+      ok: true,
+      data: data
+    }
+  },
+  postCommentToPost: (commentId, postId) => {
+    let posts = require('../Fixtures/posts.json')
+    posts[postId][comments].push(commentId)
+    return {
+      ok: true,
+      data: posts
+    }
+  },
   // Functions return fixtures
   getRoot: () => {
     return {

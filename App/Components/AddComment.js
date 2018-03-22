@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 import styles from './Styles/AddCommentStyle'
-
-const submit = values => {
-  console.log('submitting form', values)
-}
+import CommentsActions from '../Redux/CommentsRedux'
 
 const renderInput = ({ input: { onChange, ...restInput }}) => {
-  return <TextInput style={styles.input} autoCorrect={false} onChangeText={onChange} value="Add a comment..." {...restInput}  />
+  return <TextInput style={styles.input} autoCorrect={false} onChangeText={onChange} placeholder="Add a comment..." {...restInput}  />
 }
 
 class AddComment extends Component {
@@ -25,7 +23,14 @@ class AddComment extends Component {
   // }
 
   render () {
-    const { handleSubmit } = this.props
+    const submit = values => {
+      console.log('dispatching submit')
+      console.log(values)
+      console.log(this.props)
+      this.props.dispatchSubmit(values.comment, "Fixture User", this.props.postId)
+    }
+
+    const { handleSubmit } = this.props //Middle-layer for your own custom submit: https://redux-form.com/7.1.0/docs/faq/handlevson.md/
     return (
       <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={70}>
         <View style={styles.container}>
@@ -38,7 +43,20 @@ class AddComment extends Component {
 }
 
 AddComment = reduxForm({
-  form: 'AddComment'
+  form: 'newComment'
 })(AddComment)
 
-export default AddComment
+const mapStateToProps = (state) => {
+  return {
+    postId: state.posts.postId
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchSubmit: (commentText, commentAuthor, postId) => 
+      dispatch(CommentsActions.postCommentRequest(commentText, commentAuthor, postId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddComment)

@@ -6,7 +6,10 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   getCommentsRequest: null,
   getCommentsSuccess: ['payload'],
-  getCommentsFailure: null
+  getCommentsFailure: null,
+  postCommentRequest: ['commentText', 'commentAuthor', 'postId'],
+  postCommentSuccess: ['payload'],
+  postCommentFailure: null,
 })
 
 export const CommentsTypes = Types
@@ -47,5 +50,8 @@ export const failure = state =>
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_COMMENTS_REQUEST]: request,
   [Types.GET_COMMENTS_SUCCESS]: success,
-  [Types.GET_COMMENTS_FAILURE]: failure
+  [Types.GET_COMMENTS_FAILURE]: failure,
+  [Types.POST_COMMENT_REQUEST]: request,
+  [Types.POST_COMMENT_SUCCESS]: success,
+  [Types.POST_COMMENT_FAILURE]: failure,
 })
