@@ -12,6 +12,7 @@
 
 import { call, put } from 'redux-saga/effects'
 import CommentsActions from '../Redux/CommentsRedux'
+import PostsActions from '../Redux/PostsRedux'
 // import { CommentsSelectors } from '../Redux/CommentsRedux'
 
 export function * getComments (api, action) {
@@ -38,16 +39,15 @@ export function * postComment (api, action) {
   // make the call to the api
 
   const {commentAuthor, commentText, postId} = action
+  const postCommentResponse = yield call(api.postComment, commentAuthor, commentText)
 
-  const response = yield call(api.postComment, commentAuthor, commentText)
-  console.log("response")
-  console.log(response)
   // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
+  if (postCommentResponse.ok) {
+    // You might need to change the postCommentResponse here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    // yield put(PostsActions.postCommentToPostRequest(response.data))
-    yield put(CommentsActions.postCommentSuccess(response.data))
+
+    yield put(CommentsActions.postCommentSuccess(postCommentResponse.data))
+    yield put(PostsActions.postCommentToPostRequest(postCommentResponse.data.newCommentId, postId))
   } else {
     yield put(CommentsActions.postCommentFailure())
   }

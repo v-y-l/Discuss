@@ -24,9 +24,6 @@ class AddComment extends Component {
 
   render () {
     const submit = values => {
-      console.log('dispatching submit')
-      console.log(values)
-      console.log(this.props)
       this.props.dispatchSubmit(values.comment, "Fixture User", this.props.postId)
     }
 

@@ -14,7 +14,7 @@ import { CommentsTypes } from '../Redux/CommentsRedux'
 
 import { startup } from './StartupSagas'
 import { getUserAvatar } from './GithubSagas'
-import { getPosts, selectPost } from './PostsSagas'
+import { getPosts, selectPost, postCommentToPost } from './PostsSagas'
 import { getComments, postComment } from './CommentsSagas'
 
 /* ------------- API ------------- */
@@ -35,7 +35,7 @@ export default function * root () {
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
     takeLatest(PostsTypes.GET_POSTS_REQUEST, getPosts, fixture),
-    // takeLatest(PostsTypes.POST_COMMENT_TO_POST_REQUEST, postCommentToPost, fixture),
+	takeLatest(PostsTypes.POST_COMMENT_TO_POST_REQUEST, postCommentToPost, fixture),
     takeLatest(CommentsTypes.GET_COMMENTS_REQUEST, getComments, fixture),
     takeLatest(CommentsTypes.POST_COMMENT_REQUEST, postComment, fixture),
   ])

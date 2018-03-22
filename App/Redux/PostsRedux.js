@@ -10,7 +10,7 @@ const { Types, Creators } = createActions({
   selectPostRequest: ['postId'],
   selectPostSuccess: ['postId'],
   selectPostFailure: null,
-  postCommentToPostRequest: ['postId', 'commentId'], //What you're sending to the server
+  postCommentToPostRequest: ['commentId', 'postId'], //What you're sending to the server
   postCommentToPostSuccess: ['payload'], //What you're getting from the server
   postCommentToPostFailure: null,
 })
@@ -74,8 +74,7 @@ export const selectPostFailure = state =>
 // ==========================================
 
 // request the data from an api
-export const postCommentToPostRequest = (state, action) =>
-  state.merge({ fetching: true })
+export const postCommentToPostRequest = (state, action) => state.merge({ fetching: true })
 
 // successful api lookup
 export const postCommentToPostSuccess = (state, action) => {

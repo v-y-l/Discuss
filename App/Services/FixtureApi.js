@@ -13,22 +13,23 @@ export default {
     }
   },
   postComment: (commentAuthor, commentText) => {
-    //just a mock endpoint and we can only mimic adding one comment
+    //Require caches the object so the fixture mimics the actual API behavior of having multiple comments
+    //https://stackoverflow.com/questions/8887318/understanding-node-js-modules-multiple-requires-return-the-same-object
     let data = require('../Fixtures/comments.json')
     let commentId = `comment${Object.keys(data.comments).length}`
-    data['comments'][commentId] = { id: commentId, author: commentAuthor, text:commentText }
-    data['comments']['newCommentId'] = commentId
+    data.comments[commentId] = { id: commentId, author: commentAuthor, text:commentText }
+    data.newCommentId = commentId
     return {
       ok: true,
-      data: data
+      data: data,
     }
   },
   postCommentToPost: (commentId, postId) => {
-    let posts = require('../Fixtures/posts.json')
-    posts[postId][comments].push(commentId)
+    let data = require('../Fixtures/posts.json')
+    data.posts[postId]['comments'].push(commentId)
     return {
       ok: true,
-      data: posts
+      data: data
     }
   },
   // Functions return fixtures
