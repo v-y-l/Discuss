@@ -25,7 +25,9 @@ export default StyleSheet.create({
   },
   buttonText: {
     color: "#007AFF"
-
+  },
+  disabledButtonText: {
+    color: "rgb(90,200,250)"
   }
 
 })

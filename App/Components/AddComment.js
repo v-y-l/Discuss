@@ -44,12 +44,18 @@ class AddComment extends Component {
       input.blur()
     }
 
+    // Refactor: dirty way to convert to boolean, do this in a clearer way
+    // https://stackoverflow.com/questions/263965/how-can-i-convert-a-string-to-boolean-in-javascript
+    const disabled = (!!this.props.commentForm) && !(!!this.props.commentForm.values)
+
     const { handleSubmit } = this.props //Middle-layer for your own custom submit: https://redux-form.com/7.1.0/docs/faq/handlevson.md/
     return (
       <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={70}>
         <View style={styles.container}>
           <Field ref="commentInput" withRef={true} name="comment" component={Input} />
-          <TouchableOpacity disabled={!this.props.textInputValues} style={styles.button} onPress={handleSubmit(submit)}><Text style={styles.buttonText}> Post </Text></TouchableOpacity>
+          <TouchableOpacity disabled={disabled} style={styles.button} onPress={handleSubmit(submit)}>
+          <Text style={disabled ? styles.disabledButtonText : styles.buttonText}> Post </Text>
+          </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
     )
@@ -63,7 +69,7 @@ AddComment = reduxForm({
 const mapStateToProps = (state) => {
   return {
     postId: state.posts.postId,
-    textInputValues: state.form.values
+    commentForm: state.form.newComment
   }
 }
 
