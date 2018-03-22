@@ -31,7 +31,6 @@ class AddComment extends Component {
   //   someSetting: false
   // }
 
-  //https://github.com/erikras/redux-form/issues/1933 Accessing 
 
 
   render () {
@@ -39,6 +38,7 @@ class AddComment extends Component {
 
     const submit = values => {
       this.props.dispatchSubmit(values.comment, "Fixture User", this.props.postId)
+      //https://github.com/erikras/redux-form/issues/1933
       let input = this.refs.commentInput.getRenderedComponent().refs.input
       input.clear()
       input.blur()
@@ -49,7 +49,7 @@ class AddComment extends Component {
       <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={70}>
         <View style={styles.container}>
           <Field ref="commentInput" withRef={true} name="comment" component={Input} />
-          <TouchableOpacity style={styles.button} onPress={handleSubmit(submit)}><Text style={styles.buttonText}> Post </Text></TouchableOpacity>
+          <TouchableOpacity disabled={!this.props.textInputValues} style={styles.button} onPress={handleSubmit(submit)}><Text style={styles.buttonText}> Post </Text></TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
     )
@@ -62,7 +62,8 @@ AddComment = reduxForm({
 
 const mapStateToProps = (state) => {
   return {
-    postId: state.posts.postId
+    postId: state.posts.postId,
+    textInputValues: state.form.values
   }
 }
 
