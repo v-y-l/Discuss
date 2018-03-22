@@ -16,7 +16,7 @@ export default {
     //Require caches the object so the fixture mimics the actual API behavior of having multiple comments
     //https://stackoverflow.com/questions/8887318/understanding-node-js-modules-multiple-requires-return-the-same-object
     let data = require('../Fixtures/comments.json')
-    let commentId = `comment${Object.keys(data.comments).length}`
+    let commentId = `comment${Object.keys(data.comments).length+1}`
     data.comments[commentId] = { id: commentId, author: commentAuthor, text:commentText }
     data.newCommentId = commentId
     return {
