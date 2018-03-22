@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, reset } from 'redux-form'
 import styles from './Styles/AddCommentStyle'
 import CommentsActions from '../Redux/CommentsRedux'
 
@@ -51,8 +51,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchSubmit: (commentText, commentAuthor, postId) => 
+    dispatchSubmit: (commentText, commentAuthor, postId) => {
+      dispatch(reset("newComment"))
       dispatch(CommentsActions.postCommentRequest(commentText, commentAuthor, postId))
+    }
   }
 }
 
