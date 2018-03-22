@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist'
 import configureStore from './CreateStore'
 import rootSaga from '../Sagas/'
 import ReduxPersist from '../Config/ReduxPersist'
+import { reducer as formReducer } from 'redux-form'
 
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
@@ -11,6 +12,7 @@ export const reducers = combineReducers({
   search: require('./SearchRedux').reducer,
   posts: require('./PostsRedux').reducer,
   comments: require('./CommentsRedux').reducer,
+  form: formReducer
 })
 
 export default () => {
