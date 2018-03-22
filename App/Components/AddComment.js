@@ -6,14 +6,17 @@ import { Field, reduxForm, blur, untouch } from 'redux-form'
 import styles from './Styles/AddCommentStyle'
 import CommentsActions from '../Redux/CommentsRedux'
 
-
-const renderInput = ({ input: { onChange, ...restInput }}) => {
-  return <TextInput 
-    style={styles.input} 
-    autoCorrect={false} 
-    onChangeText={onChange} 
-    placeholder="Add a comment..." 
-    {...restInput}  />
+class Input extends Component {
+  render() {
+    const { input: { onChange, ...restInput }} = this.props
+    return <TextInput
+      ref="input"
+      style={styles.input} 
+      autoCorrect={false} 
+      onChangeText={onChange} 
+      placeholder="Add a comment..." 
+      {...restInput}  />
+  }
 }
 
 class AddComment extends Component {
@@ -28,17 +31,24 @@ class AddComment extends Component {
   //   someSetting: false
   // }
 
+  //https://github.com/erikras/redux-form/issues/1933 Accessing 
+
+
   render () {
+
+
     const submit = values => {
       this.props.dispatchSubmit(values.comment, "Fixture User", this.props.postId)
-      // Keyboard.dismiss()
+      let input = this.refs.commentInput.getRenderedComponent().refs.input
+      input.clear()
+      input.blur()
     }
 
     const { handleSubmit } = this.props //Middle-layer for your own custom submit: https://redux-form.com/7.1.0/docs/faq/handlevson.md/
     return (
       <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={70}>
         <View style={styles.container}>
-          <Field name="comment" component={renderInput} />
+          <Field ref="commentInput" withRef={true} name="comment" component={Input} />
           <TouchableOpacity style={styles.button} onPress={handleSubmit(submit)}><Text style={styles.buttonText}> Post </Text></TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
@@ -61,7 +71,6 @@ const mapDispatchToProps = (dispatch) => {
     dispatchSubmit: (commentText, commentAuthor, postId) => {
       dispatch(CommentsActions.postCommentRequest(commentText, commentAuthor, postId))
       dispatch(blur("newComment","comment","")) //https://redux-form.com/6.0.0-alpha.4/docs/api/actioncreators.md/
-      dispatch(untouch("newComment"))
     }
   }
 }
