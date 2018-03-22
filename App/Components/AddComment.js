@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
-import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
-import { Field, reduxForm, reset, blur, untouch } from 'redux-form'
+import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard } from 'react-native'
+import { Field, reduxForm, blur, untouch } from 'redux-form'
 import styles from './Styles/AddCommentStyle'
 import CommentsActions from '../Redux/CommentsRedux'
 
+
 const renderInput = ({ input: { onChange, ...restInput }}) => {
-  return <TextInput style={styles.input} autoCorrect={false} onChangeText={onChange} placeholder="Add a comment..." {...restInput}  />
+  return <TextInput 
+    style={styles.input} 
+    autoCorrect={false} 
+    onChangeText={onChange} 
+    placeholder="Add a comment..." 
+    {...restInput}  />
 }
 
 class AddComment extends Component {
@@ -25,6 +31,7 @@ class AddComment extends Component {
   render () {
     const submit = values => {
       this.props.dispatchSubmit(values.comment, "Fixture User", this.props.postId)
+      // Keyboard.dismiss()
     }
 
     const { handleSubmit } = this.props //Middle-layer for your own custom submit: https://redux-form.com/7.1.0/docs/faq/handlevson.md/
@@ -52,11 +59,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatchSubmit: (commentText, commentAuthor, postId) => {
-      console.log(blur("newComment","comment",""))
-      dispatch(blur("newComment","comment","")) //https://redux-form.com/6.0.0-alpha.4/docs/api/actioncreators.md/
-      dispatch(untouch("newComment","comment")) //need to figure out a way to mark form as inactive
-      // dispatch(reset("newComment")) //https://redux-form.com/6.0.0-alpha.4/docs/faq/howtoclear.md/
       dispatch(CommentsActions.postCommentRequest(commentText, commentAuthor, postId))
+      dispatch(blur("newComment","comment","")) //https://redux-form.com/6.0.0-alpha.4/docs/api/actioncreators.md/
+      dispatch(untouch("newComment"))
     }
   }
 }
