@@ -14,7 +14,7 @@ class Input extends Component {
       style={styles.input} 
       autoCorrect={false} 
       onChangeText={onChange} 
-      placeholder="Add a comment..." 
+      placeholder="Add a comment..."
       {...restInput}  />
   }
 }

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { change, touch } from 'redux-form'
+import { connect } from 'react-redux'
 import Images from '../Themes/Images'
 import styles from './Styles/CommentStyle'
 
-export default class Comment extends Component {
+class Comment extends Component {
   // // Prop type warnings
   static propTypes = {
     author: PropTypes.string.isRequired,
@@ -15,6 +17,10 @@ export default class Comment extends Component {
   // static defaultProps = {
   //   someSetting: false
   // }
+
+  _onPress = () => {
+    this.props.replyToUser(this.props.author)
+  }
 
   render () {
     const {author, comment} = this.props
@@ -27,13 +33,29 @@ export default class Comment extends Component {
             <Text style={styles.comment}>{comment}</Text>
           </Text>
         </View>
-        <TouchableOpacity style={styles.reply}>
+        <TouchableOpacity style={styles.reply} onPress={this._onPress}>
           <Text>
             Reply
           </Text>
         </TouchableOpacity>
-
       </View>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    replyToUser: (user) => {
+      // dispatch(touch("newComment","comment"))
+      dispatch(change("newComment","comment",`@${user} `))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comment)
