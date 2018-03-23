@@ -3,7 +3,7 @@ import Metrics from '../../Themes/Metrics'
 import Fonts from '../../Themes/Fonts'
 
 export default StyleSheet.create({
-  container: {
+  commentContainer: {
     flex: 1,
     paddingLeft: Metrics.item.paddingLeft,
     paddingRight: Metrics.item.paddingRight,
@@ -21,5 +21,12 @@ export default StyleSheet.create({
   },
   author: {
   	fontWeight: 'bold'
+  },
+  container: {
+    flex: 1,
+  },
+  reply: {
+    paddingTop: 5,
+    paddingLeft: 65
   }
 })
