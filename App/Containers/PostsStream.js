@@ -12,12 +12,13 @@ import styles from './Styles/PostsStreamStyle'
 
 class PostsStream extends React.PureComponent {
 
-  //https://github.com/react-navigation/react-navigation/issues/1789
   // static navigationOptions = {
   // }
 
   // If you needed to access variables inside of navigation options:
   // https://github.com/react-navigation/react-navigation/issues/147
+  //https://github.com/react-navigation/react-navigation/issues/1789
+  
   // componentDidMount() {
   //   this.props.navigation.setParams({navigate: this.props.navigation.navigate})
   // }

@@ -16,7 +16,8 @@ const PrimaryNav = StackNavigator({
   // Default config for all screens
   initialRouteName: 'PostsStream',
 
-  // https://github.com/react-navigation/react-navigation/issues/1789
+  // The navigation object is passed into options
+  // https://reactnavigation.org/docs/stack-navigator.html#navigationoptions-used-by-stacknavigator
   navigationOptions: ({navigation}) => {
     return {
       title: 'Discuss',
