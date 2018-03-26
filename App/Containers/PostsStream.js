@@ -3,6 +3,7 @@ import { View, Text, FlatList } from 'react-native'
 import TouchablePost from '../Components/TouchablePost'
 import PostsAction from '../Redux/PostsRedux'
 import { connect } from 'react-redux'
+import SettingsButton from '../Components/SettingsButton'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
@@ -10,6 +11,17 @@ import { connect } from 'react-redux'
 import styles from './Styles/PostsStreamStyle'
 
 class PostsStream extends React.PureComponent {
+
+  //https://github.com/react-navigation/react-navigation/issues/1789
+  // static navigationOptions = {
+  // }
+
+  // If you needed to access variables inside of navigation options:
+  // https://github.com/react-navigation/react-navigation/issues/147
+  // componentDidMount() {
+  //   this.props.navigation.setParams({navigate: this.props.navigation.navigate})
+  // }
+
   /* ***********************************************************
   * STEP 1
   * This is an array of objects with the properties you desire

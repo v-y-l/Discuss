@@ -1,35 +1,34 @@
 import { StackNavigator } from 'react-navigation'
+import SettingsScreen from '../Containers/SettingsScreen'
 import Comments from '../Containers/Comments'
 import PostsStream from '../Containers/PostsStream'
 import LaunchScreen from '../Containers/LaunchScreen'
-import React from 'react'
-import { TouchableOpacity } from 'react-native'
 import styles from './Styles/NavigationStyles'
-import Icon from 'react-native-vector-icons/Ionicons'
-
-
-class SettingsButton extends React.Component {
-	render() {
-		return <TouchableOpacity style={styles.settingsButton} onPress={()=>{console.log("settingsPressed")}}> 
-			<Icon size={30} color="#ffffff" name="ios-settings" />
-		</TouchableOpacity>
-	}
-}
+import SettingsButton from '../Components/SettingsButton'
+import React from 'react'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
+  SettingsScreen: { screen: SettingsScreen },
   Comments: { screen: Comments },
   PostsStream: { screen: PostsStream },
 }, {
   // Default config for all screens
   initialRouteName: 'PostsStream',
-  // https://reactnavigation.org/docs/stack-navigator.html#navigationoptions-used-by-stacknavigator
-  navigationOptions: {
-  	title: 'Discuss',
-    headerStyle: styles.header,
-    headerTitleStyle: styles.headerTitle,
-    headerRight: <SettingsButton /> 
+
+  // https://github.com/react-navigation/react-navigation/issues/1789
+  navigationOptions: ({navigation}) => {
+    return {
+      title: 'Discuss',
+      headerStyle: styles.header,
+      headerTitleStyle: styles.headerTitle,
+      headerRight: <SettingsButton onPress={()=> {
+        navigation.navigate("SettingsScreen")
+      }} />
+    }
   }
 })
 
+
+// https://reactnavigation.org/docs/stack-navigator.html#navigationoptions-used-by-stacknavigator
 export default PrimaryNav

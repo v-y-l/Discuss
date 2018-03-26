@@ -48,7 +48,11 @@ class Comments extends React.PureComponent {
 
   renderRow = ({item}) => {
     return ( 
-      <Comment author={item.author} comment={item.text} handleReply={this.handleReply} />
+      <Comment 
+        author={item.author} 
+        comment={item.text} 
+        handleReply={this.handleReply} 
+      />
     )
   }
 
@@ -103,14 +107,14 @@ class Comments extends React.PureComponent {
   //   {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index}
   // )}
   componentDidUpdate() {
+    //fix: does not react to the 'reply' button after the first time
     if (this.state.replyTo.length > 0) {
       this.addCommentComponent.setState({text:`@${this.state.replyTo} `})
       this.addCommentComponent.textInput.focus()
     }
   }
 
-
-  render () {
+  render() {
     if (this.props.post && this.props.comments) {
       this.state.dataObjects = []
       for (let commentId of this.props.post.comments) {
