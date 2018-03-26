@@ -13,16 +13,22 @@ import styles from './Styles/PostsStreamStyle'
 
 class PostsStream extends Component {
 
-  // static navigationOptions = {
-  // }
+  static navigationOptions = ({navigation}) => {
+    // console.log("navigation")
+    // console.log(navigation)
+    // console.log(navigation.getParam("toggleModal"))
+    return {
+      headerRight: <SettingsButton onPress={navigation.getParam("toggleModal")} />
+    }
+  }
 
   // If you needed to access variables inside of navigation options:
   // https://github.com/react-navigation/react-navigation/issues/147
   //https://github.com/react-navigation/react-navigation/issues/1789
   
-  // componentDidMount() {
-  //   this.props.navigation.setParams({navigate: this.props.navigation.navigate})
-  // }
+  componentDidMount() {
+    this.props.navigation.setParams({toggleModal: this._toggleModal})
+  }
 
   /* ***********************************************************
   * STEP 1
@@ -107,13 +113,15 @@ class PostsStream extends Component {
 
   //Caught in infinity - https://github.com/erikras/redux-form/issues/2629
   componentDidUpdate() {
-    let dataObjects = Object.values(this.props.posts)
+    console.log("componentDidUpdate")
+
+    let dataObjects = Object.values(this.props.posts ? this.props.posts : {})
     this.setState({dataObjects})
   }
 
-  //Fix: Error prone, what if we actually had 0 comments?
+  //Fix: Take a look at this make sure it makes sense
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.dataObjects.length < 1
+    return this.props.posts == null && nextProps.posts != null
   }
 
   render () {

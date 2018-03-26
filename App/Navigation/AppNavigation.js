@@ -24,9 +24,9 @@ const PrimaryNav = StackNavigator({
       title: 'Feedback',
       headerStyle: styles.header,
       headerTitleStyle: styles.headerTitle,
-      headerRight: <SettingsButton onPress={()=> {
-        navigation.navigate("Modal")
-      }} />
+      // headerRight: <SettingsButton onPress={()=> {
+      //   navigation.navigate("Modal")
+      // }} />
     }
   }
 })
