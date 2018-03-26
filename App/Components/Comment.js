@@ -46,9 +46,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    replyToUser: (user) => {
-      dispatch(change("newComment","comment",`@${user} `))
-    }
+
   }
 }
 
