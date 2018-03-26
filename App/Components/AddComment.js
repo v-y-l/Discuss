@@ -26,13 +26,9 @@ class AddComment extends Component {
 
   _onPress = () => {
     this.props.submit(this.state.text, "Fixture User", this.props.postId)
+    this.props.clearReplyTo()
     this.setState({text:""})
     this.blurTextInput()
-  }
-
-  addReplyPrefix = (replyToUser) => {
-    this.setState({text: `@${replyToUser} `})
-    this.focusTextInput()
   }
 
   focusTextInput = () => {
@@ -45,14 +41,17 @@ class AddComment extends Component {
 
   render () {
     const disabled = this.state.text.length === 0
-    const { inputRef } = this.props
+    const { addCommentRef } = this.props
     return (
-      <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={70}>
+      <KeyboardAvoidingView 
+        behavior="padding" 
+        keyboardVerticalOffset={70}
+        ref={() => addCommentRef(this)}
+        >
         <View style={styles.container}>
           <TextInput
             ref={(input) => {
               this.textInput = input
-              inputRef(this)
             }}
             style={styles.input} 
             autoCorrect={false}

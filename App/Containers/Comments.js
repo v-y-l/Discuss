@@ -104,8 +104,8 @@ class Comments extends React.PureComponent {
   // )}
   componentDidUpdate() {
     if (this.state.replyTo.length > 0) {
-      this.component.setState({text:`@${this.state.replyTo} `})
-      this.component.textInput.focus()
+      this.addCommentComponent.setState({text:`@${this.state.replyTo} `})
+      this.addCommentComponent.textInput.focus()
     }
   }
 
@@ -130,10 +130,13 @@ class Comments extends React.PureComponent {
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
-        <AddComment inputRef={(input) => {this.component = input}}/>
+        <AddComment 
+          addCommentRef={(addCommentComponent) => {this.addCommentComponent = addCommentComponent}}
+          clearReplyTo={()=> {this.setState({replyTo:""})}}
+        />
       </View>
     )
-    //https://github.com/reactjs/react-redux/pull/270#issuecomment-175217424
+    //Get child component via refs: https://github.com/reactjs/react-redux/pull/270#issuecomment-175217424
   }
 }
 
