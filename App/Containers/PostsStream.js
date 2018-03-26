@@ -111,6 +111,7 @@ class PostsStream extends Component {
     this.setState({dataObjects})
   }
 
+  //Fix: Error prone, what if we actually had 0 comments?
   shouldComponentUpdate(nextProps, nextState) {
     return this.state.dataObjects.length < 1
   }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, Text, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import Post from '../Components/Post'
@@ -11,7 +11,7 @@ import AddComment from '../Components/AddComment'
 import styles from './Styles/CommentsStyle'
 import navigationStyles from '../Navigation/Styles/NavigationStyles'
 
-class Comments extends React.PureComponent {
+class Comments extends Component {
 
   static navigationOptions= {
     title: 'Comments',
@@ -106,21 +106,44 @@ class Comments extends React.PureComponent {
   // e.g. itemLayout={(data, index) => (
   //   {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index}
   // )}
+
+  componentDidMount() {
+    if (this.props.post && this.props.comments) {
+      dataObjects = []
+      for (let commentId of this.props.post.comments) {
+        dataObjects.push(this.props.comments[commentId])
+      }
+      this.setState({dataObjects:dataObjects})
+    }
+  }
+
   componentDidUpdate() {
     //fix: does not react to the 'reply' button after the first time
     if (this.state.replyTo.length > 0) {
       this.addCommentComponent.setState({text:`@${this.state.replyTo} `})
       this.addCommentComponent.textInput.focus()
     }
+
+    if (this.props.post && this.props.comments) {
+      dataObjects = []
+      for (let commentId of this.props.post.comments) {
+        dataObjects.push(this.props.comments[commentId])
+      }
+      this.setState({dataObjects:dataObjects})
+    }
+
+  }
+
+  //Fix: currently, this only checks for total number of comments
+  //Would make more sense to check if the commentIds are the same
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.dataObjects.length !== nextState.dataObjects.length 
+      || Object.keys(this.props.comments).length !== Object.keys(nextProps.comments).length
+      || this.state.replyTo !== nextState.replyTo
   }
 
   render() {
-    if (this.props.post && this.props.comments) {
-      this.state.dataObjects = []
-      for (let commentId of this.props.post.comments) {
-        this.state.dataObjects.push(this.props.comments[commentId])
-      }
-    }
+
     return (
       <View style={styles.container}>
         <FlatList
