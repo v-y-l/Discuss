@@ -17,12 +17,8 @@ class Comment extends Component {
   //   someSetting: false
   // }
 
-  _onPress = () => {
-    this.props.replyToUser(this.props.author)
-  }
-
   render () {
-    const {author, comment} = this.props
+    const {author, comment, handleReply} = this.props
     return (
       <View style={styles.container}>
         <View style={styles.commentContainer}>
@@ -32,7 +28,7 @@ class Comment extends Component {
             <Text style={styles.comment}>{comment}</Text>
           </Text>
         </View>
-        <TouchableOpacity style={styles.reply} onPress={this._onPress}>
+        <TouchableOpacity style={styles.reply} onPress={()=>{handleReply(author)}}>
           <Text>
             Reply
           </Text>

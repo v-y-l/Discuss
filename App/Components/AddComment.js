@@ -30,6 +30,11 @@ class AddComment extends Component {
     this.blurTextInput()
   }
 
+  addReplyPrefix = (replyToUser) => {
+    this.setState({text: `@${replyToUser} `})
+    this.focusTextInput()
+  }
+
   focusTextInput = () => {
     this.textInput.focus()
   }
@@ -39,16 +44,18 @@ class AddComment extends Component {
   }
 
   render () {
-
     const disabled = this.state.text.length === 0
-
+    const { inputRef } = this.props
     return (
       <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={70}>
         <View style={styles.container}>
           <TextInput
-            ref={(input) => {this.textInput = input}}
+            ref={(input) => {
+              this.textInput = input
+              inputRef(input)
+            }}
             style={styles.input} 
-            autoCorrect={false} 
+            autoCorrect={false}
             onChangeText={(text)=> this.setState({text})}
             value={this.state.text}
             placeholder="Add a comment..."

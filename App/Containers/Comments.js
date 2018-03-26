@@ -25,8 +25,13 @@ class Comments extends React.PureComponent {
   * This is an array of objects with the properties you desire
   * Usually this should come from Redux mapStateToProps
   *************************************************************/
-  state = {
-    dataObjects: []
+
+  constructor(props) {
+    super(props) 
+    this.state = {
+      dataObjects: [],
+      replyTo: ""
+    }
   }
 
   /* ***********************************************************
@@ -37,9 +42,13 @@ class Comments extends React.PureComponent {
   * e.g.
     return <MyCustomCell title={item.title} description={item.description} />
   *************************************************************/
-  renderRow ({item}) {
-    return (
-      <Comment author={item.author} comment={item.text} />
+  handleReply = (replyToUser) => {
+    this.setState({replyTo: replyToUser})
+  }
+
+  renderRow = ({item}) => {
+    return ( 
+      <Comment author={item.author} comment={item.text} handleReply={this.handleReply} />
     )
   }
 
@@ -93,6 +102,12 @@ class Comments extends React.PureComponent {
   // e.g. itemLayout={(data, index) => (
   //   {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index}
   // )}
+  componentDidUpdate() {
+    if (this.state.replyTo.length > 0) {
+      this.textInput.focus()
+    }
+  }
+
 
   render () {
     if (this.props.post && this.props.comments) {
@@ -101,7 +116,6 @@ class Comments extends React.PureComponent {
         this.state.dataObjects.push(this.props.comments[commentId])
       }
     }
-    console.log(this.addCommentComponent)
     return (
       <View style={styles.container}>
         <FlatList
@@ -115,9 +129,10 @@ class Comments extends React.PureComponent {
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
-        <AddComment ref={(component) => this.addCommentComponent = component}/>
+        <AddComment inputRef={(input) => {this.textInput = input}}/>
       </View>
     )
+    //https://github.com/reactjs/react-redux/pull/270#issuecomment-175217424
   }
 }
 
