@@ -52,7 +52,7 @@ class AddComment extends Component {
           <TextInput
             ref={(input) => {
               this.textInput = input
-              inputRef(input)
+              inputRef(this)
             }}
             style={styles.input} 
             autoCorrect={false}

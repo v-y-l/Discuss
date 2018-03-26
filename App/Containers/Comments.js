@@ -104,7 +104,8 @@ class Comments extends React.PureComponent {
   // )}
   componentDidUpdate() {
     if (this.state.replyTo.length > 0) {
-      this.textInput.focus()
+      this.component.setState({text:`@${this.state.replyTo} `})
+      this.component.textInput.focus()
     }
   }
 
@@ -129,7 +130,7 @@ class Comments extends React.PureComponent {
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
-        <AddComment inputRef={(input) => {this.textInput = input}}/>
+        <AddComment inputRef={(input) => {this.component = input}}/>
       </View>
     )
     //https://github.com/reactjs/react-redux/pull/270#issuecomment-175217424
