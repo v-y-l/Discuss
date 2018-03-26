@@ -41,6 +41,10 @@ class AddComment extends Component {
 
   render () {
     const disabled = this.state.text.length === 0
+    //https://reactjs.org/docs/refs-and-the-dom.html
+    //A hack because this is abusing how refs work.
+    //Refs are called immediately when a component is mounted or unmounted.
+    //Here, we pass the entire component back to the parent via 'addCommentRef'.
     const { addCommentRef } = this.props
     return (
       <KeyboardAvoidingView 
