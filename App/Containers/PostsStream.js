@@ -14,11 +14,12 @@ import styles from './Styles/PostsStreamStyle'
 class PostsStream extends Component {
 
   static navigationOptions = ({navigation}) => {
-    // console.log("navigation")
-    // console.log(navigation)
-    // console.log(navigation.getParam("toggleModal"))
+
+    const toggleModal = () => {
+      navigation.state.params.toggleModal()
+    }
     return {
-      headerRight: <SettingsButton onPress={navigation.getParam("toggleModal")} />
+      headerRight: <SettingsButton onPress={toggleModal} />
     }
   }
 
@@ -108,20 +109,20 @@ class PostsStream extends Component {
   // )}
 
   // https://github.com/react-native-community/react-native-modal
-  _toggleModal = () =>
+  _toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
+  }
 
   //Caught in infinity - https://github.com/erikras/redux-form/issues/2629
   componentDidUpdate() {
-    console.log("componentDidUpdate")
-
     let dataObjects = Object.values(this.props.posts ? this.props.posts : {})
     this.setState({dataObjects})
   }
 
   //Fix: Take a look at this make sure it makes sense
   shouldComponentUpdate(nextProps, nextState) {
-    return this.props.posts == null && nextProps.posts != null
+    return this.props.posts == null && nextProps.posts != null || 
+      this.state.isModalVisible != nextState.isModalVisible
   }
 
   render () {
