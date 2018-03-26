@@ -1,16 +1,17 @@
-import React from 'react'
-import { View, Text, FlatList } from 'react-native'
+import React, { Component } from 'react'
+import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import TouchablePost from '../Components/TouchablePost'
 import PostsAction from '../Redux/PostsRedux'
 import { connect } from 'react-redux'
 import SettingsButton from '../Components/SettingsButton'
+// import Modal from "react-native-modal";
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
 // Styles
 import styles from './Styles/PostsStreamStyle'
 
-class PostsStream extends React.PureComponent {
+class PostsStream extends Component {
 
   // static navigationOptions = {
   // }
@@ -30,6 +31,7 @@ class PostsStream extends React.PureComponent {
   *************************************************************/
   state = {
     dataObjects: Object.values(this.props.posts ? this.props.posts : {}),
+    // isModalVisible: false
   }
 
   onPressItem = this.props.selectPost
@@ -99,13 +101,27 @@ class PostsStream extends React.PureComponent {
   //   {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index}
   // )}
 
+  // https://github.com/react-native-community/react-native-modal
+  // _toggleModal = () =>
+  //   this.setState({ isModalVisible: !this.state.isModalVisible });
+
+  //Caught in infinity - https://github.com/erikras/redux-form/issues/2629
+  componentDidUpdate() {
+    let dataObjects = Object.values(this.props.posts)
+    this.setState({dataObjects})
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.dataObjects.length < 1
+  }
+
   render () {
 
-    this.state.dataObjects = Object.values(this.props.posts ? this.props.posts : {})
     this.onPressItem = this.props.selectPost
 
     return (
       <View style={styles.container}>
+
         <FlatList
           contentContainerStyle={styles.listContent}
           data={this.state.dataObjects}
