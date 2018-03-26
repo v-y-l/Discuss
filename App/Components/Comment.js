@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import { change, touch } from 'redux-form'
 import { connect } from 'react-redux'
 import Images from '../Themes/Images'
 import styles from './Styles/CommentStyle'
@@ -52,7 +51,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     replyToUser: (user) => {
-      // dispatch(touch("newComment","comment"))
       dispatch(change("newComment","comment",`@${user} `))
     }
   }

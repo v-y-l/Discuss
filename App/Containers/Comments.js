@@ -101,6 +101,7 @@ class Comments extends React.PureComponent {
         this.state.dataObjects.push(this.props.comments[commentId])
       }
     }
+    console.log(this.addCommentComponent)
     return (
       <View style={styles.container}>
         <FlatList
@@ -114,7 +115,7 @@ class Comments extends React.PureComponent {
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
-        <AddComment />
+        <AddComment ref={(component) => this.addCommentComponent = component}/>
       </View>
     )
   }

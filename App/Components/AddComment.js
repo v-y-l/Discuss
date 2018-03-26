@@ -2,22 +2,8 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard } from 'react-native'
-import { Field, reduxForm, blur, untouch } from 'redux-form'
 import styles from './Styles/AddCommentStyle'
 import CommentsActions from '../Redux/CommentsRedux'
-
-class Input extends Component {
-  render() {
-    const { input: { onChange, ...restInput }} = this.props
-    return <TextInput
-      ref="input"
-      style={styles.input} 
-      autoCorrect={false} 
-      onChangeText={onChange} 
-      placeholder="Add a comment..."
-      {...restInput}  />
-  }
-}
 
 class AddComment extends Component {
   // // Prop type warnings
@@ -31,30 +17,44 @@ class AddComment extends Component {
   //   someSetting: false
   // }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      text: ""
+    }
+  }
 
+  _onPress = () => {
+    this.props.submit(this.state.text, "Fixture User", this.props.postId)
+    this.setState({text:""})
+    this.blurTextInput()
+  }
+
+  focusTextInput = () => {
+    this.textInput.focus()
+  }
+
+  blurTextInput = () => {
+    this.textInput.blur()
+  }
 
   render () {
 
+    const disabled = this.state.text.length === 0
 
-    const submit = values => {
-      this.props.dispatchSubmit(values.comment, "Fixture User", this.props.postId)
-      //https://github.com/erikras/redux-form/issues/1933
-      let input = this.refs.commentInput.getRenderedComponent().refs.input
-      input.clear()
-      input.blur()
-    }
-
-    // Refactor: dirty way to convert to boolean, do this in a clearer way
-    // https://stackoverflow.com/questions/263965/how-can-i-convert-a-string-to-boolean-in-javascript
-    const disabled = (!!this.props.commentForm) && !(!!this.props.commentForm.values)
-
-    const { handleSubmit } = this.props //Middle-layer for your own custom submit: https://redux-form.com/7.1.0/docs/faq/handlevson.md/
     return (
       <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={70}>
         <View style={styles.container}>
-          <Field ref="commentInput" withRef={true} name="comment" component={Input} />
-          <TouchableOpacity disabled={disabled} style={styles.button} onPress={handleSubmit(submit)}>
-          <Text style={disabled ? styles.disabledButtonText : styles.buttonText}> Post </Text>
+          <TextInput
+            ref={(input) => {this.textInput = input}}
+            style={styles.input} 
+            autoCorrect={false} 
+            onChangeText={(text)=> this.setState({text})}
+            value={this.state.text}
+            placeholder="Add a comment..."
+          />
+          <TouchableOpacity disabled={disabled} style={styles.button} onPress={this._onPress}>
+            <Text style={disabled ? styles.disabledButtonText : styles.buttonText}> Post </Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
@@ -62,22 +62,16 @@ class AddComment extends Component {
   }
 }
 
-AddComment = reduxForm({
-  form: 'newComment'
-})(AddComment)
-
 const mapStateToProps = (state) => {
   return {
-    postId: state.posts.postId,
-    commentForm: state.form.newComment
+    postId: state.posts.postId
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchSubmit: (commentText, commentAuthor, postId) => {
+    submit: (commentText, commentAuthor, postId) => {
       dispatch(CommentsActions.postCommentRequest(commentText, commentAuthor, postId))
-      dispatch(blur("newComment","comment","")) //https://redux-form.com/6.0.0-alpha.4/docs/api/actioncreators.md/
     }
   }
 }
