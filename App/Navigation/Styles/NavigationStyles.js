@@ -12,5 +12,8 @@ export default StyleSheet.create({
   },
   tintColor: {
   	color: Colors.headerTitle
+  },
+  settingsButton: {
+    paddingRight: 15, 
   }
 })
