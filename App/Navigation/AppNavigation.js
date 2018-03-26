@@ -21,7 +21,7 @@ const PrimaryNav = StackNavigator({
   // https://reactnavigation.org/docs/stack-navigator.html#navigationoptions-used-by-stacknavigator
   navigationOptions: ({navigation}) => {
     return {
-      title: 'Discuss',
+      title: 'Feedback',
       headerStyle: styles.header,
       headerTitleStyle: styles.headerTitle,
       headerRight: <SettingsButton onPress={()=> {
@@ -30,6 +30,27 @@ const PrimaryNav = StackNavigator({
     }
   }
 })
+
+//Screen fade in and fade out animation
+//https://github.com/react-navigation/react-navigation/issues/2493
+const fade = (props) => {
+    const {position, scene} = props
+
+    const index = scene.index
+
+    const translateX = 0
+    const translateY = 0
+
+    const opacity = position.interpolate({
+        inputRange: [index - 0.7, index, index + 0.7],
+        outputRange: [0.3, 1, 0.3]
+    })
+
+    return {
+        opacity,
+        transform: [{translateX}, {translateY}]
+    }
+}
 
 // Full screen modal - https://reactnavigation.org/docs/modal.html
 const RootStack = StackNavigator(
@@ -44,6 +65,11 @@ const RootStack = StackNavigator(
   {
     mode: 'modal',
     headerMode: 'none',
+    transitionConfig: () => ({
+        screenInterpolator: (props) => {
+            return fade(props)
+        }
+    })
   }
 )
 

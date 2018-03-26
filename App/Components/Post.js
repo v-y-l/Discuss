@@ -47,7 +47,7 @@ export default class Post extends Component {
         <View style={styles.header}>
           <View style={styles.profileBox}>
             <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />
-            <Text style={styles.headerText}> { recipient } </Text>
+            <Text style={styles.headerText}> For { recipient } </Text>
           </View>
           {showNumComments && <Text> {numComments} {commentNoun} <Icon style={styles.icon} name="message" size={30} /> </Text>}
         </View>

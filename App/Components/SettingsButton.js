@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import styles from './Styles/SettingsButtonStyle'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { BlurView, VibrancyView } from 'react-native-blur'
 
 export default class SettingsButton extends Component {
   // // Prop type warnings
