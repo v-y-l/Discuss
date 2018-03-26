@@ -4,7 +4,7 @@ import TouchablePost from '../Components/TouchablePost'
 import PostsAction from '../Redux/PostsRedux'
 import { connect } from 'react-redux'
 import SettingsButton from '../Components/SettingsButton'
-// import Modal from "react-native-modal";
+import SettingsModal from '../Components/SettingsModal'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
@@ -31,7 +31,7 @@ class PostsStream extends Component {
   *************************************************************/
   state = {
     dataObjects: Object.values(this.props.posts ? this.props.posts : {}),
-    // isModalVisible: false
+    isModalVisible: false
   }
 
   onPressItem = this.props.selectPost
@@ -102,8 +102,8 @@ class PostsStream extends Component {
   // )}
 
   // https://github.com/react-native-community/react-native-modal
-  // _toggleModal = () =>
-  //   this.setState({ isModalVisible: !this.state.isModalVisible });
+  _toggleModal = () =>
+    this.setState({ isModalVisible: !this.state.isModalVisible });
 
   //Caught in infinity - https://github.com/erikras/redux-form/issues/2629
   componentDidUpdate() {
@@ -122,7 +122,6 @@ class PostsStream extends Component {
 
     return (
       <View style={styles.container}>
-
         <FlatList
           contentContainerStyle={styles.listContent}
           data={this.state.dataObjects}
@@ -134,6 +133,7 @@ class PostsStream extends Component {
           // ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
+        <SettingsModal isVisible={this.state.isModalVisible} />
       </View>
     )
   }
