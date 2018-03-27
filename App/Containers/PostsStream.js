@@ -125,16 +125,15 @@ class PostsStream extends Component {
   // console.log("props")
   // console.log(this.props)
   // console.log(nextProps)
-  // console.log(this.props==nextProps)
+  // console.log(this.props!=nextProps)
   // console.log("state")
   // console.log(this.state)    
   // console.log(nextState)
-  // console.log(this.state==nextState)
+  // console.log(this.state!=nextState)
 
   shouldComponentUpdate(nextProps, nextState) {
-
-    let curNumComments = 0
-    let nextNumComments = 0
+    var curNumComments = 0
+    var nextNumComments = 0
     for (var post of this.state.posts) {
       curNumComments += post.comments.length
     }     
@@ -143,7 +142,7 @@ class PostsStream extends Component {
     } 
     return this.props.posts == null && nextProps.posts != null || 
       this.state.isModalVisible != nextState.isModalVisible ||
-      curNumComments != nextNumComments
+      curNumComments != nextNumComments || this.props != nextProps
   }
 
   render () {
