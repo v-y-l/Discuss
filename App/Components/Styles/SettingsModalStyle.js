@@ -16,8 +16,7 @@ export default StyleSheet.create({
   	paddingTop: 15,
   	paddingLeft: 15,
   	paddingRight: 15,
-  	paddingBottom: 15,
-
+  	paddingBottom: 10,
   },
   header: {
   	...Fonts.style.h5,
@@ -30,12 +29,6 @@ export default StyleSheet.create({
   	paddingRight: 5,
   	flexDirection: 'row',
   	justifyContent: 'space-around'
-  },
-  saveButton: {
-  	backgroundColor: Colors.appColor 
-  },
-  cancelButton: {
-
   },
   input: {
   	...Fonts.style.normal,

@@ -39,8 +39,8 @@ export default class SettingsModal extends Component {
               />
             </View>
             <View style={styles.modalButtons}>
-              <Button style={styles.cancelButton} title='Cancel' onPress={toggleModal} />
-              <Button style={styles.saveButton} title='Save' onPress={toggleModal} />
+              <Button title='Cancel' onPress={toggleModal} />
+              <Button title='Save' onPress={toggleModal} />
             </View>
           </View>
         </Modal>
