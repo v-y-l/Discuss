@@ -31,7 +31,6 @@ class PostsStream extends Component {
   
   componentDidMount() {
     this.props.navigation.setParams({toggleModal: this._toggleModal})
-    this.setState({pseudonym:this.props.pseudonym})
   }
 
   /* ***********************************************************
@@ -42,8 +41,11 @@ class PostsStream extends Component {
 
   constructor(props) {
     super(props) 
+
+    let posts = Object.values(this.props.posts || {})
+
     this.state = {
-      posts: [],
+      posts: posts,
       isModalVisible: false,
       pseudonym: this.props.pseudonym
     }
@@ -125,7 +127,12 @@ class PostsStream extends Component {
   //https://medium.com/@baphemot/understanding-reactjs-component-life-cycle-823a640b3e8d
   componentWillReceiveProps(nextProps) {
     let posts = Object.values(nextProps.posts || {})
-    this.setState({posts})
+
+    //https://stackoverflow.com/questions/30782948/why-calling-react-setstate-method-doesnt-mutate-the-state-immediately
+    this.setState({
+      posts: posts, 
+      pseudonym: nextProps.pseudonym
+    })
   }
 
   //Caught in infinity - https://github.com/erikras/redux-form/issues/2629
