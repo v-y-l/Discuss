@@ -23,6 +23,10 @@ export default class SettingsModal extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({text: nextProps.pseudonym})
+  }
+
   render () {
     const { isVisible, toggleModal, save, pseudonym } = this.props
     return (

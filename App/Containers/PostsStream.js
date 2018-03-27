@@ -126,6 +126,7 @@ class PostsStream extends Component {
 
   //https://medium.com/@baphemot/understanding-reactjs-component-life-cycle-823a640b3e8d
   componentWillReceiveProps(nextProps) {
+
     let posts = Object.values(nextProps.posts || {})
 
     //https://stackoverflow.com/questions/30782948/why-calling-react-setstate-method-doesnt-mutate-the-state-immediately
