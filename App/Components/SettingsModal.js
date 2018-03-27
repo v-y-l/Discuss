@@ -28,8 +28,8 @@ export default class SettingsModal extends Component {
     return (
       <View style={styles.container}>
         <Modal isVisible={isVisible}>
-          <View style={styles.modalContent}>
-            <View style={styles.modalHeader}>
+          <View style={styles.modalContainer}>
+            <View style={styles.modalInputs}>
               <Text style={styles.header}> Your Pseudonym </Text>
               <TextInput
                 style={styles.input}
@@ -38,10 +38,9 @@ export default class SettingsModal extends Component {
                 onChangeText={(text)=>this.setState({text})}
               />
             </View>
-            <View style={styles.separator}></View>
             <View style={styles.modalButtons}>
-              <Button title='Save' onPress={toggleModal} />
-              <Button title='Cancel' onPress={toggleModal} />
+              <Button style={styles.cancelButton} title='Cancel' onPress={toggleModal} />
+              <Button style={styles.saveButton} title='Save' onPress={toggleModal} />
             </View>
           </View>
         </Modal>

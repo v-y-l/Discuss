@@ -23,6 +23,7 @@ const colors = {
   banner: '#5F3E63',
   text: '#E0D7E5',
   // Discuss App styles
+  appColor: '#AB47BC',
   header: '#AB47BC',
   headerTitle: '#FFFFFF',
   belowExpectations: '#B71C1C',

@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { Fonts } from '../../Themes/'
+import { Colors } from '../../Themes/'
 import { ApplicationStyles } from '../../Themes/'
 export default StyleSheet.create({
   container: {
@@ -7,17 +8,34 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  modalContent: {
+  modalContainer: {
   	backgroundColor: '#ffffff',
   	borderRadius: 5
   },
-  modalHeader: {
-  	padding: 15,
+  modalInputs: {
+  	paddingTop: 15,
+  	paddingLeft: 15,
+  	paddingRight: 15,
+  	paddingBottom: 15,
+
   },
   header: {
   	...Fonts.style.h5,
   	textAlign: 'center',
   	marginBottom: 10
+  },
+  modalButtons: {
+  	paddingBottom: 10,
+  	paddingLeft: 5,
+  	paddingRight: 5,
+  	flexDirection: 'row',
+  	justifyContent: 'space-around'
+  },
+  saveButton: {
+  	backgroundColor: Colors.appColor 
+  },
+  cancelButton: {
+
   },
   input: {
   	...Fonts.style.normal,
@@ -30,6 +48,5 @@ export default StyleSheet.create({
   separator: {
   	borderBottomWidth: 1,
   	borderColor: '#C0C0C0',
-
   }
 })
