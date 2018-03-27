@@ -18,7 +18,9 @@ class Comments extends Component {
 
   static navigationOptions = ({navigation}) => {
     const toggleModal = () => {
-      navigation.state.params.toggleModal()
+      if (navigation.state.params) {
+        navigation.state.params.toggleModal()
+      }
     }
     return {
       title: 'Comments',
@@ -121,8 +123,11 @@ class Comments extends Component {
   //   {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index}
   // )}
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.navigation.setParams({toggleModal: this._toggleModal})    
+  }
+
+  componentDidMount() {
     if (this.props.post && this.props.comments) {
       dataObjects = []
       for (let commentId of this.props.post.comments) {
@@ -201,7 +206,6 @@ const mapStateToProps = (state) => {
     pseudonym: state.currentUser.pseudonym,
   }
 }
-
 
 const mapDispatchToProps = (dispatch) => {
   return {

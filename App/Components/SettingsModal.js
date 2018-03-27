@@ -11,9 +11,9 @@ export default class SettingsModal extends Component {
   //   someSetting: PropTypes.bool.isRequired,
   // }
   //
-  // // Defaults for props
+  // Defaults for props
   // static defaultProps = {
-  //   someSetting: false
+  //   toggleModal: ()=>{console.log("toggleModal not loaded yet")}
   // }
 
   constructor(props) {
