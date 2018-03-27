@@ -31,6 +31,7 @@ class PostsStream extends Component {
   
   componentDidMount() {
     this.props.navigation.setParams({toggleModal: this._toggleModal})
+    this.setState({pseudonym:this.props.pseudonym})
   }
 
   /* ***********************************************************
@@ -43,7 +44,8 @@ class PostsStream extends Component {
     super(props) 
     this.state = {
       posts: [],
-      isModalVisible: false
+      isModalVisible: false,
+      pseudonym: this.props.pseudonym
     }
   }
 
@@ -120,11 +122,16 @@ class PostsStream extends Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   }
 
-  //Caught in infinity - https://github.com/erikras/redux-form/issues/2629
-  componentDidUpdate() {
-    let posts = Object.values(this.props.posts || {})
+  //https://medium.com/@baphemot/understanding-reactjs-component-life-cycle-823a640b3e8d
+  componentWillReceiveProps(nextProps) {
+    let posts = Object.values(nextProps.posts || {})
     this.setState({posts})
   }
+
+  //Caught in infinity - https://github.com/erikras/redux-form/issues/2629
+  // componentDidUpdate() {
+
+  // }
 
   //Fix: This level of complexity probably isn't the best way to do things
   // but I don't have a better fix currently
@@ -137,20 +144,20 @@ class PostsStream extends Component {
     // console.log(this.state)    
     // console.log(nextState)
     // console.log(this.state!=nextState)
-  shouldComponentUpdate(nextProps, nextState) {
-    var curNumComments = 0
-    var nextNumComments = 0
-    for (var post of this.state.posts) {
-      curNumComments += post.comments.length
-    }     
-    for (var post of nextState.posts) {
-      nextNumComments += post.comments.length
-    } 
-    return this.props.posts == null && nextProps.posts != null 
-    || this.state.isModalVisible != nextState.isModalVisible 
-    || curNumComments != nextNumComments 
-    || this.props != nextProps
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   var curNumComments = 0
+  //   var nextNumComments = 0
+  //   for (var post of this.state.posts) {
+  //     curNumComments += post.comments.length
+  //   }     
+  //   for (var post of nextState.posts) {
+  //     nextNumComments += post.comments.length
+  //   } 
+  //   return this.props.posts == null && nextProps.posts != null 
+  //   || this.state.isModalVisible != nextState.isModalVisible 
+  //   || curNumComments != nextNumComments 
+  //   || this.props != nextProps
+  // }
 
   render () {
 
@@ -172,7 +179,7 @@ class PostsStream extends Component {
         <SettingsModal 
           isVisible={this.state.isModalVisible} 
           toggleModal={this._toggleModal} 
-          pseudonym={this.props.pseudonym}
+          pseudonym={this.state.pseudonym}
           save={this.props.save}
         />
       </View>
