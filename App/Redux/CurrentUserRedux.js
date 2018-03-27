@@ -4,9 +4,9 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  currentUserRequest: ['data'],
-  currentUserSuccess: ['payload'],
-  currentUserFailure: null
+  setPseudonymRequest: ['pseudonym'],
+  setPseudonymSuccess: ['pseudonym'],
+  setPseudonymFailure: null
 })
 
 export const CurrentUserTypes = Types
@@ -15,38 +15,36 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  data: null,
+  pseudonym: "Fixture User",
   fetching: null,
-  payload: null,
   error: null
 })
 
 /* ------------- Selectors ------------- */
 
 export const CurrentUserSelectors = {
-  getData: state => state.data
 }
 
 /* ------------- Reducers ------------- */
 
 // request the data from an api
-export const request = (state, { data }) =>
-  state.merge({ fetching: true, data, payload: null })
+export const setPseudonymRequest = (state, { pseudonym }) =>
+  state.merge({ fetching: true })
 
 // successful api lookup
-export const success = (state, action) => {
-  const { payload } = action
-  return state.merge({ fetching: false, error: null, payload })
+export const setPseudonymSuccess = (state, action) => {
+  const { pseudonym } = action
+  return state.merge({ fetching: false, error: null, pseudonym })
 }
 
 // Something went wrong somewhere.
-export const failure = state =>
-  state.merge({ fetching: false, error: true, payload: null })
+export const setPseudonymFailure = state =>
+  state.merge({ fetching: false, error: true, pseudonym: null })
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.CURRENT_USER_REQUEST]: request,
-  [Types.CURRENT_USER_SUCCESS]: success,
-  [Types.CURRENT_USER_FAILURE]: failure
+  [Types.SET_PSEUDONYM_REQUEST]: setPseudonymRequest,
+  [Types.SET_PSEUDONYM_SUCCESS]: setPseudonymSuccess,
+  [Types.SET_PSEUDONYM_FAILURE]: setPseudonymFailure
 })
