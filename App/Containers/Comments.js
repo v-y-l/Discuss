@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 import Post from '../Components/Post'
 import Comment from '../Components/Comment'
 import AddComment from '../Components/AddComment'
+import SettingsButton from '../Components/SettingsButton'
+import SettingsModal from '../Components/SettingsModal'
+import CurrentUserActions from '../Redux/CurrentUserRedux'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
@@ -13,12 +16,22 @@ import navigationStyles from '../Navigation/Styles/NavigationStyles'
 
 class Comments extends Component {
 
-  static navigationOptions= {
-    title: 'Comments',
-    headerStyle: navigationStyles.header,
-    headerTitleStyle: navigationStyles.headerTitle,
-    headerTintColor: navigationStyles.tintColor
+  static navigationOptions = ({navigation}) => {
+    const toggleModal = () => {
+      navigation.state.params.toggleModal()
+    }
+    return {
+      title: 'Comments',
+      headerStyle: navigationStyles.header,
+      headerTitleStyle: navigationStyles.headerTitle,
+      headerTintColor: navigationStyles.tintColor,
+      headerRight: <SettingsButton onPress={toggleModal} />
+    }
   }
+
+  // If you needed to access variables inside of navigation options:
+  // https://github.com/react-navigation/react-navigation/issues/147
+  // https://github.com/react-navigation/react-navigation/issues/1789
 
   /* ***********************************************************
   * STEP 1
@@ -30,7 +43,8 @@ class Comments extends Component {
     super(props) 
     this.state = {
       dataObjects: [],
-      replyTo: ""
+      replyTo: "",
+      isModalVisible: false,
     }
   }
 
@@ -108,6 +122,7 @@ class Comments extends Component {
   // )}
 
   componentDidMount() {
+    this.props.navigation.setParams({toggleModal: this._toggleModal})    
     if (this.props.post && this.props.comments) {
       dataObjects = []
       for (let commentId of this.props.post.comments) {
@@ -134,12 +149,17 @@ class Comments extends Component {
 
   }
 
+  _toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+  }
+
   //Fix: currently, this only checks for total number of comments
   //Would make more sense to check if the commentIds are the same
   shouldComponentUpdate(nextProps, nextState) {
     return this.state.dataObjects.length !== nextState.dataObjects.length 
       || Object.keys(this.props.comments).length !== Object.keys(nextProps.comments).length
       || this.state.replyTo !== nextState.replyTo
+      || this.state.isModalVisible != nextState.isModalVisible
   }
 
   render() {
@@ -157,10 +177,17 @@ class Comments extends Component {
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
+        <SettingsModal 
+          isVisible={this.state.isModalVisible} 
+          toggleModal={this._toggleModal} 
+          pseudonym={this.props.pseudonym}
+          save={this.props.save}
+        />
         <AddComment 
           addCommentRef={(addCommentComponent) => {this.addCommentComponent = addCommentComponent}}
           clearReplyTo={()=> {this.setState({replyTo:""})}}
         />
+
       </View>
     )
     //Get child component via refs: https://github.com/reactjs/react-redux/pull/270#issuecomment-175217424
@@ -170,12 +197,16 @@ class Comments extends Component {
 const mapStateToProps = (state) => {
   return {
     post: state.posts.posts[state.posts.postId],
-    comments: state.comments.comments
+    comments: state.comments.comments,
+    pseudonym: state.currentUser.pseudonym,
   }
 }
 
+
 const mapDispatchToProps = (dispatch) => {
   return {
+    save: (pseudonym) => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym))
+
   }
 }
 

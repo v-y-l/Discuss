@@ -39,7 +39,7 @@ class PostsStream extends Component {
   * Usually this should come from Redux mapStateToProps
   *************************************************************/
   state = {
-    posts: Object.values(this.props.posts ? this.props.posts : {}),
+    posts: Object.values(this.props.posts || {}),
     isModalVisible: false
   }
 
@@ -121,16 +121,17 @@ class PostsStream extends Component {
     this.setState({posts})
   }
 
-  //Fix: This probably isn't the best way to do things but I don't have a better fix currently
-  // console.log("props")
-  // console.log(this.props)
-  // console.log(nextProps)
-  // console.log(this.props!=nextProps)
-  // console.log("state")
-  // console.log(this.state)    
-  // console.log(nextState)
-  // console.log(this.state!=nextState)
-
+  //Fix: This level of complexity probably isn't the best way to do things
+  // but I don't have a better fix currently
+    // console.log("\n\nnew shouldComponentUpdate")
+    // console.log("props")
+    // console.log(this.props)
+    // console.log(nextProps)
+    // console.log(this.props!=nextProps)
+    // console.log("state")
+    // console.log(this.state)    
+    // console.log(nextState)
+    // console.log(this.state!=nextState)
   shouldComponentUpdate(nextProps, nextState) {
     var curNumComments = 0
     var nextNumComments = 0
