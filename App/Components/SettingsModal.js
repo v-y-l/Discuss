@@ -19,12 +19,12 @@ export default class SettingsModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      text: "Fixture User"
+      text: this.props.pseudonym
     }
   }
 
   render () {
-    const { isVisible, toggleModal } = this.props
+    const { isVisible, toggleModal, save, pseudonym } = this.props
     return (
       <View style={styles.container}>
         <Modal isVisible={isVisible}>
@@ -40,7 +40,10 @@ export default class SettingsModal extends Component {
             </View>
             <View style={styles.modalButtons}>
               <Button title='Cancel' onPress={toggleModal} />
-              <Button title='Save' onPress={toggleModal} />
+              <Button title='Save' onPress={()=>{
+                save(this.state.text)
+                toggleModal()
+              }} />
             </View>
           </View>
         </Modal>

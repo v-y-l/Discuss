@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import TouchablePost from '../Components/TouchablePost'
-import PostsAction from '../Redux/PostsRedux'
+import PostsActions from '../Redux/PostsRedux'
+import CurrentUserActions from '../Redux/CurrentUserRedux'
+
 import { connect } from 'react-redux'
 import SettingsButton from '../Components/SettingsButton'
 import SettingsModal from '../Components/SettingsModal'
@@ -142,7 +144,12 @@ class PostsStream extends Component {
           // ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
-        <SettingsModal isVisible={this.state.isModalVisible} toggleModal={this._toggleModal} />
+        <SettingsModal 
+          isVisible={this.state.isModalVisible} 
+          toggleModal={this._toggleModal} 
+          pseudonym={this.props.pseudonym}
+          save={this.props.save}
+        />
       </View>
     )
   }
@@ -150,13 +157,15 @@ class PostsStream extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts.posts
+    posts: state.posts.posts,
+    pseudonym: state.currentUser.pseudonym,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectPost: (postId) => dispatch(PostsAction.selectPostRequest(postId))
+    selectPost: (postId) => dispatch(PostsActions.selectPostRequest(postId)),
+    save: (pseudonym) => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym))
   }
 }
 
