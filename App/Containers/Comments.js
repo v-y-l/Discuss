@@ -43,8 +43,13 @@ class Comments extends Component {
 
   constructor(props) {
     super(props) 
+
+    dataObjects = []
+    for (let commentId of this.props.post.comments) {
+      dataObjects.push(this.props.comments[commentId])
+    }
     this.state = {
-      dataObjects: [],
+      dataObjects: dataObjects,
       replyTo: "",
       isModalVisible: false,
     }
@@ -128,10 +133,13 @@ class Comments extends Component {
   }
 
   componentDidMount() {
-    if (this.props.post && this.props.comments) {
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.post && nextProps.comments) {
       dataObjects = []
-      for (let commentId of this.props.post.comments) {
-        dataObjects.push(this.props.comments[commentId])
+      for (let commentId of nextProps.post.comments) {
+        dataObjects.push(nextProps.comments[commentId])
       }
       this.setState({dataObjects:dataObjects})
     }
@@ -144,14 +152,6 @@ class Comments extends Component {
       this.addCommentComponent.textInput.focus()
     }
 
-    if (this.props.post && this.props.comments) {
-      dataObjects = []
-      for (let commentId of this.props.post.comments) {
-        dataObjects.push(this.props.comments[commentId])
-      }
-      this.setState({dataObjects:dataObjects})
-    }
-
   }
 
   _toggleModal = () => {
@@ -160,12 +160,12 @@ class Comments extends Component {
 
   //Fix: currently, this only checks for total number of comments
   //Would make more sense to check if the commentIds are the same
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.dataObjects.length !== nextState.dataObjects.length 
-      || Object.keys(this.props.comments).length !== Object.keys(nextProps.comments).length
-      || this.state.replyTo !== nextState.replyTo
-      || this.state.isModalVisible != nextState.isModalVisible
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return this.state.dataObjects.length !== nextState.dataObjects.length 
+  //     || Object.keys(this.props.comments).length !== Object.keys(nextProps.comments).length
+  //     || this.state.replyTo !== nextState.replyTo
+  //     || this.state.isModalVisible != nextState.isModalVisible
+  // }
 
   render() {
 
