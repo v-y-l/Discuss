@@ -38,10 +38,15 @@ class PostsStream extends Component {
   * This is an array of objects with the properties you desire
   * Usually this should come from Redux mapStateToProps
   *************************************************************/
-  state = {
-    posts: Object.values(this.props.posts || {}),
-    isModalVisible: false
+
+  constructor(props) {
+    super(props) 
+    this.state = {
+      posts: [],
+      isModalVisible: false
+    }
   }
+
 
   onPressItem = this.props.selectPost
 
@@ -141,9 +146,10 @@ class PostsStream extends Component {
     for (var post of nextState.posts) {
       nextNumComments += post.comments.length
     } 
-    return this.props.posts == null && nextProps.posts != null || 
-      this.state.isModalVisible != nextState.isModalVisible ||
-      curNumComments != nextNumComments || this.props != nextProps
+    return this.props.posts == null && nextProps.posts != null 
+    || this.state.isModalVisible != nextState.isModalVisible 
+    || curNumComments != nextNumComments 
+    || this.props != nextProps
   }
 
   render () {
