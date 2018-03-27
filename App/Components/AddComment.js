@@ -25,7 +25,7 @@ class AddComment extends Component {
   }
 
   _onPress = () => {
-    this.props.submit(this.state.text, "Fixture User", this.props.postId)
+    this.props.submit(this.state.text, this.props.pseudonym, this.props.postId)
     this.props.clearReplyTo()
     this.setState({text:""})
     this.blurTextInput()
@@ -74,7 +74,8 @@ class AddComment extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    postId: state.posts.postId
+    postId: state.posts.postId,
+    pseudonym: state.currentUser.pseudonym
   }
 }
 

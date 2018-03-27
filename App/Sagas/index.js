@@ -9,6 +9,7 @@ import { StartupTypes } from '../Redux/StartupRedux'
 import { GithubTypes } from '../Redux/GithubRedux'
 import { PostsTypes } from '../Redux/PostsRedux'
 import { CommentsTypes } from '../Redux/CommentsRedux'
+import { CurrentUserTypes } from '../Redux/CurrentUserRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -16,6 +17,7 @@ import { startup } from './StartupSagas'
 import { getUserAvatar } from './GithubSagas'
 import { getPosts, selectPost, postCommentToPost } from './PostsSagas'
 import { getComments, postComment } from './CommentsSagas'
+import { setPseudonym } from './CurrentUserSagas'
 
 /* ------------- API ------------- */
 
@@ -31,6 +33,7 @@ export default function * root () {
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
     takeLatest(PostsTypes.SELECT_POST_REQUEST, selectPost),
+    takeLatest(CurrentUserTypes.SET_PSEUDONYM_REQUEST, setPseudonym),
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),

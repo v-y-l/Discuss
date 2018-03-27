@@ -14,18 +14,18 @@ import { call, put } from 'redux-saga/effects'
 import CurrentUserActions from '../Redux/CurrentUserRedux'
 // import { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
 
-export function * getCurrentUser (api, action) {
-  const { data } = action
+export function * setPseudonym (api, action) {
+  const { pseudonym } = action
   // get current data from Store
   // const currentData = yield select(CurrentUserSelectors.getData)
   // make the call to the api
-  const response = yield call(api.getcurrentUser, data)
+  // const response = yield call(api.getcurrentUser, data)
 
   // success?
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(CurrentUserActions.currentUserSuccess(response.data))
+    yield put(CurrentUserActions.currentUserSuccess(pseudonym))
   } else {
     yield put(CurrentUserActions.currentUserFailure())
   }
