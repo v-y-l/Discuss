@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text } from 'react-native'
+import { View, Text, Button, TextInput } from 'react-native'
 import styles from './Styles/SettingsModalStyle'
 import Modal from "react-native-modal";
 
@@ -16,13 +16,33 @@ export default class SettingsModal extends Component {
   //   someSetting: false
   // }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      text: "Fixture User"
+    }
+  }
+
   render () {
-    const { isVisible } = this.props
+    const { isVisible, toggleModal } = this.props
     return (
       <View style={styles.container}>
         <Modal isVisible={isVisible}>
-          <View style={{ flex: 1 }}>
-            <Text>I am the modal content!</Text>
+          <View style={styles.modalContent}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.header}> Your Pseudonym </Text>
+              <TextInput
+                style={styles.input}
+                autoCorrect={false}
+                value={this.state.text}
+                onChangeText={(text)=>this.setState({text})}
+              />
+            </View>
+            <View style={styles.separator}></View>
+            <View style={styles.modalButtons}>
+              <Button title='Save' onPress={toggleModal} />
+              <Button title='Cancel' onPress={toggleModal} />
+            </View>
           </View>
         </Modal>
       </View>

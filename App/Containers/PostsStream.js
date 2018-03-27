@@ -25,7 +25,7 @@ class PostsStream extends Component {
 
   // If you needed to access variables inside of navigation options:
   // https://github.com/react-navigation/react-navigation/issues/147
-  //https://github.com/react-navigation/react-navigation/issues/1789
+  // https://github.com/react-navigation/react-navigation/issues/1789
   
   componentDidMount() {
     this.props.navigation.setParams({toggleModal: this._toggleModal})
@@ -142,7 +142,7 @@ class PostsStream extends Component {
           // ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
-        <SettingsModal isVisible={this.state.isModalVisible} />
+        <SettingsModal isVisible={this.state.isModalVisible} toggleModal={this._toggleModal} />
       </View>
     )
   }
