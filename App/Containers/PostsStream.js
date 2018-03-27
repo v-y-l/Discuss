@@ -39,7 +39,7 @@ class PostsStream extends Component {
   * Usually this should come from Redux mapStateToProps
   *************************************************************/
   state = {
-    dataObjects: Object.values(this.props.posts ? this.props.posts : {}),
+    posts: Object.values(this.props.posts ? this.props.posts : {}),
     isModalVisible: false
   }
 
@@ -117,14 +117,33 @@ class PostsStream extends Component {
 
   //Caught in infinity - https://github.com/erikras/redux-form/issues/2629
   componentDidUpdate() {
-    let dataObjects = Object.values(this.props.posts ? this.props.posts : {})
-    this.setState({dataObjects})
+    let posts = Object.values(this.props.posts || {})
+    this.setState({posts})
   }
 
-  //Fix: Take a look at this make sure it makes sense
+  //Fix: This probably isn't the best way to do things but I don't have a better fix currently
+  // console.log("props")
+  // console.log(this.props)
+  // console.log(nextProps)
+  // console.log(this.props==nextProps)
+  // console.log("state")
+  // console.log(this.state)    
+  // console.log(nextState)
+  // console.log(this.state==nextState)
+
   shouldComponentUpdate(nextProps, nextState) {
+
+    let curNumComments = 0
+    let nextNumComments = 0
+    for (var post of this.state.posts) {
+      curNumComments += post.comments.length
+    }     
+    for (var post of nextState.posts) {
+      nextNumComments += post.comments.length
+    } 
     return this.props.posts == null && nextProps.posts != null || 
-      this.state.isModalVisible != nextState.isModalVisible
+      this.state.isModalVisible != nextState.isModalVisible ||
+      curNumComments != nextNumComments
   }
 
   render () {
@@ -135,7 +154,7 @@ class PostsStream extends Component {
       <View style={styles.container}>
         <FlatList
           contentContainerStyle={styles.listContent}
-          data={this.state.dataObjects}
+          data={this.state.posts}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
