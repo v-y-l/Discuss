@@ -25,11 +25,6 @@
 			"name": "Ramani Dodda",
 			"following": false
 		},
-		"Shardul Dabholkar":
-		{
-			"name": "Shardul Dabholkar",
-			"following": false
-		},
 		"Premdeep Sharma":
 		{
 			"name": "Premdeep Sharma",
@@ -50,6 +45,11 @@
 			"name": "Angela Cavallaro",
 			"following": false
 		},
+		"Shardul Dabholkar":
+		{
+			"name": "Shardul Dabholkar",
+			"following": false
+		}
 	},
 	"numberFollowing" : 2
 }
