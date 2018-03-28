@@ -23,6 +23,7 @@ export default class Post extends Component {
 
   render () {
     const { recipient, text, rating, numComments, showNumComments } = this.props
+    const shortenedRecipient = recipient.substring(0,13) + (recipient.length > 13 ? "." : "")
     const commentNoun = numComments == 1 ? 'comment' : 'comments'
     let ratingColor
     switch(rating) {
@@ -47,7 +48,7 @@ export default class Post extends Component {
         <View style={styles.header}>
           <View style={styles.profileBox}>
             <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />
-            <Text style={styles.headerText}> For { recipient } </Text>
+            <Text style={styles.headerText}> For { showNumComments ? shortenedRecipient : recipient } </Text>
           </View>
           {showNumComments && <Text> {numComments} {commentNoun} <Icon style={styles.icon} name="message" size={30} /> </Text>}
         </View>
