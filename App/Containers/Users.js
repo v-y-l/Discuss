@@ -28,6 +28,7 @@ class Users extends React.PureComponent {
   constructor(props) {
     super(props)
     let usersFollowing = Object.values(this.props.usersFollowing ? this.props.usersFollowing.usersFollowing : {})
+
     this.state = {
       usersFollowing,
       searchBarText: ""
@@ -60,7 +61,6 @@ class Users extends React.PureComponent {
   // https://react-native-training.github.io/react-native-elements/docs/0.19.0/searchbar.html
   _onChangeText = (searchBarText) => {
     this.setState({searchBarText})
-    console.log(this.state)
   }
 
   renderHeader = () =>

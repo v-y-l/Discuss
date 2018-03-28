@@ -31,6 +31,7 @@ export default StyleSheet.create({
     backgroundColor: "#ffffff",
     borderTopColor: 'transparent',
     borderBottomColor: Colors.separator,
+    borderBottomWidth: 3,
     paddingTop: 3,
     paddingBottom: 3,
     marginBottom: 15,
