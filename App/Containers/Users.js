@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, FlatList } from 'react-native'
 import { connect } from 'react-redux'
+import UserRow  from '../Components/UserRow'
 import MenuButton from '../Components/MenuButton'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
@@ -44,10 +45,7 @@ class Users extends React.PureComponent {
   *************************************************************/
   renderRow ({item}) {
     return (
-      <View style={styles.row}>
-        <Text style={styles.boldLabel}>{item.title}</Text>
-        <Text style={styles.label}>{item.description}</Text>
-      </View>
+      <UserRow />
     )
   }
 
