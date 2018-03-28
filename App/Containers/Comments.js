@@ -101,7 +101,7 @@ class Comments extends Component {
 
   // Show this when data is empty
   renderEmpty = () =>
-    <Text style={styles.label}> - Nothing to See Here - </Text>
+    <Text style={styles.label}> No comments yet. Be the first! </Text>
 
   renderSeparator = () =>
     <View style={styles.separator}></View>
