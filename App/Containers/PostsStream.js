@@ -6,6 +6,7 @@ import CurrentUserActions from '../Redux/CurrentUserRedux'
 
 import { connect } from 'react-redux'
 import SettingsButton from '../Components/SettingsButton'
+import MenuButton from '../Components/MenuButton'
 import SettingsModal from '../Components/SettingsModal'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
@@ -21,7 +22,8 @@ class PostsStream extends Component {
       navigation.state.params.toggleModal()
     }
     return {
-      headerRight: <SettingsButton onPress={toggleModal} />
+      headerRight: <SettingsButton onPress={toggleModal} />,
+      headerLeft: <MenuButton onPress={()=>{navigation.navigate("DrawerOpen")}} />
     }
   }
 

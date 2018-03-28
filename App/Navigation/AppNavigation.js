@@ -1,11 +1,13 @@
 import { StackNavigator } from 'react-navigation'
-// import SettingsScreen from '../Containers/SettingsScreen'
+import SettingsScreen from '../Containers/SettingsScreen'
 import Comments from '../Containers/Comments'
 import PostsStream from '../Containers/PostsStream'
 import LaunchScreen from '../Containers/LaunchScreen'
 import styles from './Styles/NavigationStyles'
-import SettingsButton from '../Components/SettingsButton'
+// import SettingsButton from '../Components/SettingsButton'
 import React from 'react'
+import { Button } from 'react-native'
+import { DrawerNavigator } from 'react-navigation'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
@@ -28,6 +30,17 @@ const PrimaryNav = StackNavigator({
       // }} />
     }
   }
+})
+
+const RootNav = DrawerNavigator({
+    Primary: {
+      screen: PrimaryNav
+    },
+    Settings: {
+      screen: SettingsScreen
+    }
+}, {
+  drawerWidth: 300
 })
 
 //Screen fade in and fade out animation
@@ -75,4 +88,4 @@ const PrimaryNav = StackNavigator({
 
 // https://reactnavigation.org/docs/stack-navigator.html#navigationoptions-used-by-stacknavigator
 // export default RootStack
-export default PrimaryNav
+export default RootNav
