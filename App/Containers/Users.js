@@ -27,16 +27,14 @@ class Users extends React.PureComponent {
   *************************************************************/
   constructor(props) {
     super(props)
+    let usersFollowing = Object.values(this.props.usersFollowing ? this.props.usersFollowing.usersFollowing : {})
     this.state = {
       usersFollowing,
       searchBarText: ""
     }
-    let usersFollowing = Object.values(this.props.usersFollowing ? this.props.usersFollowing.usersFollowing : {})
-    userFollowing = usersFollowing.filter((user) => {
-      return filterUser(user, this.state.searchBarText)
-    })
-
-
+    // userFollowing = usersFollowing.filter((user) => {
+    //   return filterUser(user, this.state.searchBarText)
+    // })
   }
 
   /* ***********************************************************
@@ -110,11 +108,7 @@ class Users extends React.PureComponent {
   // )}
 
   componentWillReceiveProps(nextProps) {
-    console.log('hi')
     let usersFollowing = Object.values(nextProps.usersFollowing ? nextProps.usersFollowing.usersFollowing : {})
-    userFollowing = usersFollowing.filter((user) => {
-      return filterUser(user, this.state.searchBarText)
-    })
     this.setState({usersFollowing})
   }
 
@@ -139,10 +133,6 @@ class Users extends React.PureComponent {
 
 
 const filterUser = (user, searchText) => {
-  console.log("user")
-  console.log(user)
-  console.log("searchText")
-  console.log(searchText)
   let haystack = user.name.toLowerCase()
   let needle = searchText.toLowerCase()
   return haystack.indexOf(needle) > -1
