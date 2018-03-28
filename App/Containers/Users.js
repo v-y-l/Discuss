@@ -27,10 +27,16 @@ class Users extends React.PureComponent {
   *************************************************************/
   constructor(props) {
     super(props)
-    let usersFollowing = this.props.usersFollowing ? this.props.usersFollowing.usersFollowing : {}
     this.state = {
-      usersFollowing: Object.values(usersFollowing)
+      usersFollowing,
+      searchBarText: ""
     }
+    let usersFollowing = Object.values(this.props.usersFollowing ? this.props.usersFollowing.usersFollowing : {})
+    userFollowing = usersFollowing.filter((user) => {
+      return filterUser(user, this.state.searchBarText)
+    })
+
+
   }
 
   /* ***********************************************************
@@ -54,10 +60,15 @@ class Users extends React.PureComponent {
   *************************************************************/
   // Render a header?
   // https://react-native-training.github.io/react-native-elements/docs/0.19.0/searchbar.html
+  _onChangeText = (searchBarText) => {
+    this.setState({searchBarText})
+    console.log(this.state)
+  }
+
   renderHeader = () =>
     <View>
       <SearchBar
-        // onChangeText={someMethod}
+        onChangeText={this._onChangeText}
         // onClearText={someMethod}
         noIcon
         containerStyle={styles.searchContainer}
@@ -99,8 +110,12 @@ class Users extends React.PureComponent {
   // )}
 
   componentWillReceiveProps(nextProps) {
-    let usersFollowing = nextProps.usersFollowing ? nextProps.usersFollowing.usersFollowing : {}
-    this.setState({usersFollowing : Object.values(usersFollowing)})
+    console.log('hi')
+    let usersFollowing = Object.values(nextProps.usersFollowing ? nextProps.usersFollowing.usersFollowing : {})
+    userFollowing = usersFollowing.filter((user) => {
+      return filterUser(user, this.state.searchBarText)
+    })
+    this.setState({usersFollowing})
   }
 
   render () {
@@ -120,6 +135,17 @@ class Users extends React.PureComponent {
       </View>
     )
   }
+}
+
+
+const filterUser = (user, searchText) => {
+  console.log("user")
+  console.log(user)
+  console.log("searchText")
+  console.log(searchText)
+  let haystack = user.name.toLowerCase()
+  let needle = searchText.toLowerCase()
+  return haystack.indexOf(needle) > -1
 }
 
 const mapStateToProps = (state) => {
