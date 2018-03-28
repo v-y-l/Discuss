@@ -37,8 +37,9 @@ export default StyleSheet.create({
   	textAlign: 'center',
   	padding: 8,
   	borderRadius: 5,
-  	borderColor: '#C0C0C0',
-  	borderWidth: 1
+  	// borderColor: '#C0C0C0',
+  	// borderWidth: 1,
+    backgroundColor: Colors.separator
   },
   separator: {
   	borderBottomWidth: 1,
