@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import UserRow  from '../Components/UserRow'
 import MenuButton from '../Components/MenuButton'
 import CurrentUserActions from '../Redux/CurrentUserRedux'
+import { SearchBar } from 'react-native-elements'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
@@ -53,8 +54,11 @@ class Users extends React.PureComponent {
   *************************************************************/
   // Render a header?
   renderHeader = () =>
-    <View style={styles.separator}></View>
-
+    <View>
+      <SearchBar
+        placeholder='Type Here...' />
+      <View style={styles.separator}></View>
+    </View>
   // Render a footer?
   renderFooter = () =>
     <View style={styles.separator}></View>
