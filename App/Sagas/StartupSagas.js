@@ -2,6 +2,7 @@ import { put, select } from 'redux-saga/effects'
 import GithubActions, { GithubSelectors } from '../Redux/GithubRedux'
 import PostsActions from '../Redux/PostsRedux'
 import CommentsActions from '../Redux/CommentsRedux'
+import CurrentUserActions from '../Redux/CurrentUserRedux'
 import { is } from 'ramda'
 
 // exported to make available for tests
@@ -43,4 +44,5 @@ export function * startup (action) {
   // Discuss App start up actions
   yield put(PostsActions.getPostsRequest())
   yield put(CommentsActions.getCommentsRequest()) // fix: migrate from comment dump to request through post ids
+  yield put(CurrentUserActions.getUsersFollowingRequest())
 }

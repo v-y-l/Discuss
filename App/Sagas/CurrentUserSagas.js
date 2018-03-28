@@ -30,3 +30,21 @@ export function * setPseudonym (action) {
   //   yield put(CurrentUserActions.setPseudonymFailure())
   // }
 }
+
+export function * getUsersFollowing (api, action) {
+  // get current data from Store
+  // const currentData = yield select(CurrentUserSelectors.getData)
+  // make the call to the api
+
+  //fix: replace with actual data
+  const response = yield call(api.getUsersFollowing, "CurrentUserSelectors.getCurrentUserId")
+
+  // success?
+  if (response.ok) {
+    // You might need to change the response here - do this with a 'transform',
+    // located in ../Transforms/. Otherwise, just pass the data back from the api.
+    yield put(CurrentUserActions.getUsersFollowingSuccess(response.data))
+  } else {
+    yield put(CurrentUserActions.getUsersFollowingFailure())
+  }
+}
