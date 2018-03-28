@@ -48,3 +48,22 @@ export function * getUsersFollowing (api, action) {
     yield put(CurrentUserActions.getUsersFollowingFailure())
   }
 }
+
+export function * toggleUsersFollowing (api, action) {
+  // get current data from Store
+  // const currentData = yield select(CurrentUserSelectors.getData)
+  // make the call to the api
+
+  //fix: replace with actual data
+  const { userId, toggleUserId } = action
+  const response = yield call(api.toggleUsersFollowing, userId, toggleUserId)
+
+  // success?
+  if (response.ok) {
+    // You might need to change the response here - do this with a 'transform',
+    // located in ../Transforms/. Otherwise, just pass the data back from the api.
+    yield put(CurrentUserActions.toggleUsersFollowingSuccess(response.data))
+  } else {
+    yield put(CurrentUserActions.toggleUsersFollowingFailure())
+  }
+}

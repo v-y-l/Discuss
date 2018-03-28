@@ -17,7 +17,7 @@ import { startup } from './StartupSagas'
 import { getUserAvatar } from './GithubSagas'
 import { getPosts, selectPost, postCommentToPost } from './PostsSagas'
 import { getComments, postComment } from './CommentsSagas'
-import { setPseudonym, getUsersFollowing } from './CurrentUserSagas'
+import { setPseudonym, getUsersFollowing, toggleUsersFollowing } from './CurrentUserSagas'
 
 /* ------------- API ------------- */
 
@@ -42,5 +42,6 @@ export default function * root () {
     takeLatest(CommentsTypes.GET_COMMENTS_REQUEST, getComments, fixture),
     takeLatest(CommentsTypes.POST_COMMENT_REQUEST, postComment, fixture),
     takeLatest(CurrentUserTypes.GET_USERS_FOLLOWING_REQUEST, getUsersFollowing, fixture),
+    takeLatest(CurrentUserTypes.TOGGLE_USERS_FOLLOWING_REQUEST, toggleUsersFollowing, fixture),
   ])
 }

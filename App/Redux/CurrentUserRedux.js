@@ -7,10 +7,10 @@ const { Types, Creators } = createActions({
   setPseudonymRequest: ['pseudonym'],
   setPseudonymSuccess: ['pseudonym'],
   setPseudonymFailure: null,
-  getUsersFollowingRequest: null,
+  getUsersFollowingRequest: ['userId'],
   getUsersFollowingSuccess: ['payload'],
   getUsersFollowingFailure: null,
-  toggleUsersFollowingRequest: ['user'],
+  toggleUsersFollowingRequest: ['userId', 'toggleUserId'],
   toggleUsersFollowingSuccess: ['payload'],
   toggleUsersFollowingFailure: null,
 })
