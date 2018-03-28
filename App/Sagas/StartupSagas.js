@@ -42,7 +42,7 @@ export function * startup (action) {
   }
 
   // Discuss App start up actions
+  yield put(CurrentUserActions.getUsersFollowingRequest()) //this needs to go before posts actions since the profile screen relies on it to filter posts
   yield put(PostsActions.getPostsRequest())
   yield put(CommentsActions.getCommentsRequest()) // fix: migrate from comment dump to request through post ids
-  yield put(CurrentUserActions.getUsersFollowingRequest())
 }

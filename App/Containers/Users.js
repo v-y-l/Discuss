@@ -28,9 +28,7 @@ class Users extends React.PureComponent {
   constructor(props) {
     super(props)
     let usersFollowing = Object.values(this.props.usersFollowing ? this.props.usersFollowing.usersFollowing : {})
-    let filteredUsersFollowing = usersFollowing.filter((user) => {
-      return filterUser(user, searchBarText)
-    })
+    let filteredUsersFollowing = usersFollowing
     this.state = {
       usersFollowing,
       filteredUsersFollowing,

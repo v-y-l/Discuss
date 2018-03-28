@@ -44,7 +44,7 @@ const RootNav = DrawerNavigator({
       screen: UsersNav
     }
 }, {
-  initialRouteName: 'Users',
+  initialRouteName: 'Primary',
   drawerWidth: 300
 })
 
