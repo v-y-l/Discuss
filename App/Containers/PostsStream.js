@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import TouchablePost from '../Components/TouchablePost'
-import PostsActions from '../Redux/PostsRedux'
+import PostsActions, { PostsSelectors } from '../Redux/PostsRedux'
 import CurrentUserActions from '../Redux/CurrentUserRedux'
 
 import { connect } from 'react-redux'
@@ -201,6 +201,7 @@ class PostsStream extends Component {
 const mapStateToProps = (state) => {
   return {
     posts: state.posts.posts,
+    // posts: PostsSelectors.getPostsFollowing(),
     pseudonym: state.currentUser.pseudonym,
   }
 }
