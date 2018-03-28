@@ -14,7 +14,6 @@ export default StyleSheet.create({
   	flex: 1,
   	flexDirection: 'row',
     alignItems: 'center',
-
   },
   profilePicture: {
   	borderRadius: Metrics.profilePicture.borderRadius,
@@ -23,7 +22,7 @@ export default StyleSheet.create({
   	marginRight: Metrics.profilePicture.marginRight
   },
   nameText: {
-  	paddingLeft: 5,
+  	paddingLeft: 8,
     ...Fonts.style.h5,
   },
   followButton: {
