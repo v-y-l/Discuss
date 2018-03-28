@@ -1,21 +1,25 @@
 {
-	"usersFollowing" : [
+	"usersFollowing" : {
+		"Victor Lin":
 		{
 			"name": "Victor Lin",
 			"following": true
 		},
+		"John Hilliard":
 		{
 			"name": "John Hilliard",
 			"following": true
 		},
+		"Christian Lemieux":
 		{
 			"name": "Christian Lemieux",
 			"following": true
 		},
+		"Sam Skinner":
 		{
 			"name": "Sam Skinner",
 			"following": false
 		},
-	],
+	},
 	"numberFollowing" : 2
 }

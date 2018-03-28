@@ -3,6 +3,7 @@ import { View, Text, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import UserRow  from '../Components/UserRow'
 import MenuButton from '../Components/MenuButton'
+import CurrentUserActions from '../Redux/CurrentUserRedux'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
@@ -41,7 +42,7 @@ class Users extends React.PureComponent {
   *************************************************************/
   renderRow = ({item}) => {
     return (
-      <UserRow name={item.name} following={item.following} />
+      <UserRow name={item.name} following={item.following} toggleFollow={this.props.toggleFollow} />
     )
   }
 
@@ -89,7 +90,7 @@ class Users extends React.PureComponent {
 
   componentWillReceiveProps(nextProps) {
     let usersFollowing = nextProps.usersFollowing ? nextProps.usersFollowing.usersFollowing : {}
-    this.setState({usersFollowing})
+    this.setState({usersFollowing : Object.values(usersFollowing)})
   }
 
   render () {
@@ -119,6 +120,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    toggleFollow: (userId, toggleUserId) => 
+      dispatch(CurrentUserActions.toggleUsersFollowingRequest(userId, toggleUserId))
   }
 }
 

@@ -16,12 +16,12 @@ export default class FollowButton extends Component {
   }
 
   render () {
-    const { following } = this.props
+    const { following, onPress } = this.props
     let buttonBoxStyle = following ? styles.buttonBoxFollowed : styles.buttonBoxFollow
     let buttonTextStyle = [following ? styles.buttonTextFollowed : styles.buttonTextFollow , styles.buttonBox]
     let buttonText = following ? 'Following' : 'Follow' 
     return (
-      <TouchableOpacity style={buttonBoxStyle}>
+      <TouchableOpacity style={buttonBoxStyle} onPress={onPress}>
         <Text style={buttonTextStyle}>{buttonText}</Text>
       </TouchableOpacity>
     )
