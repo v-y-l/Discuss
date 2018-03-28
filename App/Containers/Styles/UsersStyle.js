@@ -25,6 +25,22 @@ export default StyleSheet.create({
     color: Colors.snow
   },
   listContent: {
-    marginTop: Metrics.baseMargin
+    // marginTop: Metrics.baseMargin
+  },
+  searchContainer: {
+    backgroundColor: "#ffffff",
+    borderTopColor: 'transparent',
+    borderBottomColor: Colors.separator,
+    paddingTop: 3,
+    paddingBottom: 3,
+    marginBottom: 15,
+    paddingLeft: 5,
+    paddingRight: 5
+  },
+  searchInput: {
+    backgroundColor: Colors.separator,
+    height: 40,
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 })

@@ -15,7 +15,7 @@ class Users extends React.PureComponent {
 
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'Users',
+      title: 'Follow Users',
       headerLeft: <MenuButton onPress={()=>{navigation.navigate("DrawerOpen")}} />
     }
   }
@@ -53,11 +53,17 @@ class Users extends React.PureComponent {
   * to your liking!  Each with some friendly advice.
   *************************************************************/
   // Render a header?
+  // https://react-native-training.github.io/react-native-elements/docs/0.19.0/searchbar.html
   renderHeader = () =>
     <View>
       <SearchBar
-        placeholder='Type Here...' />
-      <View style={styles.separator}></View>
+        // onChangeText={someMethod}
+        // onClearText={someMethod}
+        noIcon
+        containerStyle={styles.searchContainer}
+        inputStyle={styles.searchInput}
+        autoCorrect={false}
+        placeholder='Search users by name...' />
     </View>
   // Render a footer?
   renderFooter = () =>
