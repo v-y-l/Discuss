@@ -1,5 +1,11 @@
 export default {
   //Fixtures for Discuss
+  getUsersFollowing: (userId) => { //fix: at some point I'll need to have userId-userName mappings
+    return {
+      ok: true,
+      data: require('../Fixtures/usersFollowing.json')
+    }
+  },
   getPosts: () => {
     return {
       ok: true,

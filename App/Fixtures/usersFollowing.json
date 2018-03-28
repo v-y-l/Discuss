@@ -1,0 +1,9 @@
+{
+	"usersFollowing" : {
+		"Victor Lin" : true,
+		"John Hilliard": false,
+		"Christian Lemieux": true,
+		"Sam Skinner": false,
+	},
+	"numberFollowing" : 2
+}
