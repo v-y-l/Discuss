@@ -10,7 +10,9 @@ export default StyleSheet.create({
   },
   modalContainer: {
   	backgroundColor: '#ffffff',
-  	borderRadius: 5
+  	borderRadius: 5,
+    paddingLeft: 15,
+    paddingRight: 15,
   },
   modalInputs: {
   	paddingTop: 15,
