@@ -25,8 +25,9 @@ class Users extends React.PureComponent {
   *************************************************************/
   constructor(props) {
     super(props)
+    let usersFollowing = this.props.usersFollowing ? this.props.usersFollowing.usersFollowing : {}
     this.state = {
-      dataObjects: []
+      usersFollowing: Object.values(usersFollowing)
     }
   }
 
@@ -87,8 +88,8 @@ class Users extends React.PureComponent {
   // )}
 
   componentWillReceiveProps(nextProps) {
-    let dataObjects = Object.values((nextProps.usersFollowing || {}).usersFollowing)
-    this.setState({dataObjects})
+    let usersFollowing = nextProps.usersFollowing ? nextProps.usersFollowing.usersFollowing : {}
+    this.setState({usersFollowing})
   }
 
   render () {
@@ -96,7 +97,7 @@ class Users extends React.PureComponent {
       <View style={styles.container}>
         <FlatList
           contentContainerStyle={styles.listContent}
-          data={this.state.dataObjects}
+          data={this.state.usersFollowing}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
@@ -111,7 +112,6 @@ class Users extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     usersFollowing: state.currentUser.usersFollowing
   }
