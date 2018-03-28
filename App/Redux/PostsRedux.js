@@ -31,17 +31,6 @@ export const INITIAL_STATE = Immutable({
 
 export const PostsSelectors = {
   getPosts: state => state.posts.posts,
-  // getPostsFollowing: state => {
-  //   let posts = state.posts.posts
-  //   let usersFollowing = state.usersFollowing.usersFollowing
-  //   let filteredPosts = []
-  //   for (let post of posts) {
-  //     if (usersFollowing[post.recipient]) {
-  //       filteredPosts.push(post)
-  //     }
-  //   }
-    // return filteredPosts
-  // }
 }
 
 /* ------------- Reducers ------------- */

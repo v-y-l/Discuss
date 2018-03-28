@@ -44,9 +44,9 @@ class PostsStream extends Component {
 
   constructor(props) {
     super(props) 
-
     let posts = Object.values(this.props.posts || {})
-
+    let usersFollowing = this.props.usersFollowing || {}
+    posts = filterPosts(posts, usersFollowing)
     this.state = {
       posts: posts,
       isModalVisible: false,
@@ -129,8 +129,9 @@ class PostsStream extends Component {
 
   //https://medium.com/@baphemot/understanding-reactjs-component-life-cycle-823a640b3e8d
   componentWillReceiveProps(nextProps) {
-
     let posts = Object.values(nextProps.posts || {})
+    let usersFollowing = nextProps.usersFollowing || {}
+    posts = filterPosts(posts, usersFollowing)
 
     //https://stackoverflow.com/questions/30782948/why-calling-react-setstate-method-doesnt-mutate-the-state-immediately
     this.setState({
@@ -198,10 +199,21 @@ class PostsStream extends Component {
   }
 }
 
+const filterPosts = (posts, usersFollowing) => {
+  if (posts == null) {
+    return []
+  }
+  if (usersFollowing == null) {
+    return posts
+  }
+  return posts.filter(post => usersFollowing[post.recipient].following)
+}
+
+
 const mapStateToProps = (state) => {
   return {
     posts: state.posts.posts,
-    // posts: PostsSelectors.getPostsFollowing(),
+    usersFollowing: state.currentUser.usersFollowing.usersFollowing,
     pseudonym: state.currentUser.pseudonym,
   }
 }
