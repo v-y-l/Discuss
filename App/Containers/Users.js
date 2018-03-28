@@ -28,14 +28,15 @@ class Users extends React.PureComponent {
   constructor(props) {
     super(props)
     let usersFollowing = Object.values(this.props.usersFollowing ? this.props.usersFollowing.usersFollowing : {})
-
+    let filteredUsersFollowing = usersFollowing.filter((user) => {
+      return filterUser(user, searchBarText)
+    })
     this.state = {
       usersFollowing,
+      filteredUsersFollowing,
       searchBarText: ""
     }
-    // userFollowing = usersFollowing.filter((user) => {
-    //   return filterUser(user, this.state.searchBarText)
-    // })
+
   }
 
   /* ***********************************************************
@@ -60,7 +61,10 @@ class Users extends React.PureComponent {
   // Render a header?
   // https://react-native-training.github.io/react-native-elements/docs/0.19.0/searchbar.html
   _onChangeText = (searchBarText) => {
-    this.setState({searchBarText})
+    let filteredUsersFollowing = this.state.usersFollowing.filter((user) => {
+      return filterUser(user, searchBarText)
+    })
+    this.setState({searchBarText, filteredUsersFollowing})
   }
 
   renderHeader = () =>
@@ -109,7 +113,10 @@ class Users extends React.PureComponent {
 
   componentWillReceiveProps(nextProps) {
     let usersFollowing = Object.values(nextProps.usersFollowing ? nextProps.usersFollowing.usersFollowing : {})
-    this.setState({usersFollowing})
+    filteredUsersFollowing = usersFollowing.filter((user) => {
+      return filterUser(user, this.state.searchBarText)
+    })
+    this.setState({usersFollowing, filteredUsersFollowing})
   }
 
   render () {
@@ -117,7 +124,7 @@ class Users extends React.PureComponent {
       <View style={styles.container}>
         <FlatList
           contentContainerStyle={styles.listContent}
-          data={this.state.usersFollowing}
+          data={this.state.filteredUsersFollowing}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
