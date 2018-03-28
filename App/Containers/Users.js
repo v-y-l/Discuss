@@ -23,16 +23,11 @@ class Users extends React.PureComponent {
   * This is an array of objects with the properties you desire
   * Usually this should come from Redux mapStateToProps
   *************************************************************/
-  state = {
-    dataObjects: [
-      {title: 'First Title', description: 'First Description'},
-      {title: 'Second Title', description: 'Second Description'},
-      {title: 'Third Title', description: 'Third Description'},
-      {title: 'Fourth Title', description: 'Fourth Description'},
-      {title: 'Fifth Title', description: 'Fifth Description'},
-      {title: 'Sixth Title', description: 'Sixth Description'},
-      {title: 'Seventh Title', description: 'Seventh Description'}
-    ]
+  constructor(props) {
+    super(props)
+    this.state = {
+      dataObjects: []
+    }
   }
 
   /* ***********************************************************
@@ -43,9 +38,9 @@ class Users extends React.PureComponent {
   * e.g.
     return <MyCustomCell title={item.title} description={item.description} />
   *************************************************************/
-  renderRow ({item}) {
+  renderRow = ({item}) => {
     return (
-      <UserRow />
+      <UserRow name={item.name} following={item.following} />
     )
   }
 
@@ -91,6 +86,11 @@ class Users extends React.PureComponent {
   //   {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index}
   // )}
 
+  componentWillReceiveProps(nextProps) {
+    let dataObjects = Object.values((nextProps.usersFollowing || {}).usersFollowing)
+    this.setState({dataObjects})
+  }
+
   render () {
     return (
       <View style={styles.container}>
@@ -111,8 +111,9 @@ class Users extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    // ...redux state to props here
+    usersFollowing: state.currentUser.usersFollowing
   }
 }
 

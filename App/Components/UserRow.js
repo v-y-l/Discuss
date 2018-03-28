@@ -18,14 +18,15 @@ export default class UserRow extends Component {
   // }
 
   render () {
+    const {name, following} = this.props
     return (
       <View style={styles.container}>
         <View style={styles.profileBox}>
           <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />    
-          <Text style={styles.nameText}>Victor Lin</Text>
+          <Text style={styles.nameText}>{name}</Text>
         </View>
         <View style={styles.followButton}>
-          <FollowButton />
+          <FollowButton following={following}/>
         </View>
       </View>
     )

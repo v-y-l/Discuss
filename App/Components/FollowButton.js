@@ -12,14 +12,14 @@ export default class FollowButton extends Component {
   //
   // Defaults for props
   static defaultProps = {
-    canFollow: true
+    following: true
   }
 
   render () {
-    const { canFollow } = this.props
-    let buttonBoxStyle = canFollow ? styles.buttonBoxFollow : styles.buttonBoxFollowed
-    let buttonTextStyle = [canFollow ? styles.buttonTextFollow : styles.buttonTextFollowed, styles.buttonBox]
-    let buttonText = canFollow ? 'Follow' : 'Following'
+    const { following } = this.props
+    let buttonBoxStyle = following ? styles.buttonBoxFollowed : styles.buttonBoxFollow
+    let buttonTextStyle = [following ? styles.buttonTextFollowed : styles.buttonTextFollow , styles.buttonBox]
+    let buttonText = following ? 'Following' : 'Follow' 
     return (
       <TouchableOpacity style={buttonBoxStyle}>
         <Text style={buttonTextStyle}>{buttonText}</Text>
