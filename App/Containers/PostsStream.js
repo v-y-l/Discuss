@@ -22,6 +22,7 @@ class PostsStream extends Component {
       navigation.state.params.toggleModal()
     }
     return {
+      title: 'Feedback',
       headerRight: <SettingsButton onPress={toggleModal} />,
       headerLeft: <MenuButton onPress={()=>{navigation.navigate("DrawerOpen")}} />
     }
@@ -31,7 +32,7 @@ class PostsStream extends Component {
   // https://github.com/react-navigation/react-navigation/issues/147
   // https://github.com/react-navigation/react-navigation/issues/1789
   
-  componentDidMount() {
+  componentWillMount() {
     this.props.navigation.setParams({toggleModal: this._toggleModal})
   }
 

@@ -8,36 +8,40 @@ import styles from './Styles/NavigationStyles'
 import React from 'react'
 import { Button } from 'react-native'
 import { DrawerNavigator } from 'react-navigation'
+import UsersScreen from '../Containers/UsersScreen'
+
+// The navigation object is passed into options
+// https://reactnavigation.org/docs/stack-navigator.html#navigationoptions-used-by-stacknavigator
+const navigationOptions = ({navigation}) => {
+  return {
+    headerStyle: styles.header,
+    headerTitleStyle: styles.headerTitle,
+  }
+}
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
-  // SettingsScreen: { screen: SettingsScreen },
   Comments: { screen: Comments },
   PostsStream: { screen: PostsStream },
 }, {
   // Default config for all screens
   initialRouteName: 'PostsStream',
+  navigationOptions
+})
 
-  // The navigation object is passed into options
-  // https://reactnavigation.org/docs/stack-navigator.html#navigationoptions-used-by-stacknavigator
-  navigationOptions: ({navigation}) => {
-    return {
-      title: 'Feedback',
-      headerStyle: styles.header,
-      headerTitleStyle: styles.headerTitle,
-      // headerRight: <SettingsButton onPress={()=> {
-      //   navigation.navigate("Modal")
-      // }} />
-    }
-  }
+const UsersNav = StackNavigator({
+  UsersScreen: { screen: UsersScreen },
+}, {
+  initialRouteName: 'UsersScreen',
+  navigationOptions
 })
 
 const RootNav = DrawerNavigator({
     Primary: {
       screen: PrimaryNav
     },
-    Settings: {
-      screen: SettingsScreen
+    Users: {
+      screen: UsersNav
     }
 }, {
   drawerWidth: 300
