@@ -19,9 +19,13 @@ export default class UserRow extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />    
-        <Text style={styles.headerText}>Victor Lin</Text>
-        <TouchableOpacity><Text>Follow</Text></TouchableOpacity>
+        <View style={styles.profileBox}>
+          <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />    
+          <Text style={styles.nameText}>Victor Lin</Text>
+        </View>
+        <View style={styles.followButton}>
+          <TouchableOpacity><Text>Follow</Text></TouchableOpacity>
+        </View>
       </View>
     )
   }

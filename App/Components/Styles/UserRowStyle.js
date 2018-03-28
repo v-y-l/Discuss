@@ -5,7 +5,16 @@ import Metrics from '../../Themes/Metrics'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingLeft: 15,
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  profileBox: {
+  	flex: 1,
+  	flexDirection: 'row',
+    alignItems: 'center',
+
   },
   profilePicture: {
   	borderRadius: Metrics.profilePicture.borderRadius,
@@ -13,7 +22,12 @@ export default StyleSheet.create({
   	width: Metrics.profilePicture.width,
   	marginRight: Metrics.profilePicture.marginRight
   },
-  headerText: {
+  nameText: {
+  	paddingLeft: 5,
     ...Fonts.style.h5,
   },
+  followButton: {
+  	paddingRight: 15,
+  }
+
 })
