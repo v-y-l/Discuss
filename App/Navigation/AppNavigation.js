@@ -8,7 +8,7 @@ import styles from './Styles/NavigationStyles'
 import React from 'react'
 import { Button } from 'react-native'
 import { DrawerNavigator } from 'react-navigation'
-import UsersScreen from '../Containers/UsersScreen'
+import Users from '../Containers/Users'
 
 // The navigation object is passed into options
 // https://reactnavigation.org/docs/stack-navigator.html#navigationoptions-used-by-stacknavigator
@@ -30,9 +30,9 @@ const PrimaryNav = StackNavigator({
 })
 
 const UsersNav = StackNavigator({
-  UsersScreen: { screen: UsersScreen },
+  Users: { screen: Users },
 }, {
-  initialRouteName: 'UsersScreen',
+  initialRouteName: 'Users',
   navigationOptions
 })
 
@@ -44,6 +44,7 @@ const RootNav = DrawerNavigator({
       screen: UsersNav
     }
 }, {
+  initialRouteName: 'Users',
   drawerWidth: 300
 })
 
