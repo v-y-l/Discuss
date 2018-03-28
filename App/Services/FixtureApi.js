@@ -9,7 +9,10 @@ export default {
   toggleUsersFollowing: (userId, toggleUserId) => {
     let usersFollowing = require('../Fixtures/usersFollowing.json')
     usersFollowing.usersFollowing[toggleUserId].following = !usersFollowing.usersFollowing[toggleUserId].following
-    return usersFollowing
+    return {
+      ok: true,
+      data: usersFollowing
+    }
   },
   getPosts: () => {
     return {

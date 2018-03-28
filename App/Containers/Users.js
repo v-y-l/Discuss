@@ -120,8 +120,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleFollow: (userId, toggleUserId) => 
+    toggleFollow: (userId, toggleUserId) => {
       dispatch(CurrentUserActions.toggleUsersFollowingRequest(userId, toggleUserId))
+    }
   }
 }
 
