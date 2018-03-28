@@ -27,7 +27,6 @@ export default StyleSheet.create({
     ...Fonts.style.h5,
   },
   followButton: {
-  	paddingRight: 15,
+  	paddingRight: 25,
   }
-
 })

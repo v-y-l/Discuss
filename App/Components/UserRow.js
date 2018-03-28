@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import styles from './Styles/UserRowStyle'
 import Images from '../Themes/Images'
+import FollowButton from '../Components/FollowButton'
 
 export default class UserRow extends Component {
   // // Prop type warnings
@@ -24,7 +25,7 @@ export default class UserRow extends Component {
           <Text style={styles.nameText}>Victor Lin</Text>
         </View>
         <View style={styles.followButton}>
-          <TouchableOpacity><Text>Follow</Text></TouchableOpacity>
+          <FollowButton />
         </View>
       </View>
     )
