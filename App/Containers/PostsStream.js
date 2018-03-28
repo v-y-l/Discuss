@@ -95,7 +95,7 @@ class PostsStream extends Component {
 
   // Show this when data is empty
   renderEmpty = () =>
-    <Text style={styles.label}> - Nothing to See Here - </Text>
+    <Text style={styles.label}> No posts to see. Go follow someone! </Text>
 
   renderSeparator = () =>
     <View style={styles.separator}></View>
@@ -185,7 +185,7 @@ class PostsStream extends Component {
           initialNumToRender={this.oneScreensWorth}
           // ListHeaderComponent={this.renderHeader}
           ListFooterComponent={this.renderFooter}
-          // ListEmptyComponent={this.renderEmpty}
+          ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
         <SettingsModal 
