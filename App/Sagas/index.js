@@ -41,7 +41,7 @@ export default function * root () {
 	takeLatest(PostsTypes.POST_COMMENT_TO_POST_REQUEST, postCommentToPost, fixture),
     takeLatest(CommentsTypes.GET_COMMENTS_REQUEST, getComments, fixture),
     takeLatest(CommentsTypes.POST_COMMENT_REQUEST, postComment, fixture),
-    takeLatest(CurrentUserTypes.GET_USERS_FOLLOWING_REQUEST, getUsersFollowing, fixture),
-    takeLatest(CurrentUserTypes.TOGGLE_USERS_FOLLOWING_REQUEST, toggleUsersFollowing, fixture),
+    takeLatest(CurrentUserTypes.GET_USERS_REQUEST, getUsers, fixture),
+    takeLatest(CurrentUserTypes.TOGGLE_FOLLOW_USER_REQUEST, toggleFollowUser, fixture),
   ])
 }

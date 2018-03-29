@@ -31,39 +31,40 @@ export function * setPseudonym (action) {
   // }
 }
 
-export function * getUsersFollowing (api, action) {
+export function * getUsers (api, action) {
   // get current data from Store
   // const currentData = yield select(CurrentUserSelectors.getData)
   // make the call to the api
 
   //fix: replace with actual data
-  const response = yield call(api.getUsers, "CurrentUserSelectors.getCurrentUserId")
+  const { offset, limit } = action
+  const response = yield call(api.getUsers, "userId", offset, limit)
 
   // success?
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(CurrentUserActions.getUsersFollowingSuccess(response.data))
+    yield put(CurrentUserActions.getUsersSuccess(response.data))
   } else {
-    yield put(CurrentUserActions.getUsersFollowingFailure())
+    yield put(CurrentUserActions.getUsersFailure())
   }
 }
 
-export function * toggleUsersFollowing (api, action) {
+export function * toggleFollowUser (api, action) {
   // get current data from Store
   // const currentData = yield select(CurrentUserSelectors.getData)
   // make the call to the api
 
   //fix: replace with actual data
   const { userId, toggleUserId } = action
-  const response = yield call(api.toggleUsersFollowing, userId, toggleUserId)
+  const response = yield call(api.toggleFollowUser, userId, toggleUserId)
 
   // success?
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(CurrentUserActions.toggleUsersFollowingSuccess(response.data))
+    yield put(CurrentUserActions.toggleFollowUserSuccess(response.data))
   } else {
-    yield put(CurrentUserActions.toggleUsersFollowingFailure())
+    yield put(CurrentUserActions.toggleFollowUserFailure())
   }
 }
