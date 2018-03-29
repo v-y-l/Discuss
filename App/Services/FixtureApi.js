@@ -1,17 +1,34 @@
 export default {
   //Fixtures for Discuss
-  getUsersFollowing: (userId) => { //fix: at some point I'll need to have userId-userName mappings
+
+  // Returns lists of users with information on whether you are following them or not
+  getUsers: (userId, offset, limit) => {
+    let fixture = require('../Fixtures/users.json')
     return {
       ok: true,
-      data: require('../Fixtures/usersFollowing.json')
+      data: { 
+        //if index 9 is a part of result, then there is no hasNext
+        //that means the reach would be fixture['results'].length
+        'hasNext': offset + limit < fixture['results'].length,  
+        'offset': offset,
+        'limit': limit,
+        'results': fixture['results'].slice(offset,offset+limit)
+      }
     }
   },
-  toggleUsersFollowing: (userId, toggleUserId) => {
-    let usersFollowing = require('../Fixtures/usersFollowing.json')
-    usersFollowing.usersFollowing[toggleUserId].following = !usersFollowing.usersFollowing[toggleUserId].following
+  toggleFollowUser: (userId, toggleUserId) => {
+    let fixture = require('../Fixtures/users.json')
+    let toggledUser
+    for (let user of fixture['results']) {
+      if (user['id'] == toggleUserId) {
+        user['following'] = !user['following']
+        toggledUser = user
+        break
+      }
+    }
     return {
       ok: true,
-      data: usersFollowing
+      data: toggledUser
     }
   },
   getPosts: () => {

@@ -7,12 +7,12 @@ const { Types, Creators } = createActions({
   setPseudonymRequest: ['pseudonym'],
   setPseudonymSuccess: ['pseudonym'],
   setPseudonymFailure: null,
-  getUsersFollowingRequest: ['userId'],
-  getUsersFollowingSuccess: ['payload'],
-  getUsersFollowingFailure: null,
-  toggleUsersFollowingRequest: ['userId', 'toggleUserId'],
-  toggleUsersFollowingSuccess: ['payload'],
-  toggleUsersFollowingFailure: null,
+  getUsersRequest: ['userId','offset','limit'],
+  getUsersSuccess: ['payload'],
+  getUsersFailure: null,
+  toggleFollowUserRequest: ['userId', 'toggleUserId'],
+  toggleFollowUserSuccess: ['payload'],
+  toggleFollowUserFailure: null,
 })
 
 export const CurrentUserTypes = Types
@@ -23,8 +23,10 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   pseudonym: "Fixture User",
   fetching: null,
-  usersFollowing: null,
-  error: null
+  users: null,
+  error: null,
+  offset: 0,
+  limit: 20,
 })
 
 /* ------------- Selectors ------------- */
@@ -50,37 +52,37 @@ export const setPseudonymSuccess = (state, action) => {
 export const setPseudonymFailure = state =>
   state.merge({ fetching: false, error: true, pseudonym: null })
 
-// Methods for getting information about who you are and aren't following
+// Reducers for getting information about who you are and aren't following
 
 // request the data from an api
-export const getUsersFollowingRequest = (state, action) =>
+export const getUsersRequest = (state, action) =>
   state.merge({ fetching: true })
 
 // successful api lookup
-export const getUsersFollowingSuccess = (state, action) => {
+export const getUsersSuccess = (state, action) => {
   const { payload } = action
-  return state.merge({ fetching: false, error: null, usersFollowing: payload })
+  return state.merge({ fetching: false, error: null, users: payload.results })
 }
 
 // Something went wrong somewhere.
-export const getUsersFollowingFailure = state =>
-  state.merge({ fetching: false, error: true, usersFollowing: null })
+export const getUsersFailure = state =>
+  state.merge({ fetching: false, error: true, users: null })
 
-// Methods for setting information about who you are and aren't following
+// Reducers for setting information about who you are and aren't following
 
 // request the data from an api
-export const toggleUsersFollowingRequest = (state, action) =>
+export const toggleFollowUserRequest = (state, action) =>
   state.merge({ fetching: true })
 
 // successful api lookup
-export const toggleUsersFollowingSuccess = (state, action) => {
+export const toggleFollowUserSuccess = (state, action) => {
   const { payload } = action
-  return state.merge({ fetching: false, error: null, usersFollowing: payload })
+  return state.merge({ fetching: false, error: null, users: payload })
 }
 
 // Something went wrong somewhere.
-export const toggleUsersFollowingFailure = state =>
-  state.merge({ fetching: false, error: true, usersFollowing: null })
+export const toggleFollowUserFailure = state =>
+  state.merge({ fetching: false, error: true, users: null })
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -88,10 +90,10 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_PSEUDONYM_REQUEST]: setPseudonymRequest,
   [Types.SET_PSEUDONYM_SUCCESS]: setPseudonymSuccess,
   [Types.SET_PSEUDONYM_FAILURE]: setPseudonymFailure,
-  [Types.GET_USERS_FOLLOWING_REQUEST]: getUsersFollowingRequest,
-  [Types.GET_USERS_FOLLOWING_SUCCESS]: getUsersFollowingSuccess,
-  [Types.GET_USERS_FOLLOWING_FAILURE]: getUsersFollowingFailure,
-  [Types.TOGGLE_USERS_FOLLOWING_REQUEST]: toggleUsersFollowingRequest,
-  [Types.TOGGLE_USERS_FOLLOWING_SUCCESS]: toggleUsersFollowingSuccess,
-  [Types.TOGGLE_USERS_FOLLOWING_FAILURE]: toggleUsersFollowingFailure,
+  [Types.GET_USERS_REQUEST]: getUsersRequest,
+  [Types.GET_USERS_SUCCESS]: getUsersSuccess,
+  [Types.GET_USERS_FAILURE]: getUsersFailure,
+  [Types.TOGGLE_FOLLOW_USER_REQUEST]: toggleFollowUserRequest,
+  [Types.TOGGLE_FOLLOW_USER_SUCCESS]: toggleFollowUserSuccess,
+  [Types.TOGGLE_FOLLOW_USER_FAILURE]: toggleFollowUserFailure,
 })

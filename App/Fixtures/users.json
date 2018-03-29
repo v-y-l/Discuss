@@ -1,0 +1,566 @@
+{
+	"results" : [
+		{
+			"id": "1",
+			"firstName": "Victor",
+			"lastName": "Lin",
+			"fullName": "Victor Lin",
+			"following": true
+		},
+		{
+			"id": "2",
+			"firstName" : "John",
+			"lastName" : "Hilliard",
+			"fullName": "John Hilliard",
+			"following": true
+		},
+		{
+			"id": "3",
+			"firstName": "Christian",
+			"lastName": "Lemieux",
+			"fullName": "Christian Lemieux",
+			"following": true
+		},
+		{
+			"id": "4",
+			"firstName": "Sam",
+			"lastName": "Skinner",
+			"fullName": "Sam Skinner",
+			"following": false
+		},
+		{
+			"id": "5",
+			"firstName": "Ramani",
+			"lastName": "Dodda",
+			"fullName": "Ramani Dodda",
+			"following": false
+		},
+		{
+			"id": "6",
+			"firstName": "Premdeep",
+			"lastName": "Sharma",
+			"fullName": "Premdeep Sharma",
+			"following": false
+		},
+		{
+			"id": "7",
+			"firstName": "Nick",
+			"lastName": "Woolf",
+			"fullName": "Nick Woolf",
+			"following": false
+		},
+		{
+			"id": "8",
+			"firstName": "Angela",
+			"lastName": "Cavallaro",
+			"fullName": "Angela Cavallaro",
+			"following": false
+		},
+		{
+			"id": "9",
+			"firstName": "Shardul",
+			"lastName": "Dabholkar",
+			"fullName": "Shardul Dabholkar",
+			"following": false
+		},
+		{
+			"id": "10",
+			"firstName": "Eric",
+			"lastName": "Lee",
+			"fullName": "Eric Lee",
+			"following": false
+		},
+		{
+			"id": "11",
+			"firstName": "Fixture", 
+			"lastName": "User 11",
+			"fullName": "Fixture User 11", 
+			"following": false
+		},
+		{
+			"id": "12",
+			"firstName": "Fixture", 
+			"lastName": "User 12",
+			"fullName": "Fixture User 12", 
+			"following": false
+		},
+		{
+			"id": "13",
+			"firstName": "Fixture", 
+			"lastName": "User 13",
+			"fullName": "Fixture User 13", 
+			"following": false
+		},
+		{
+			"id": "14",
+			"firstName": "Fixture", 
+			"lastName": "User 14",
+			"fullName": "Fixture User 14", 
+			"following": false
+		},
+		{
+			"id": "15",
+			"firstName": "Fixture", 
+			"lastName": "User 15",
+			"fullName": "Fixture User 15", 
+			"following": false
+		},
+		{
+			"id": "16",
+			"firstName": "Fixture", 
+			"lastName": "User 16",
+			"fullName": "Fixture User 16", 
+			"following": false
+		},
+		{
+			"id": "17",
+			"firstName": "Fixture", 
+			"lastName": "User 17",
+			"fullName": "Fixture User 17", 
+			"following": false
+		},
+		{
+			"id": "18",
+			"firstName": "Fixture", 
+			"lastName": "User 18",
+			"fullName": "Fixture User 18", 
+			"following": false
+		},
+		{
+			"id": "19",
+			"firstName": "Fixture", 
+			"lastName": "User 19",
+			"fullName": "Fixture User 19", 
+			"following": false
+		},
+		{
+			"id": "20",
+			"firstName": "Fixture", 
+			"lastName": "User 20",
+			"fullName": "Fixture User 20", 
+			"following": false
+		},
+		{
+			"id": "21",
+			"firstName": "Fixture", 
+			"lastName": "User 21",
+			"fullName": "Fixture User 21", 
+			"following": false
+		},
+		{
+			"id": "22",
+			"firstName": "Fixture", 
+			"lastName": "User 22",
+			"fullName": "Fixture User 22", 
+			"following": false
+		},
+		{
+			"id": "23",
+			"firstName": "Fixture", 
+			"lastName": "User 23",
+			"fullName": "Fixture User 23", 
+			"following": false
+		},
+		{
+			"id": "24",
+			"firstName": "Fixture", 
+			"lastName": "User 24",
+			"fullName": "Fixture User 24", 
+			"following": false
+		},
+		{
+			"id": "25",
+			"firstName": "Fixture", 
+			"lastName": "User 25",
+			"fullName": "Fixture User 25", 
+			"following": false
+		},
+		{
+			"id": "26",
+			"firstName": "Fixture", 
+			"lastName": "User 26",
+			"fullName": "Fixture User 26", 
+			"following": false
+		},
+		{
+			"id": "27",
+			"firstName": "Fixture", 
+			"lastName": "User 27",
+			"fullName": "Fixture User 27", 
+			"following": false
+		},
+		{
+			"id": "28",
+			"firstName": "Fixture", 
+			"lastName": "User 28",
+			"fullName": "Fixture User 28", 
+			"following": false
+		},
+		{
+			"id": "29",
+			"firstName": "Fixture", 
+			"lastName": "User 29",
+			"fullName": "Fixture User 29", 
+			"following": false
+		},
+		{
+			"id": "30",
+			"firstName": "Fixture", 
+			"lastName": "User 30",
+			"fullName": "Fixture User 30", 
+			"following": false
+		},
+		{
+			"id": "31",
+			"firstName": "Fixture", 
+			"lastName": "User 31",
+			"fullName": "Fixture User 31", 
+			"following": false
+		},
+		{
+			"id": "32",
+			"firstName": "Fixture", 
+			"lastName": "User 32",
+			"fullName": "Fixture User 32", 
+			"following": false
+		},
+		{
+			"id": "33",
+			"firstName": "Fixture", 
+			"lastName": "User 33",
+			"fullName": "Fixture User 33", 
+			"following": false
+		},
+		{
+			"id": "34",
+			"firstName": "Fixture", 
+			"lastName": "User 34",
+			"fullName": "Fixture User 34", 
+			"following": false
+		},
+		{
+			"id": "35",
+			"firstName": "Fixture", 
+			"lastName": "User 35",
+			"fullName": "Fixture User 35", 
+			"following": false
+		},
+		{
+			"id": "36",
+			"firstName": "Fixture", 
+			"lastName": "User 36",
+			"fullName": "Fixture User 36", 
+			"following": false
+		},
+		{
+			"id": "37",
+			"firstName": "Fixture", 
+			"lastName": "User 37",
+			"fullName": "Fixture User 37", 
+			"following": false
+		},
+		{
+			"id": "38",
+			"firstName": "Fixture", 
+			"lastName": "User 38",
+			"fullName": "Fixture User 38", 
+			"following": false
+		},
+		{
+			"id": "39",
+			"firstName": "Fixture", 
+			"lastName": "User 39",
+			"fullName": "Fixture User 39", 
+			"following": false
+		},
+		{
+			"id": "40",
+			"firstName": "Fixture", 
+			"lastName": "User 40",
+			"fullName": "Fixture User 40", 
+			"following": false
+		},
+		{
+			"id": "41",
+			"firstName": "Fixture", 
+			"lastName": "User 41",
+			"fullName": "Fixture User 41", 
+			"following": false
+		},
+		{
+			"id": "42",
+			"firstName": "Fixture", 
+			"lastName": "User 42",
+			"fullName": "Fixture User 42", 
+			"following": false
+		},
+		{
+			"id": "43",
+			"firstName": "Fixture", 
+			"lastName": "User 43",
+			"fullName": "Fixture User 43", 
+			"following": false
+		},
+		{
+			"id": "44",
+			"firstName": "Fixture", 
+			"lastName": "User 44",
+			"fullName": "Fixture User 44", 
+			"following": false
+		},
+		{
+			"id": "45",
+			"firstName": "Fixture", 
+			"lastName": "User 45",
+			"fullName": "Fixture User 45", 
+			"following": false
+		},
+		{
+			"id": "46",
+			"firstName": "Fixture", 
+			"lastName": "User 46",
+			"fullName": "Fixture User 46", 
+			"following": false
+		},
+		{
+			"id": "47",
+			"firstName": "Fixture", 
+			"lastName": "User 47",
+			"fullName": "Fixture User 47", 
+			"following": false
+		},
+		{
+			"id": "48",
+			"firstName": "Fixture", 
+			"lastName": "User 48",
+			"fullName": "Fixture User 48", 
+			"following": false
+		},
+		{
+			"id": "49",
+			"firstName": "Fixture", 
+			"lastName": "User 49",
+			"fullName": "Fixture User 49", 
+			"following": false
+		},
+		{
+			"id": "50",
+			"firstName": "Fixture", 
+			"lastName": "User 50",
+			"fullName": "Fixture User 50", 
+			"following": false
+		},
+		{
+			"id": "51",
+			"firstName": "Fixture", 
+			"lastName": "User 51",
+			"fullName": "Fixture User 51", 
+			"following": false
+		},
+		{
+			"id": "52",
+			"firstName": "Fixture", 
+			"lastName": "User 52",
+			"fullName": "Fixture User 52", 
+			"following": false
+		},
+		{
+			"id": "53",
+			"firstName": "Fixture", 
+			"lastName": "User 53",
+			"fullName": "Fixture User 53", 
+			"following": false
+		},
+		{
+			"id": "54",
+			"firstName": "Fixture", 
+			"lastName": "User 54",
+			"fullName": "Fixture User 54", 
+			"following": false
+		},
+		{
+			"id": "55",
+			"firstName": "Fixture", 
+			"lastName": "User 55",
+			"fullName": "Fixture User 55", 
+			"following": false
+		},
+		{
+			"id": "56",
+			"firstName": "Fixture", 
+			"lastName": "User 56",
+			"fullName": "Fixture User 56", 
+			"following": false
+		},
+		{
+			"id": "57",
+			"firstName": "Fixture", 
+			"lastName": "User 57",
+			"fullName": "Fixture User 57", 
+			"following": false
+		},
+		{
+			"id": "58",
+			"firstName": "Fixture", 
+			"lastName": "User 58",
+			"fullName": "Fixture User 58", 
+			"following": false
+		},
+		{
+			"id": "59",
+			"firstName": "Fixture", 
+			"lastName": "User 59",
+			"fullName": "Fixture User 59", 
+			"following": false
+		},
+		{
+			"id": "60",
+			"firstName": "Fixture", 
+			"lastName": "User 60",
+			"fullName": "Fixture User 60", 
+			"following": false
+		},
+		{
+			"id": "61",
+			"firstName": "Fixture", 
+			"lastName": "User 61",
+			"fullName": "Fixture User 61", 
+			"following": false
+		},
+		{
+			"id": "62",
+			"firstName": "Fixture", 
+			"lastName": "User 62",
+			"fullName": "Fixture User 62", 
+			"following": false
+		},
+		{
+			"id": "63",
+			"firstName": "Fixture", 
+			"lastName": "User 63",
+			"fullName": "Fixture User 63", 
+			"following": false
+		},
+		{
+			"id": "64",
+			"firstName": "Fixture", 
+			"lastName": "User 64",
+			"fullName": "Fixture User 64", 
+			"following": false
+		},
+		{
+			"id": "65",
+			"firstName": "Fixture", 
+			"lastName": "User 65",
+			"fullName": "Fixture User 65", 
+			"following": false
+		},
+		{
+			"id": "66",
+			"firstName": "Fixture", 
+			"lastName": "User 66",
+			"fullName": "Fixture User 66", 
+			"following": false
+		},
+		{
+			"id": "67",
+			"firstName": "Fixture", 
+			"lastName": "User 67",
+			"fullName": "Fixture User 67", 
+			"following": false
+		},
+		{
+			"id": "68",
+			"firstName": "Fixture", 
+			"lastName": "User 68",
+			"fullName": "Fixture User 68", 
+			"following": false
+		},
+		{
+			"id": "69",
+			"firstName": "Fixture", 
+			"lastName": "User 69",
+			"fullName": "Fixture User 69", 
+			"following": false
+		},
+		{
+			"id": "70",
+			"firstName": "Fixture", 
+			"lastName": "User 70",
+			"fullName": "Fixture User 70", 
+			"following": false
+		},
+		{
+			"id": "71",
+			"firstName": "Fixture", 
+			"lastName": "User 71",
+			"fullName": "Fixture User 71", 
+			"following": false
+		},
+		{
+			"id": "72",
+			"firstName": "Fixture", 
+			"lastName": "User 72",
+			"fullName": "Fixture User 72", 
+			"following": false
+		},
+		{
+			"id": "73",
+			"firstName": "Fixture", 
+			"lastName": "User 73",
+			"fullName": "Fixture User 73", 
+			"following": false
+		},
+		{
+			"id": "74",
+			"firstName": "Fixture", 
+			"lastName": "User 74",
+			"fullName": "Fixture User 74", 
+			"following": false
+		},
+		{
+			"id": "75",
+			"firstName": "Fixture", 
+			"lastName": "User 75",
+			"fullName": "Fixture User 75", 
+			"following": false
+		},
+		{
+			"id": "76",
+			"firstName": "Fixture", 
+			"lastName": "User 76",
+			"fullName": "Fixture User 76", 
+			"following": false
+		},
+		{
+			"id": "77",
+			"firstName": "Fixture", 
+			"lastName": "User 77",
+			"fullName": "Fixture User 77", 
+			"following": false
+		},
+		{
+			"id": "78",
+			"firstName": "Fixture", 
+			"lastName": "User 78",
+			"fullName": "Fixture User 78", 
+			"following": false
+		},
+		{
+			"id": "79",
+			"firstName": "Fixture", 
+			"lastName": "User 79",
+			"fullName": "Fixture User 79", 
+			"following": false
+		},
+		{
+			"id": "80",
+			"firstName": "Fixture", 
+			"lastName": "User 80",
+			"fullName": "Fixture User 80", 
+			"following": false
+		},
+
+	],
+
+}

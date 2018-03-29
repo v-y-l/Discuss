@@ -37,7 +37,7 @@ export function * getUsersFollowing (api, action) {
   // make the call to the api
 
   //fix: replace with actual data
-  const response = yield call(api.getUsersFollowing, "CurrentUserSelectors.getCurrentUserId")
+  const response = yield call(api.getUsers, "CurrentUserSelectors.getCurrentUserId")
 
   // success?
   if (response.ok) {
