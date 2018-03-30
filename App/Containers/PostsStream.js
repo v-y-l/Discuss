@@ -213,7 +213,7 @@ const filterPosts = (posts, usersFollowing) => {
 const mapStateToProps = (state) => {
   return {
     posts: state.posts.posts,
-    usersFollowing: state.currentUser.usersFollowing,
+    users: state.users,
     pseudonym: state.currentUser.pseudonym,
   }
 }

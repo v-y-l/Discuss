@@ -6,8 +6,6 @@ import MenuButton from '../Components/MenuButton'
 import CurrentUserActions from '../Redux/CurrentUserRedux'
 import { SearchBar } from 'react-native-elements'
 
-// More info here: https://facebook.github.io/react-native/docs/flatlist.html
-
 // Styles
 import styles from './Styles/UsersStyle'
 
@@ -27,11 +25,11 @@ class Users extends React.PureComponent {
   *************************************************************/
   constructor(props) {
     super(props)
-    let usersFollowing = (this.props.users && this.props.users.results) || []
-    let filteredUsersFollowing = usersFollowing
+    let userList = (this.props.users && this.props.users.results) || []
+    let filteredUserList = userList
     this.state = {
-      usersFollowing,
-      filteredUsersFollowing,
+      userList,
+      filteredUserList,
       searchBarText: ""
     }
 
@@ -64,10 +62,10 @@ class Users extends React.PureComponent {
   // Render a header?
   // https://react-native-training.github.io/react-native-elements/docs/0.19.0/searchbar.html
   _onChangeText = (searchBarText) => {
-    let filteredUsersFollowing = this.state.usersFollowing.filter((user) => {
+    let filteredUserList = this.state.userList.filter((user) => {
       return filterUser(user, searchBarText)
     })
-    this.setState({searchBarText, filteredUsersFollowing})
+    this.setState({searchBarText, filteredUserList})
   }
 
   renderHeader = () =>
@@ -115,11 +113,11 @@ class Users extends React.PureComponent {
   // )}
 
   componentWillReceiveProps(nextProps) {
-    let usersFollowing = (nextProps.users && nextProps.users.results) || []
-    filteredUsersFollowing = usersFollowing.filter((user) => {
+    let userList = (nextProps.users && nextProps.users.results) || []
+    filteredUserList = userList.filter((user) => {
       return filterUser(user, this.state.searchBarText)
     })
-    this.setState({usersFollowing, filteredUsersFollowing})
+    this.setState({userList, filteredUserList})
   }
 
   render () {
@@ -127,7 +125,7 @@ class Users extends React.PureComponent {
       <View style={styles.container}>
         <FlatList
           contentContainerStyle={styles.listContent}
-          data={this.state.filteredUsersFollowing}
+          data={this.state.filteredUserList}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
