@@ -45,8 +45,8 @@ class PostsStream extends Component {
   constructor(props) {
     super(props) 
     let posts = Object.values(this.props.posts || {})
-    let usersFollowing = this.props.usersFollowing ? this.props.usersFollowing.usersFollowing : {}
-    posts = filterPosts(posts, usersFollowing)
+    let userList = (this.props.user && this.props.user.results) || []
+    posts = filterPosts(posts, userList)
     this.state = {
       posts: posts,
       isModalVisible: false,
@@ -130,8 +130,8 @@ class PostsStream extends Component {
   //https://medium.com/@baphemot/understanding-reactjs-component-life-cycle-823a640b3e8d
   componentWillReceiveProps(nextProps) {
     let posts = Object.values(nextProps.posts || {})
-    let usersFollowing = this.props.usersFollowing ? this.props.usersFollowing.usersFollowing : {}
-    posts = filterPosts(posts, usersFollowing)
+    let userList = (nextProps.users && nextProps.users.results) || []
+    posts = filterPosts(posts, userList)
 
     //https://stackoverflow.com/questions/30782948/why-calling-react-setstate-method-doesnt-mutate-the-state-immediately
     this.setState({
@@ -139,37 +139,6 @@ class PostsStream extends Component {
       pseudonym: nextProps.pseudonym
     })
   }
-
-  //Caught in infinity - https://github.com/erikras/redux-form/issues/2629
-  // componentDidUpdate() {
-
-  // }
-
-  //Fix: This level of complexity probably isn't the best way to do things
-  // but I don't have a better fix currently
-    // console.log("\n\nnew shouldComponentUpdate")
-    // console.log("props")
-    // console.log(this.props)
-    // console.log(nextProps)
-    // console.log(this.props!=nextProps)
-    // console.log("state")
-    // console.log(this.state)    
-    // console.log(nextState)
-    // console.log(this.state!=nextState)
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   var curNumComments = 0
-  //   var nextNumComments = 0
-  //   for (var post of this.state.posts) {
-  //     curNumComments += post.comments.length
-  //   }     
-  //   for (var post of nextState.posts) {
-  //     nextNumComments += post.comments.length
-  //   } 
-  //   return this.props.posts == null && nextProps.posts != null 
-  //   || this.state.isModalVisible != nextState.isModalVisible 
-  //   || curNumComments != nextNumComments 
-  //   || this.props != nextProps
-  // }
 
   render () {
 
@@ -206,7 +175,7 @@ const filterPosts = (posts, usersFollowing) => {
   if (Object.keys(usersFollowing).length === 0) {
     return posts
   }
-  return posts.filter(post => usersFollowing[post.recipient].following)
+  return posts.filter(post => userList[post.recipient].following)
 }
 
 

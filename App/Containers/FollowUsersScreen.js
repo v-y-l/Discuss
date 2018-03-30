@@ -32,7 +32,6 @@ class Users extends React.PureComponent {
       filteredUserList,
       searchBarText: ""
     }
-
   }
 
   /* ***********************************************************
