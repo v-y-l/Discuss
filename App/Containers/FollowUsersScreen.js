@@ -48,9 +48,10 @@ class Users extends React.PureComponent {
   renderRow = ({item}) => {
     return (
       <UserRow 
-        name={item.fullName} 
+        toggleUserId={item.id} //the userId we are toggling following/unfollowing
+        fullName={item.fullName}
         following={item.following} 
-        toggleFollow={this.props.toggleFollow} 
+        toggleFollowUser={this.props.toggleFollowUser} 
       />
     )
   }
@@ -154,8 +155,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleFollow: (userId, toggleUserId) => {
-      dispatch(CurrentUserActions.toggleUsersFollowingRequest(userId, toggleUserId))
+    toggleFollowUser: (userId, toggleUserId) => {
+      dispatch(CurrentUserActions.toggleFollowUserRequest(userId, toggleUserId))
     }
   }
 }

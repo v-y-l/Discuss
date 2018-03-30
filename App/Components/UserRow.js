@@ -18,15 +18,15 @@ export default class UserRow extends Component {
   // }
 
   render () {
-    const {name, following, toggleFollow} = this.props
+    const {toggleUserId, fullName, following, toggleFollowUser} = this.props
     const toggleFollowName = () => {
-      toggleFollow("replace this with actual userId later", name)
+      toggleFollowUser("userId", toggleUserId)
     }
     return (
       <View style={styles.container}>
         <View style={styles.profileBox}>
           <Image style={styles.profilePicture} source={Images.defaultProfilePicture} />    
-          <Text style={styles.nameText}>{name}</Text>
+          <Text style={styles.nameText}>{fullName}</Text>
         </View>
         <View style={styles.followButton}>
           <FollowButton following={following} onPress={toggleFollowName} />
