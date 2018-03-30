@@ -75,15 +75,12 @@ export const toggleFollowUserRequest = (state, action) =>
 // successful api lookup
 export const toggleFollowUserSuccess = (state, action) => {
   const { payload } = action
-  console.log(payload)
-  console.log(Immutable.isImmutable(payload))
-  console.log(Immutable.isImmutable(state))
-  console.log(Immutable.isImmutable(state.users.results))
-  let users = state.users.results.map((user) => {
+  // This is how you update a seamless-immutable array
+  // https://github.com/rtfeldman/seamless-immutable/issues/43
+  let results = state.users.results.map((user) => {
     return user.id == payload.id ? payload : user
   })
-  console.log(users)
-  // todo: update the single user - https://github.com/rtfeldman/seamless-immutable: replace
+  let users = Immutable.set(state.users, 'results', results)
   return state.merge({ fetching: false, error: null, users })
 }
 
