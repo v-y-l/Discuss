@@ -1,5 +1,4 @@
 import { StackNavigator } from 'react-navigation'
-import SettingsScreen from '../Containers/SettingsScreen'
 import Comments from '../Containers/Comments'
 import PostsStream from '../Containers/PostsStream'
 import LaunchScreen from '../Containers/LaunchScreen'
@@ -8,9 +7,9 @@ import styles from './Styles/NavigationStyles'
 import React from 'react'
 import { Button } from 'react-native'
 import { DrawerNavigator } from 'react-navigation'
-import Users from '../Containers/Users'
+import FollowUsersScreen from '../Containers/Users'
 
-// The navigation object is passed into options
+// Accessing the navigation object in navigationOptions
 // https://reactnavigation.org/docs/stack-navigator.html#navigationoptions-used-by-stacknavigator
 const navigationOptions = ({navigation}) => {
   return {
@@ -20,7 +19,7 @@ const navigationOptions = ({navigation}) => {
 }
 
 // Manifest of possible screens
-const PrimaryNav = StackNavigator({
+const PostsNav = StackNavigator({
   Comments: { screen: Comments },
   PostsStream: { screen: PostsStream },
 }, {
@@ -29,68 +28,23 @@ const PrimaryNav = StackNavigator({
   navigationOptions
 })
 
-const UsersNav = StackNavigator({
-  Users: { screen: Users },
+const FollowUsersNav = StackNavigator({
+  FollowUsersScreen: { screen: FollowUsersScreen },
 }, {
-  initialRouteName: 'Users',
+  initialRouteName: 'FollowUsersScreen',
   navigationOptions
 })
 
 const RootNav = DrawerNavigator({
     Primary: {
-      screen: PrimaryNav
+      screen: PostsNav
     },
     Users: {
-      screen: UsersNav
+      screen: FollowUsersNav
     }
 }, {
   initialRouteName: 'Primary',
   drawerWidth: 300
 })
 
-//Screen fade in and fade out animation
-//https://github.com/react-navigation/react-navigation/issues/2493
-// const fade = (props) => {
-//     const {position, scene} = props
-
-//     const index = scene.index
-
-//     const translateX = 0
-//     const translateY = 0
-
-//     const opacity = position.interpolate({
-//         inputRange: [index - 0.7, index, index + 0.7],
-//         outputRange: [0.3, 1, 0.3]
-//     })
-
-//     return {
-//         opacity,
-//         transform: [{translateX}, {translateY}]
-//     }
-// }
-
-// Full screen modal - https://reactnavigation.org/docs/modal.html
-// const RootStack = StackNavigator(
-//   {
-//     Primary: {
-//       screen: PrimaryNav
-//     },
-//     Modal: {
-//       screen: SettingsScreen
-//     },
-//   },
-//   {
-//     mode: 'modal',
-//     headerMode: 'none',
-//     transitionConfig: () => ({
-//         screenInterpolator: (props) => {
-//             return fade(props)
-//         }
-//     })
-//   }
-// )
-
-
-// https://reactnavigation.org/docs/stack-navigator.html#navigationoptions-used-by-stacknavigator
-// export default RootStack
 export default RootNav

@@ -77,7 +77,7 @@ export const toggleFollowUserRequest = (state, action) =>
 // successful api lookup
 export const toggleFollowUserSuccess = (state, action) => {
   const { payload } = action
-  // todo: update the single user
+  // todo: update the single user - https://github.com/rtfeldman/seamless-immutable: replace
   return state.merge({ fetching: false, error: null, users: payload })
 }
 
