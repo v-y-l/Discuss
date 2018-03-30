@@ -1,13 +1,13 @@
 import { StackNavigator } from 'react-navigation'
 import Comments from '../Containers/Comments'
 import PostsStream from '../Containers/PostsStream'
+import FollowUsersScreen from '../Containers/FollowUsersScreen'
 import LaunchScreen from '../Containers/LaunchScreen'
 import styles from './Styles/NavigationStyles'
 // import SettingsButton from '../Components/SettingsButton'
 import React from 'react'
 import { Button } from 'react-native'
 import { DrawerNavigator } from 'react-navigation'
-import FollowUsersScreen from '../Containers/Users'
 
 // Accessing the navigation object in navigationOptions
 // https://reactnavigation.org/docs/stack-navigator.html#navigationoptions-used-by-stacknavigator
@@ -19,7 +19,7 @@ const navigationOptions = ({navigation}) => {
 }
 
 // Manifest of possible screens
-const PostsNav = StackNavigator({
+const FeedbackNav = StackNavigator({
   Comments: { screen: Comments },
   PostsStream: { screen: PostsStream },
 }, {
@@ -36,14 +36,14 @@ const FollowUsersNav = StackNavigator({
 })
 
 const RootNav = DrawerNavigator({
-    Primary: {
-      screen: PostsNav
+    Feedback: {
+      screen: FeedbackNav
     },
-    Users: {
+    FollowUsers: {
       screen: FollowUsersNav
     }
 }, {
-  initialRouteName: 'Primary',
+  initialRouteName: 'FollowUsers',
   drawerWidth: 300
 })
 

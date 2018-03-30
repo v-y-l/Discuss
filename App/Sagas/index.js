@@ -17,7 +17,7 @@ import { startup } from './StartupSagas'
 import { getUserAvatar } from './GithubSagas'
 import { getPosts, selectPost, postCommentToPost } from './PostsSagas'
 import { getComments, postComment } from './CommentsSagas'
-import { setPseudonym, getUsersFollowing, toggleUsersFollowing } from './CurrentUserSagas'
+import { setPseudonym, getUsers, toggleFollowUser } from './CurrentUserSagas'
 
 /* ------------- API ------------- */
 

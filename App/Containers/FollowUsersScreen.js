@@ -27,7 +27,7 @@ class Users extends React.PureComponent {
   *************************************************************/
   constructor(props) {
     super(props)
-    let usersFollowing = Object.values(this.props.usersFollowing ? this.props.usersFollowing.usersFollowing : {})
+    let usersFollowing = (this.props.users && this.props.users.results) || []
     let filteredUsersFollowing = usersFollowing
     this.state = {
       usersFollowing,
@@ -47,7 +47,11 @@ class Users extends React.PureComponent {
   *************************************************************/
   renderRow = ({item}) => {
     return (
-      <UserRow name={item.name} following={item.following} toggleFollow={this.props.toggleFollow} />
+      <UserRow 
+        name={item.fullName} 
+        following={item.following} 
+        toggleFollow={this.props.toggleFollow} 
+      />
     )
   }
 
@@ -110,7 +114,7 @@ class Users extends React.PureComponent {
   // )}
 
   componentWillReceiveProps(nextProps) {
-    let usersFollowing = Object.values(nextProps.usersFollowing ? nextProps.usersFollowing.usersFollowing : {})
+    let usersFollowing = (nextProps.users && nextProps.users.results) || []
     filteredUsersFollowing = usersFollowing.filter((user) => {
       return filterUser(user, this.state.searchBarText)
     })
@@ -136,16 +140,15 @@ class Users extends React.PureComponent {
   }
 }
 
-
 const filterUser = (user, searchText) => {
-  let haystack = user.name.toLowerCase()
+  let haystack = user.fullName.toLowerCase()
   let needle = searchText.toLowerCase()
   return haystack.indexOf(needle) > -1
 }
 
 const mapStateToProps = (state) => {
   return {
-    usersFollowing: state.currentUser.usersFollowing
+    users: state.currentUser.users
   }
 }
 

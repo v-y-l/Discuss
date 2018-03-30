@@ -37,9 +37,8 @@ export function * getUsers (api, action) {
   // make the call to the api
 
   //fix: replace with actual data
-  const { offset, limit } = action
-  const response = yield call(api.getUsers, "userId", offset, limit)
-
+  const { userId, offset, limit } = action
+  const response = yield call(api.getUsers, userId, offset, limit)
   // success?
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',

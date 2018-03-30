@@ -25,8 +25,6 @@ export const INITIAL_STATE = Immutable({
   fetching: null,
   users: null,
   error: null,
-  offset: 0,
-  limit: 20,
 })
 
 /* ------------- Selectors ------------- */
@@ -61,7 +59,7 @@ export const getUsersRequest = (state, action) =>
 // successful api lookup
 export const getUsersSuccess = (state, action) => {
   const { payload } = action
-  return state.merge({ fetching: false, error: null, users: payload.results })
+  return state.merge({ fetching: false, error: null, users: payload })
 }
 
 // Something went wrong somewhere.
