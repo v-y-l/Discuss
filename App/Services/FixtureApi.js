@@ -48,11 +48,27 @@ export default {
       }
     }
   },  
-  getComments: (userId) => {
-    commentsVictor = require('../Fixtures/commentsVictor.json')
+  getComments: (postId, offset, limit) => {
+    let partialData
+    if (postId == 1) {
+      partialData = require('../Fixtures/commentsVictor.json').list
+    } else if (postId == 2) {
+      partialData = require('../Fixtures/commentsJohn.json').list
+    } else {
+      partialData = []
+    }
+    let partialById = {}
+    for (let i = 0; i < partialData.length; i++) {
+      let datum = partialData[i]
+      partialById[datum.id] = offset + i
+    }
     return {
       ok: true,
-      data: commentsVictor
+      data: {
+        list: partialData,
+        byId: partialById,
+        nextOffset: offset + partialData.length,
+      }
     }
   },
   postComment: (commentAuthor, commentText) => {

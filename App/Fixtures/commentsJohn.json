@@ -1,0 +1,14 @@
+{
+	"list" : [
+			{
+				"id" : "1",
+				"author" : "Sam Skinner",
+				"text" : "I like working with you on Biz 2."
+			},
+			{
+				"id" : "2",
+				"author" : "Christian Lemieux",
+				"text" : "Wow same."
+			},
+	]
+}

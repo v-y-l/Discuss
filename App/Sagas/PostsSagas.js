@@ -11,8 +11,9 @@
 *************************************************************/
 
 import { call, put, select } from 'redux-saga/effects'
-import PostsActions, {PostsSelectors} from '../Redux/PostsRedux'
-import {NavigationActions} from 'react-navigation'
+import PostsActions, { PostsSelectors } from '../Redux/PostsRedux'
+import CommentsActions from '../Redux/CommentsRedux'
+import { NavigationActions } from 'react-navigation'
 
 export function * getPosts (api, action) {
 
@@ -35,6 +36,7 @@ export function * getPosts (api, action) {
 export function * selectPost (action) {
   const { postId } = action
   yield put(PostsActions.selectPostSuccess(postId))
+  yield put(CommentsActions.getCommentsRequest(postId))
   yield put(NavigationActions.navigate({'routeName':'Comments'}))
 }
 

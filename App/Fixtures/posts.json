@@ -7,7 +7,7 @@
 			"recipientFullName" : "Victor Lin",
 			"feedback" : "The group coding sessions are helpful.",
 			"rating" : "2",
-			"numComments" : 5
+			"numComments" : 100
 		},
 		{
 			"id" : "2",
@@ -16,7 +16,7 @@
 			"recipientFullName" : "John Hilliard",
 			"feedback" : "It's impressive how far you took your sandbox.",
 			"rating" : "3",
-			"numComments" : 1
+			"numComments" : 2
 		},
 		{
 			"id" : "3",

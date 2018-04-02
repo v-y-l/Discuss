@@ -18,7 +18,10 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  comments: null,
+  list: [],
+  byId: {},
+  offset: 0,
+  limit: 10,
   fetching: null,
   error: null
 })
@@ -26,7 +29,8 @@ export const INITIAL_STATE = Immutable({
 /* ------------- Selectors ------------- */
 
 export const CommentsSelectors = {
-
+  getOffset: state => state.comments.offset,
+  getLimit: state => state.comments.limit,
 }
 
 /* ------------- Reducers ------------- */
@@ -38,7 +42,13 @@ export const request = (state, action) =>
 // successful api lookup
 export const success = (state, action) => {
   const { payload } = action
-  return state.merge({ fetching: false, error: null, comments: payload.comments })
+  return state.merge({ 
+    fetching: false, 
+    error: null,
+    list: state.list.concat(payload.list),
+    byId: state.byId.merge(payload.byId),
+    offset: payload.nextOffset,
+  })
 }
 
 // Something went wrong somewhere.

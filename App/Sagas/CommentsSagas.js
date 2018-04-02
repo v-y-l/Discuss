@@ -10,18 +10,19 @@
 *    you'll need to define a constant in that file.
 *************************************************************/
 
-import { call, put } from 'redux-saga/effects'
-import CommentsActions from '../Redux/CommentsRedux'
+import { call, put, select } from 'redux-saga/effects'
+import CommentsActions, { CommentsSelectors } from '../Redux/CommentsRedux'
 import PostsActions from '../Redux/PostsRedux'
-// import { CommentsSelectors } from '../Redux/CommentsRedux'
 
 export function * getComments (api, action) {
   // get current data from Store
   // const currentData = yield select(CommentsSelectors.getData)
   // make the call to the api
 
-  // fix: this method gets all comments - migrate to getting comments based on postId to scale
-  const response = yield call(api.getComments)
+  const { postId } = action
+  const offset = yield select(CommentsSelectors.getOffset)
+  const limit = yield select(CommentsSelectors.getLimit)
+  const response = yield call(api.getComments, postId, offset, limit)
 
   // success?
   if (response.ok) {
