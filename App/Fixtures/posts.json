@@ -1,46 +1,58 @@
 {
-	"posts" : {
-		"post1" : {
-			"id" : "post1",
-			"recipient" : "Victor Lin",
-			"text" : "The group coding sessions are helpful.",
+	"list" : [
+		 {
+			"id" : "1",
+			"recipientFirstName" : "Victor",
+			"recipientLastName" : "Lin",
+			"recipientFullName" : "Victor Lin",
+			"feedback" : "The group coding sessions are helpful.",
 			"rating" : "2",
 			"comments" : ["comment1","comment2","comment4","comment5","comment6"]
 		},
-		"post2" : {
-			"id" : "post2",
-			"recipient" : "John Hilliard",
-			"text" : "It's impressive how far you took your sandbox.",
+		{
+			"id" : "2",
+			"recipientFirstName" : "John",
+			"recipientLastName" : "Hilliard",
+			"recipientFullName" : "John Hilliard",
+			"feedback" : "It's impressive how far you took your sandbox.",
 			"rating" : "3",
 			"comments" : ["comment3"]
 		},
-		"post3" : {
-			"id" : "post3",
-			"recipient" : "John Hilliard",
-			"text" : "I like how you wrote your query builder",
+		{
+			"id" : "3",
+			"recipientFirstName" : "John",
+			"recipientLastName" : "Hilliard",
+			"recipientFullName" : "John Hilliard",
+			"feedback" : "I like how you wrote your query builder",
 			"rating" : "2",
 			"comments" : []
 		},
-		"post4" : {
-			"id" : "post4",
-			"recipient" : "Christian Lemieux",
-			"text" : "Welcome back, Avenger",
+		{
+			"id" : "4",
+			"recipientFirstName" : "Christian",
+			"recipientLastName" : "Lemieux",
+			"recipientFullName" : "Christian Lemieux",
+			"feedback" : "Welcome back, Avenger",
 			"rating" : "2",
 			"comments" : []
 		},
-		"post5" : {
-			"id" : "post5",
-			"recipient" : "Sam Skinner",
-			"text" : "Very cool to see the push notifications working",
+		{
+			"id" : "5",
+			"recipientFirstName" : "Sam",
+			"recipientLastName" : "Skinner",
+			"recipientFullName" : "Sam Skinner",
+			"feedback" : "Very cool to see the push notifications working",
 			"rating" : "2",
 			"comments" : []
 		},
-		"post6" : {
-			"id" : "post6",
-			"recipient" : "Shardul Dabholkar",
-			"text" : "You did a great job at the throwdown a few weeks ago!",
+		{
+			"id" : "6",
+			"recipientFirstName" : "Shardul",
+			"recipientLastName" : "Dabholkar",
+			"recipientFullName" : "Shardul Dabholkar",
+			"feedback" : "You did a great job at the throwdown a few weeks ago!",
 			"rating" : "3",
 			"comments" : []
 		}
-	}
+	]
 }

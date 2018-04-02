@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation'
 import Comments from '../Containers/Comments'
-import PostsStream from '../Containers/PostsStream'
+import PostsScreen from '../Containers/PostsScreen'
 import FollowUsersScreen from '../Containers/FollowUsersScreen'
 import LaunchScreen from '../Containers/LaunchScreen'
 import styles from './Styles/NavigationStyles'
@@ -21,10 +21,10 @@ const navigationOptions = ({navigation}) => {
 // Manifest of possible screens
 const FeedbackNav = StackNavigator({
   Comments: { screen: Comments },
-  PostsStream: { screen: PostsStream },
+  PostsScreen: { screen: PostsScreen },
 }, {
   // Default config for all screens
-  initialRouteName: 'PostsStream',
+  initialRouteName: 'PostsScreen',
   navigationOptions
 })
 
@@ -43,7 +43,7 @@ const RootNav = DrawerNavigator({
       screen: FollowUsersNav
     }
 }, {
-  initialRouteName: 'FollowUsers',
+  initialRouteName: 'Feedback',
   drawerWidth: 300
 })
 

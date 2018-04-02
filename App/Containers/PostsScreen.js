@@ -12,9 +12,9 @@ import SettingsModal from '../Components/SettingsModal'
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
 // Styles
-import styles from './Styles/PostsStreamStyle'
+import styles from './Styles/PostsScreenStyle'
 
-class PostsStream extends Component {
+class PostsScreen extends Component {
 
   static navigationOptions = ({navigation}) => {
 
@@ -44,16 +44,15 @@ class PostsStream extends Component {
 
   constructor(props) {
     super(props) 
-    let posts = Object.values(this.props.posts || {})
-    let userList = (this.props.user && this.props.user.results) || []
-    posts = filterPosts(posts, userList)
+    let postsList = (this.props.posts && this.props.posts.list) || []
+    // let userList = (this.props.user && this.props.user.results) || []
+    // postsList = filterPosts(postsList, userList)
     this.state = {
-      posts: posts,
+      postsList: postsList,
       isModalVisible: false,
       pseudonym: this.props.pseudonym
     }
   }
-
 
   onPressItem = this.props.selectPost
 
@@ -69,8 +68,8 @@ class PostsStream extends Component {
   renderRow = ({item}) => {
     return (
       <TouchablePost 
-        recipient={item.recipient} 
-        text={item.text}
+        recipient={item.recipientFullName} 
+        text={item.feedback}
         rating={+item.rating} 
         numComments={item.comments.length} 
         postId={item.id}
@@ -129,13 +128,13 @@ class PostsStream extends Component {
 
   //https://medium.com/@baphemot/understanding-reactjs-component-life-cycle-823a640b3e8d
   componentWillReceiveProps(nextProps) {
-    let posts = Object.values(nextProps.posts || {})
-    let userList = (nextProps.users && nextProps.users.results) || []
-    posts = filterPosts(posts, userList)
+    let postsList = (nextProps.posts && nextProps.posts.list) || []
+    // let userList = (nextProps.users && nextProps.users.results) || []
+    // postsList = filterPosts(postsList, userList)
 
     //https://stackoverflow.com/questions/30782948/why-calling-react-setstate-method-doesnt-mutate-the-state-immediately
     this.setState({
-      posts: posts, 
+      posts: postsList, 
       pseudonym: nextProps.pseudonym
     })
   }
@@ -168,21 +167,20 @@ class PostsStream extends Component {
   }
 }
 
-const filterPosts = (posts, usersFollowing) => {
-  if (posts.length === 0) {
-    return []
-  }
-  if (Object.keys(usersFollowing).length === 0) {
-    return posts
-  }
-  return posts.filter(post => userList[post.recipient].following)
-}
-
+// const filterPosts = (posts, usersFollowing) => {
+//   if (posts.length === 0) {
+//     return []
+//   }
+//   if (Object.keys(usersFollowing).length === 0) {
+//     return posts
+//   }
+//   return posts.filter(post => userList[post.recipient].following)
+// }
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts.posts,
-    users: state.users,
+    posts: state.posts,
+    // users: state.users,
     pseudonym: state.currentUser.pseudonym,
   }
 }
@@ -194,4 +192,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostsStream)
+export default connect(mapStateToProps, mapDispatchToProps)(PostsScreen)

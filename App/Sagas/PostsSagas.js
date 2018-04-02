@@ -24,8 +24,6 @@ export function * getPosts (api, action) {
 
   // success?
   if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
     yield put(PostsActions.getPostsSuccess(response.data))
   } else {
     yield put(PostsActions.getPostsFailure())

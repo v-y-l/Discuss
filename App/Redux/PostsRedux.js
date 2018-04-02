@@ -22,7 +22,7 @@ export default Creators
 
 export const INITIAL_STATE = Immutable({
   fetching: null,
-  posts: null,
+  list: null,
   postId: null,
   error: null
 })
@@ -41,17 +41,21 @@ export const PostsSelectors = {
 
 // request the data from an api
 export const getPostsRequest = (state, action) =>
-  state.merge({ fetching: true, posts: null, postId: null, error: null })
+  state.merge({ fetching: true, list: null, postId: null, error: null })
 
 // successful api lookup
 export const getPostsSuccess = (state, action) => {
   const { payload } = action
-  return state.merge({ fetching: false, posts: payload.posts, postId: null, error: null })
+  return state.merge({ fetching: false, 
+    list: payload.list, 
+    postId: null, 
+    error: null }
+  )
 }
 
 // Something went wrong somewhere.
 export const getPostsFailure = state =>
-  state.merge({ fetching: null, posts: null, postId: null, error: true })
+  state.merge({ fetching: null, list: null, postId: null, error: true })
 
 // ==================================================================================
 // Reducers that select the post whose comments will be viewed in the comments screen
