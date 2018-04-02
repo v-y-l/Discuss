@@ -7,7 +7,7 @@
 			"recipientFullName" : "Victor Lin",
 			"feedback" : "The group coding sessions are helpful.",
 			"rating" : "2",
-			"comments" : ["comment1","comment2","comment4","comment5","comment6"]
+			"numComments" : 5
 		},
 		{
 			"id" : "2",
@@ -16,7 +16,7 @@
 			"recipientFullName" : "John Hilliard",
 			"feedback" : "It's impressive how far you took your sandbox.",
 			"rating" : "3",
-			"comments" : ["comment3"]
+			"numComments" : 1
 		},
 		{
 			"id" : "3",
@@ -25,7 +25,7 @@
 			"recipientFullName" : "John Hilliard",
 			"feedback" : "I like how you wrote your query builder",
 			"rating" : "2",
-			"comments" : []
+			"numComments" : 0
 		},
 		{
 			"id" : "4",
@@ -34,7 +34,7 @@
 			"recipientFullName" : "Christian Lemieux",
 			"feedback" : "Welcome back, Avenger",
 			"rating" : "2",
-			"comments" : []
+			"numComments" : 0
 		},
 		{
 			"id" : "5",
@@ -43,7 +43,7 @@
 			"recipientFullName" : "Sam Skinner",
 			"feedback" : "Very cool to see the push notifications working",
 			"rating" : "2",
-			"comments" : []
+			"numComments" : 0
 		},
 		{
 			"id" : "6",
@@ -52,7 +52,7 @@
 			"recipientFullName" : "Shardul Dabholkar",
 			"feedback" : "You did a great job at the throwdown a few weeks ago!",
 			"rating" : "3",
-			"comments" : []
+			"numComments" : 0
 		},
 		{
 			"id": "7",
@@ -61,7 +61,7 @@
 			"recipientFullName": "User 7", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "8",
@@ -70,7 +70,7 @@
 			"recipientFullName": "User 8", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "9",
@@ -79,7 +79,7 @@
 			"recipientFullName": "User 9", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "10",
@@ -88,7 +88,7 @@
 			"recipientFullName": "User 10", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "11",
@@ -97,7 +97,7 @@
 			"recipientFullName": "User 11", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "12",
@@ -106,7 +106,7 @@
 			"recipientFullName": "User 12", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "13",
@@ -115,7 +115,7 @@
 			"recipientFullName": "User 13", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "14",
@@ -124,7 +124,7 @@
 			"recipientFullName": "User 14", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "15",
@@ -133,7 +133,7 @@
 			"recipientFullName": "User 15", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "16",
@@ -142,7 +142,7 @@
 			"recipientFullName": "User 16", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "17",
@@ -151,7 +151,7 @@
 			"recipientFullName": "User 17", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "18",
@@ -160,7 +160,7 @@
 			"recipientFullName": "User 18", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "19",
@@ -169,7 +169,7 @@
 			"recipientFullName": "User 19", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "20",
@@ -178,7 +178,7 @@
 			"recipientFullName": "User 20", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "21",
@@ -187,7 +187,7 @@
 			"recipientFullName": "User 21", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "22",
@@ -196,7 +196,7 @@
 			"recipientFullName": "User 22", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "23",
@@ -205,7 +205,7 @@
 			"recipientFullName": "User 23", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "24",
@@ -214,7 +214,7 @@
 			"recipientFullName": "User 24", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "25",
@@ -223,7 +223,7 @@
 			"recipientFullName": "User 25", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "26",
@@ -232,7 +232,7 @@
 			"recipientFullName": "User 26", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "27",
@@ -241,7 +241,7 @@
 			"recipientFullName": "User 27", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "28",
@@ -250,7 +250,7 @@
 			"recipientFullName": "User 28", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "29",
@@ -259,7 +259,7 @@
 			"recipientFullName": "User 29", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "30",
@@ -268,7 +268,7 @@
 			"recipientFullName": "User 30", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "31",
@@ -277,7 +277,7 @@
 			"recipientFullName": "User 31", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "32",
@@ -286,7 +286,7 @@
 			"recipientFullName": "User 32", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 		{
 			"id": "33",
@@ -295,7 +295,7 @@
 			"recipientFullName": "User 33", 
 			"feedback": "Generic feedback to test pagination",
 			"rating": "3",
-			"comments": []
+			"numComments": 0
 		},
 	],
 }

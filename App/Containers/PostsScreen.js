@@ -70,7 +70,7 @@ class PostsScreen extends Component {
         recipient={item.recipientFullName} 
         text={item.feedback}
         rating={+item.rating} 
-        numComments={item.comments.length} 
+        numComments={item.numComments} 
         postId={item.id}
         onPressItem={this.props.selectPost}
       />

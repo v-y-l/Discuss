@@ -114,9 +114,6 @@ class CommentsScreen extends Component {
   // item reordering.  Otherwise index is fine
   keyExtractor = (item, index) => index
 
-  // How many items should be kept im memory as we scroll?
-  oneScreensWorth = 20
-
   // extraData is for anything that is not indicated in data
   // for instance, if you kept "favorites" in `this.state.favs`
   // pass that in, so changes in favorites will cause a re-render
@@ -135,18 +132,15 @@ class CommentsScreen extends Component {
     this.props.navigation.setParams({toggleModal: this._toggleModal})    
   }
 
-  componentDidMount() {
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.post && nextProps.comments) {
-      dataObjects = []
-      for (let commentId of nextProps.post.comments) {
-        dataObjects.push(nextProps.comments[commentId])
-      }
-      this.setState({dataObjects:dataObjects})
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.post && nextProps.comments) {
+  //     dataObjects = []
+  //     for (let commentId of nextProps.post.comments) {
+  //       dataObjects.push(nextProps.comments[commentId])
+  //     }
+  //     this.setState({dataObjects:dataObjects})
+  //   }
+  // }
 
   componentDidUpdate() {
     //fix: does not react to the 'reply' button after the first time
@@ -154,7 +148,6 @@ class CommentsScreen extends Component {
       this.addCommentComponent.setState({text:`@${this.state.replyTo} `})
       this.addCommentComponent.textInput.focus()
     }
-
   }
 
   _toggleModal = () => {
@@ -170,7 +163,6 @@ class CommentsScreen extends Component {
           data={this.state.commentsList}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
-          initialNumToRender={this.oneScreensWorth}
           ListHeaderComponent={this.renderHeader}
           ListFooterComponent={this.renderFooter}
           ListEmptyComponent={this.renderEmpty}

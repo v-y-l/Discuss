@@ -1,0 +1,499 @@
+{
+	"list" : [
+		{
+			"id" : "1",
+			"author" : "Sam Skinner",
+			"text" : "It's good that you're doing this, but don't forget those OMM emails."
+		},
+		{
+			"id" : "2",
+			"author" : "Christian Lemieux",
+			"text" : "Hello from my honeymoon. I'm sad that I missed out on this first debrief."
+		},
+		{
+			"id" : "3",
+			"author" : "Eric Lee",
+			"text" : "I agree with this. Additionally, John's presentations usually cut to the point. It's good to have him start first because it sets the bar for the rest of the presentations."
+		},
+		{
+			"id" : "4",
+			"author" : "Ramani Dodda",
+			"text" : "It's a good reprieve from the R&R stuff."
+		},
+		{
+			"id" : "5",
+			"author" : "Shardul Dabholkar",
+			"text" : "I also have to work on R&R stuff so this pushes me to also do some React-Native work."
+		},
+		{
+			"id" : "6",
+			"author" : "Henry Wu",
+			"text" : "Doing a lot of EMS-related coding right now, I could see how I could migrate it all into an app, and the progress made in the debriefs inspires me."
+		},
+		{
+			"id" : "7",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "8",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "9",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "10",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "11",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "12",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "13",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "14",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "15",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "16",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "17",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "18",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "19",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "20",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "21",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "22",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "23",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "24",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "25",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "26",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "27",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "28",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "29",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "30",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "31",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "32",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "33",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "34",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "35",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "36",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "37",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "38",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "39",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "40",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "41",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "42",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "43",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "44",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "45",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "46",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "47",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "48",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "49",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "50",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "51",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "52",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "53",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "54",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "55",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "56",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "57",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "58",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "59",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "60",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "61",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "62",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "63",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "64",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "65",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "66",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "67",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "68",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "69",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "70",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "71",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "72",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "73",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "74",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "75",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "76",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "77",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "78",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "79",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "80",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "81",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "82",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "83",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "84",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "85",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "86",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "87",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "88",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "89",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "90",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "91",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "92",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "93",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "94",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "95",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "96",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "97",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "98",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+		{
+			"id" : "99",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination."
+		},
+	]
+}
