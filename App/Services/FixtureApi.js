@@ -31,10 +31,15 @@ export default {
       data: toggledUser
     }
   },
-  getPosts: () => {
+  getPosts: (offset, limit) => {
+    let allData = require('../Fixtures/posts.json')
+    let partialData = allData.list.slice(offset, limit)
     return {
       ok: true,
-      data: require('../Fixtures/posts.json')
+      data: {
+        list: partialData,
+        nextOffset: offset + partialData.length,
+      }
     }
   },  
   getComments: () => {

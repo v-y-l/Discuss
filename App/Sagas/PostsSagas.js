@@ -20,7 +20,8 @@ export function * getPosts (api, action) {
   // get current data from Store
   // const currentData = yield select(PostsSelectors.getData)
   // make the call to the api
-  const response = yield call(api.getPosts)
+  const { offset, limit } = action
+  const response = yield call(api.getPosts, offset, limit)
 
   // success?
   if (response.ok) {

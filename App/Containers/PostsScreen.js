@@ -144,7 +144,7 @@ class PostsScreen extends Component {
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
           onEndReached={()=>console.log('replace this with an onEndReached handler')}
-          onRefresh={()=>console.log('replace this with an onRefresh handler')}
+          onRefresh={()=>console.log('replace this with an onRefresh handler - set offset to 0')}
           refreshing={this.state.refreshing}
         />
         <SettingsModal 
@@ -158,20 +158,9 @@ class PostsScreen extends Component {
   }
 }
 
-// const filterPosts = (posts, usersFollowing) => {
-//   if (posts.length === 0) {
-//     return []
-//   }
-//   if (Object.keys(usersFollowing).length === 0) {
-//     return posts
-//   }
-//   return posts.filter(post => userList[post.recipient].following)
-// }
-
 const mapStateToProps = (state) => {
   return {
     posts: state.posts,
-    // users: state.users,
     pseudonym: state.currentUser.pseudonym,
   }
 }
