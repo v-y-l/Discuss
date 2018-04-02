@@ -41,10 +41,9 @@ class CommentsScreen extends Component {
     let postIndex = this.props.posts.byId[this.props.posts.postId]
     let post = this.props.posts.list[postIndex]
 
-    commentsList = []
-    for (let commentId of post.comments) {
-      commentsList.push(this.props.comments[commentId])
-    }
+    let commentsList = this.props.comments.list
+
+
     this.state = {
       post,
       commentsList,
@@ -82,14 +81,14 @@ class CommentsScreen extends Component {
   *************************************************************/
   // Render a header?
   renderHeader = () => {
-    const { recipientFullName, feedback, rating, comments } = this.state.post
+    const { recipientFullName, feedback, rating, numComments } = this.state.post
     return (
       <View>
         <Post 
           recipient={recipientFullName} 
           text={feedback}
           rating={+rating} 
-          numComments={comments.length}
+          numComments={numComments}
           showNumComments={false}
         />
         <View style={styles.separator}></View>
@@ -188,7 +187,7 @@ class CommentsScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     posts: state.posts,
-    comments: state.comments.comments,
+    comments: state.comments,
     pseudonym: state.currentUser.pseudonym,
   }
 }

@@ -32,8 +32,8 @@ export default {
     }
   },
   getPosts: (offset, limit) => {
-    let allData = require('../Fixtures/posts.json')
-    let partialData = allData.list.slice(offset, offset+limit)
+    let allData = require('../Fixtures/posts.json').list
+    let partialData = allData.slice(offset, offset+limit)
     let partialById = {}
     for (let i = 0; i < partialData.length; i++) {
       let datum = partialData[i]
@@ -49,14 +49,15 @@ export default {
     }
   },  
   getComments: (postId, offset, limit) => {
-    let partialData
+    let allData
     if (postId == 1) {
-      partialData = require('../Fixtures/commentsVictor.json').list
+      allData = require('../Fixtures/commentsVictor.json').list
     } else if (postId == 2) {
-      partialData = require('../Fixtures/commentsJohn.json').list
+      allData = require('../Fixtures/commentsJohn.json').list
     } else {
-      partialData = []
+      allData = []
     }
+    let partialData = allData.slice(offset, offset+limit)
     let partialById = {}
     for (let i = 0; i < partialData.length; i++) {
       let datum = partialData[i]

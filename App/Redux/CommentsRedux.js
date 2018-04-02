@@ -4,7 +4,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  getCommentsRequest: null,
+  getCommentsRequest: ['postId'],
   getCommentsSuccess: ['payload'],
   getCommentsFailure: null,
   postCommentRequest: ['commentText', 'commentAuthor', 'postId'],
@@ -36,8 +36,9 @@ export const CommentsSelectors = {
 /* ------------- Reducers ------------- */
 
 // request the data from an api
-export const request = (state, action) =>
-  state.merge({ fetching: true })
+export const request = (state, action) => {
+  return state.merge({ fetching: true })
+}
 
 // successful api lookup
 export const success = (state, action) => {
