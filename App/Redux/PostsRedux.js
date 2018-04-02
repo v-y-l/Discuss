@@ -24,6 +24,7 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   fetching: null,
   list: [],
+  byId: {},
   offset: 0,
   limit: 10,
   postId: null,
@@ -66,9 +67,12 @@ export const getPostsSuccess = (state, action) => {
   const { payload } = action
   let oldList = state.list
   let newList = oldList.concat(payload.list)
+  let oldDict = state.byId
+  let newDict = oldDict.merge(payload.byId)
   return state.merge({ 
     fetching: false,
     list: newList,
+    byId: newDict,
     offset: payload.nextOffset,
     postId: null, 
     error: null 

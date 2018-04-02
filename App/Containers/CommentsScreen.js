@@ -8,13 +8,11 @@ import SettingsButton from '../Components/SettingsButton'
 import SettingsModal from '../Components/SettingsModal'
 import CurrentUserActions from '../Redux/CurrentUserRedux'
 
-// More info here: https://facebook.github.io/react-native/docs/flatlist.html
-
 // Styles
-import styles from './Styles/CommentsStyle'
+import styles from './Styles/CommentsScreenStyle'
 import navigationStyles from '../Navigation/Styles/NavigationStyles'
 
-class Comments extends Component {
+class CommentsScreen extends Component {
 
   static navigationOptions = ({navigation}) => {
     const toggleModal = () => {
@@ -31,10 +29,6 @@ class Comments extends Component {
     }
   }
 
-  // If you needed to access variables inside of navigation options:
-  // https://github.com/react-navigation/react-navigation/issues/147
-  // https://github.com/react-navigation/react-navigation/issues/1789
-
   /* ***********************************************************
   * STEP 1
   * This is an array of objects with the properties you desire
@@ -44,12 +38,16 @@ class Comments extends Component {
   constructor(props) {
     super(props) 
 
-    dataObjects = []
-    for (let commentId of this.props.post.comments) {
-      dataObjects.push(this.props.comments[commentId])
+    let postIndex = this.props.posts.byId[this.props.posts.postId]
+    let post = this.props.posts.list[postIndex]
+
+    commentsList = []
+    for (let commentId of post.comments) {
+      commentsList.push(this.props.comments[commentId])
     }
     this.state = {
-      dataObjects: dataObjects,
+      post,
+      commentsList,
       replyTo: "",
       isModalVisible: false,
     }
@@ -83,17 +81,22 @@ class Comments extends Component {
   * to your liking!  Each with some friendly advice.
   *************************************************************/
   // Render a header?
-  renderHeader = () =>
-    <View>
-      <Post 
-        recipient={this.props.post.recipient} 
-        text={this.props.post.text}
-        rating={+this.props.post.rating} 
-        numComments={this.props.post.comments.length}
-        showNumComments={false}
-      />
-      <View style={styles.separator}></View>
-    </View>
+  renderHeader = () => {
+    const { recipientFullName, feedback, rating, comments } = this.state.post
+    return (
+      <View>
+        <Post 
+          recipient={recipientFullName} 
+          text={feedback}
+          rating={+rating} 
+          numComments={comments.length}
+          showNumComments={false}
+        />
+        <View style={styles.separator}></View>
+      </View>
+    )
+  }
+
 
   // Render a footer?
   renderFooter = () =>
@@ -158,22 +161,13 @@ class Comments extends Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   }
 
-  //Fix: currently, this only checks for total number of comments
-  //Would make more sense to check if the commentIds are the same
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return this.state.dataObjects.length !== nextState.dataObjects.length 
-  //     || Object.keys(this.props.comments).length !== Object.keys(nextProps.comments).length
-  //     || this.state.replyTo !== nextState.replyTo
-  //     || this.state.isModalVisible != nextState.isModalVisible
-  // }
-
   render() {
 
     return (
       <View style={styles.container}>
         <FlatList
           contentContainerStyle={styles.listContent}
-          data={this.state.dataObjects}
+          data={this.state.commentsList}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
@@ -201,7 +195,7 @@ class Comments extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    post: state.posts.posts[state.posts.postId],
+    posts: state.posts,
     comments: state.comments.comments,
     pseudonym: state.currentUser.pseudonym,
   }
@@ -214,4 +208,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Comments)
+export default connect(mapStateToProps, mapDispatchToProps)(CommentsScreen)

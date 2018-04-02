@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation'
-import Comments from '../Containers/Comments'
+import CommentsScreen from '../Containers/CommentsScreen'
 import PostsScreen from '../Containers/PostsScreen'
 import FollowUsersScreen from '../Containers/FollowUsersScreen'
 import LaunchScreen from '../Containers/LaunchScreen'
@@ -20,11 +20,11 @@ const navigationOptions = ({navigation}) => {
 
 // Manifest of possible screens
 const FeedbackNav = StackNavigator({
-  Comments: { screen: Comments },
-  PostsScreen: { screen: PostsScreen },
+  Comments: { screen: CommentsScreen },
+  Posts: { screen: PostsScreen },
 }, {
   // Default config for all screens
-  initialRouteName: 'PostsScreen',
+  initialRouteName: 'Posts',
   navigationOptions
 })
 
