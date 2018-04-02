@@ -33,7 +33,7 @@ export default {
   },
   getPosts: (offset, limit) => {
     let allData = require('../Fixtures/posts.json')
-    let partialData = allData.list.slice(offset, limit)
+    let partialData = allData.list.slice(offset, offset+limit)
     return {
       ok: true,
       data: {

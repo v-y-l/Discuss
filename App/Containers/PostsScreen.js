@@ -122,6 +122,7 @@ class PostsScreen extends Component {
   }
 
   _onEndReachedHandler = () => {
+    console.log(this.state)
     this.props.getMorePosts(this.state.offset, this.state.limit)
   }
 
@@ -152,7 +153,7 @@ class PostsScreen extends Component {
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
           onEndReached={this._onEndReachedHandler}
-          onRefresh={()=>console.log('replace this with an onRefresh handler - set offset to 0')}
+          onRefresh={this._onEndReachedHandler}
           refreshing={this.state.refreshing}
         />
         <SettingsModal 

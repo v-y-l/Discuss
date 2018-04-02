@@ -46,7 +46,7 @@ export const getPostsRequest = (state, action) => {
   const { offset, limit } = action
   return state.merge({ 
     fetching: true,
-    list: state.list || [],
+    list: state.list,
     offset,
     limit,
     postId: null,
@@ -58,10 +58,14 @@ export const getPostsRequest = (state, action) => {
 export const getPostsSuccess = (state, action) => {
   const { payload } = action
   let oldList = state.list
+  console.log("old, new list")
+  console.log(oldList)
+  console.log(payload)
   let newList = oldList.concat(payload.list)
+  console.log(newList)
   return state.merge({ 
     fetching: false,
-    list: payload.list,
+    list: newList,
     offset: payload.nextOffset,
     postId: null, 
     error: null }
