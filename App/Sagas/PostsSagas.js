@@ -10,17 +10,19 @@
 *    you'll need to define a constant in that file.
 *************************************************************/
 
-import { call, put } from 'redux-saga/effects'
-import PostsActions from '../Redux/PostsRedux'
+import { call, put, select } from 'redux-saga/effects'
+import PostsActions, {PostsSelectors} from '../Redux/PostsRedux'
 import {NavigationActions} from 'react-navigation'
-// import { PostsSelectors } from '../Redux/PostsRedux'
 
 export function * getPosts (api, action) {
 
   // get current data from Store
   // const currentData = yield select(PostsSelectors.getData)
   // make the call to the api
-  const { offset, limit } = action
+
+  const offset = yield select(PostsSelectors.getOffset)
+  const limit = yield select(PostsSelectors.getLimit)
+  console.log(offset)
   const response = yield call(api.getPosts, offset, limit)
 
   // success?

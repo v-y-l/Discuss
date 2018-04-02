@@ -45,12 +45,8 @@ class PostsScreen extends Component {
   constructor(props) {
     super(props) 
     let postsList = (this.props.posts && this.props.posts.list) || []
-    let offset = (this.props.posts && this.props.posts.offset) || 0
-    let limit = (this.props.posts && this.props.posts.limit) || 0
     this.state = {
       postsList,
-      offset,
-      limit,
       isModalVisible: false,
       pseudonym: this.props.pseudonym,
       refreshing: false
@@ -123,17 +119,13 @@ class PostsScreen extends Component {
 
   _onEndReachedHandler = () => {
     console.log(this.state)
-    this.props.getMorePosts(this.state.offset, this.state.limit)
+    this.props.getMorePosts()
   }
 
   componentWillReceiveProps(nextProps) {
     let postsList = (nextProps.posts && nextProps.posts.list) || []
-    let offset = (nextProps.posts && nextProps.posts.offset) || 0
-    let limit = (nextProps.posts && nextProps.posts.limit) || 0
     this.setState({
       postsList,
-      offset,
-      limit,
       pseudonym: nextProps.pseudonym
     })
   }
@@ -177,7 +169,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     selectPost: (postId) => dispatch(PostsActions.selectPostRequest(postId)),
-    getMorePosts: (offset, limit) => dispatch(PostsActions.getPostsRequest(offset,limit)),
+    getMorePosts: () => dispatch(PostsActions.getPostsRequest()),
     save: (pseudonym) => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym))
   }
 }

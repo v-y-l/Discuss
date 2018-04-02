@@ -4,7 +4,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  getPostsRequest: ['offset', 'limit'],
+  getPostsRequest: null,
   getPostsSuccess: ['payload'],
   getPostsFailure: null,
   selectPostRequest: ['postId'],
@@ -23,8 +23,8 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   fetching: null,
   list: [],
-  offset: null,
-  limit: null,
+  offset: 0,
+  limit: 10,
   postId: null,
   error: null
 })
@@ -32,7 +32,9 @@ export const INITIAL_STATE = Immutable({
 /* ------------- Selectors ------------- */
 
 export const PostsSelectors = {
-  getPosts: state => state.posts.posts,
+  getPosts: state => state.posts.list,
+  getOffset: state => state.posts.offset,
+  getLimit: state => state.posts.limit,
 }
 
 /* ------------- Reducers ------------- */
@@ -43,12 +45,8 @@ export const PostsSelectors = {
 
 // request the data from an api
 export const getPostsRequest = (state, action) => {
-  const { offset, limit } = action
   return state.merge({ 
     fetching: true,
-    list: state.list,
-    offset,
-    limit,
     postId: null,
     error: null
   })
