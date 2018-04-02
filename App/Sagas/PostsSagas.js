@@ -22,7 +22,6 @@ export function * getPosts (api, action) {
 
   const offset = yield select(PostsSelectors.getOffset)
   const limit = yield select(PostsSelectors.getLimit)
-  console.log(offset)
   const response = yield call(api.getPosts, offset, limit)
 
   // success?

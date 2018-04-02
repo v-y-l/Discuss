@@ -118,7 +118,6 @@ class PostsScreen extends Component {
   }
 
   _onEndReachedHandler = () => {
-    console.log(this.state)
     this.props.getMorePosts()
   }
 
@@ -138,7 +137,7 @@ class PostsScreen extends Component {
       <View style={styles.container}>
         <FlatList
           contentContainerStyle={styles.listContent}
-          data={this.state.posts}
+          data={this.state.postsList}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
           ListFooterComponent={this.renderFooter}
