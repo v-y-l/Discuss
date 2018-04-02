@@ -40,23 +40,3 @@ export function * selectPost (action) {
   yield put(CommentsActions.getCommentsRequest(postId))
   yield put(NavigationActions.navigate({'routeName':'Comments'}))
 }
-
-export function * postCommentToPost (api, action) {
-
-  // get current data from Store
-  // const currentData = yield select(PostsSelectors.getData)
-  // make the call to the api
-
-  const { commentId, postId } = action
-
-  const response = yield call(api.postCommentToPost, commentId, postId)
-
-  // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(PostsActions.postCommentToPostSuccess(response.data))
-  } else {
-    yield put(PostsActions.postCommentToPostFailure())
-  }
-}

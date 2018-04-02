@@ -8,8 +8,8 @@ const { Types, Creators } = createActions({
   getCommentsRequest: ['postId'],
   getCommentsSuccess: ['payload'],
   getCommentsFailure: null,
-  postCommentRequest: ['commentText', 'commentAuthor', 'postId'],
-  postCommentSuccess: ['payload'],
+  postCommentRequest: ['postId', 'commentText', 'commentAuthor'],
+  postCommentSuccess: null,
   postCommentFailure: null,
 })
 
@@ -23,6 +23,7 @@ export const INITIAL_STATE = Immutable({
   offset: 0,
   limit: 10,
   fetching: null,
+  posting: null,
   error: null
 })
 
@@ -40,12 +41,12 @@ export const resetComments = (state, action) => {
 }
 
 // request the data from an api
-export const request = (state, action) => {
+export const getCommentsRequest = (state, action) => {
   return state.merge({ fetching: true })
 }
 
 // successful api lookup
-export const success = (state, action) => {
+export const getCommentsSuccess = (state, action) => {
   const { payload } = action
   return state.merge({ 
     fetching: false, 
@@ -56,17 +57,40 @@ export const success = (state, action) => {
 }
 
 // Something went wrong somewhere.
-export const failure = state =>
-  state.merge({ fetching: false, error: true, comments: null })
+export const getCommentsFailure = state =>
+  state.merge({ 
+    fetching: false, 
+    error: true, 
+    list: null 
+  })
+
+// request the data from an api
+export const postCommentRequest = (state, action) => {
+  return state.merge({ posting: true })
+}
+
+// successful api lookup
+export const postCommentSuccess = (state, action) => {
+  return state.merge({ 
+    posting: false 
+  })
+}
+
+// Something went wrong somewhere.
+export const postCommentFailure = state =>
+  state.merge({ 
+    posting: false, 
+    error: true, 
+  })
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.RESET_COMMENTS]: resetComments,
-  [Types.GET_COMMENTS_REQUEST]: request,
-  [Types.GET_COMMENTS_SUCCESS]: success,
-  [Types.GET_COMMENTS_FAILURE]: failure,
-  [Types.POST_COMMENT_REQUEST]: request,
-  [Types.POST_COMMENT_SUCCESS]: success,
-  [Types.POST_COMMENT_FAILURE]: failure,
+  [Types.GET_COMMENTS_REQUEST]: getCommentsRequest,
+  [Types.GET_COMMENTS_SUCCESS]: getCommentsSuccess,
+  [Types.GET_COMMENTS_FAILURE]: getCommentsFailure,
+  [Types.POST_COMMENT_REQUEST]: postCommentRequest,
+  [Types.POST_COMMENT_SUCCESS]: postCommentSuccess,
+  [Types.POST_COMMENT_FAILURE]: postCommentFailure,
 })

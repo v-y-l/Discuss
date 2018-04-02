@@ -39,16 +39,14 @@ export function * postComment (api, action) {
   // const currentData = yield select(CommentsSelectors.getData)
   // make the call to the api
 
-  const {commentAuthor, commentText, postId} = action
-  const postCommentResponse = yield call(api.postComment, commentAuthor, commentText)
+  const {postId, commentAuthor, commentText} = action
+  const postCommentResponse = yield call(api.postComment, postId, commentAuthor, commentText)
 
   // success?
   if (postCommentResponse.ok) {
     // You might need to change the postCommentResponse here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-
-    yield put(CommentsActions.postCommentSuccess(postCommentResponse.data))
-    yield put(PostsActions.postCommentToPostRequest(postCommentResponse.data.newCommentId, postId))
+    yield put(CommentsActions.postCommentSuccess())
   } else {
     yield put(CommentsActions.postCommentFailure())
   }
