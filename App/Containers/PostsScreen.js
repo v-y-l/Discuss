@@ -50,7 +50,8 @@ class PostsScreen extends Component {
     this.state = {
       postsList: postsList,
       isModalVisible: false,
-      pseudonym: this.props.pseudonym
+      pseudonym: this.props.pseudonym,
+      refreshing: false
     }
   }
 
@@ -83,14 +84,10 @@ class PostsScreen extends Component {
   * Consider the configurations we've set below.  Customize them
   * to your liking!  Each with some friendly advice.
   *************************************************************/
-  // Render a header?
-  renderHeader = () =>
-    <Text style={[styles.label, styles.sectionHeader]}> - Header - </Text>
 
   // Render a footer?
   renderFooter = () =>
     <View style={styles.separator}></View>
-
 
   // Show this when data is empty
   renderEmpty = () =>
@@ -103,9 +100,6 @@ class PostsScreen extends Component {
   // an identifiable key is important if you plan on
   // item reordering.  Otherwise index is fine
   keyExtractor = (item, index) => index
-
-  // How many items should be kept im memory as we scroll?
-  oneScreensWorth = 20
 
   // extraData is for anything that is not indicated in data
   // for instance, if you kept "favorites" in `this.state.favs`
@@ -126,13 +120,9 @@ class PostsScreen extends Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   }
 
-  //https://medium.com/@baphemot/understanding-reactjs-component-life-cycle-823a640b3e8d
   componentWillReceiveProps(nextProps) {
     let postsList = (nextProps.posts && nextProps.posts.list) || []
-    // let userList = (nextProps.users && nextProps.users.results) || []
-    // postsList = filterPosts(postsList, userList)
 
-    //https://stackoverflow.com/questions/30782948/why-calling-react-setstate-method-doesnt-mutate-the-state-immediately
     this.setState({
       posts: postsList, 
       pseudonym: nextProps.pseudonym
@@ -150,11 +140,12 @@ class PostsScreen extends Component {
           data={this.state.posts}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
-          initialNumToRender={this.oneScreensWorth}
-          // ListHeaderComponent={this.renderHeader}
           ListFooterComponent={this.renderFooter}
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
+          onEndReached={()=>console.log('replace this with an onEndReached handler')}
+          onRefresh={()=>console.log('replace this with an onRefresh handler')}
+          refreshing={this.state.refreshing}
         />
         <SettingsModal 
           isVisible={this.state.isModalVisible} 
