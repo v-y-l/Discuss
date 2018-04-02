@@ -14,7 +14,14 @@ export default {
     }
   },
   toggleFollowUser: (userId, toggleUserId) => {
-    let fixture = require('../Fixtures/users.json')
+    let usersList = require('../Fixtures/users.json').list
+    let postsList = require('../Fixtures/posts.json').list
+    let filteredPostList = require('../Fixtures/filteredPosts.json').list
+    // To-do: need to figure out a hack to make toggling work
+    // Go through usersList, toggle it, then
+    // Go through filteredPostList, make sure that reflects the new toggled
+    // Use postsList as an original that's never modified
+    // But we'll have to also make sure the fixture is toggled as the start
     let toggledUser
     for (let user of fixture['results']) {
       if (user['id'] == toggleUserId) {
