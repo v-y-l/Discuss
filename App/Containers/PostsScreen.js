@@ -127,7 +127,7 @@ class PostsScreen extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let postsList = (nextProps.posts && nextProps.posts.list) || []
+    let postsList = nextProps.posts.list
     this.setState({
       postsList,
       pseudonym: nextProps.pseudonym

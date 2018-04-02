@@ -7,6 +7,7 @@ import AddComment from '../Components/AddComment'
 import SettingsButton from '../Components/SettingsButton'
 import SettingsModal from '../Components/SettingsModal'
 import CurrentUserActions from '../Redux/CurrentUserRedux'
+import CommentsActions from '../Redux/CommentsRedux'
 
 // Styles
 import styles from './Styles/CommentsScreenStyle'
@@ -43,12 +44,12 @@ class CommentsScreen extends Component {
 
     let commentsList = this.props.comments.list
 
-
     this.state = {
       post,
       commentsList,
       replyTo: "",
       isModalVisible: false,
+      refreshing: false
     }
   }
 
@@ -96,7 +97,6 @@ class CommentsScreen extends Component {
     )
   }
 
-
   // Render a footer?
   renderFooter = () =>
     <View style={styles.separator}></View>
@@ -131,15 +131,12 @@ class CommentsScreen extends Component {
     this.props.navigation.setParams({toggleModal: this._toggleModal})    
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.post && nextProps.comments) {
-  //     dataObjects = []
-  //     for (let commentId of nextProps.post.comments) {
-  //       dataObjects.push(nextProps.comments[commentId])
-  //     }
-  //     this.setState({dataObjects:dataObjects})
-  //   }
-  // }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      commentsList:nextProps.comments.list
+    })
+  }
+  
 
   componentDidUpdate() {
     //fix: does not react to the 'reply' button after the first time
@@ -153,6 +150,10 @@ class CommentsScreen extends Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   }
 
+  _onEndReachedHandler = () => {
+    this.props.getMoreComments(this.state.post.id)
+  }
+
   render() {
 
     return (
@@ -161,6 +162,9 @@ class CommentsScreen extends Component {
           contentContainerStyle={styles.listContent}
           data={this.state.commentsList}
           renderItem={this.renderRow}
+          onEndReached={this._onEndReachedHandler}
+          onRefresh={this._onRefreshHandler}
+          refreshing={this.state.refreshing}
           keyExtractor={this.keyExtractor}
           ListHeaderComponent={this.renderHeader}
           ListFooterComponent={this.renderFooter}
@@ -194,8 +198,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    save: (pseudonym) => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym))
-
+    save: (pseudonym) => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym)),
+    getMoreComments: (postId) => dispatch(CommentsActions.getCommentsRequest(postId))
   }
 }
 
