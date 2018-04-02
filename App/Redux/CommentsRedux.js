@@ -4,6 +4,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
+  resetComments: null,
   getCommentsRequest: ['postId'],
   getCommentsSuccess: ['payload'],
   getCommentsFailure: null,
@@ -19,7 +20,6 @@ export default Creators
 
 export const INITIAL_STATE = Immutable({
   list: [],
-  byId: {},
   offset: 0,
   limit: 10,
   fetching: null,
@@ -35,6 +35,10 @@ export const CommentsSelectors = {
 
 /* ------------- Reducers ------------- */
 
+export const resetComments = (state, action) => {
+  return state.merge({ list: [], offset: 0 })
+}
+
 // request the data from an api
 export const request = (state, action) => {
   return state.merge({ fetching: true })
@@ -47,7 +51,6 @@ export const success = (state, action) => {
     fetching: false, 
     error: null,
     list: state.list.concat(payload.list),
-    byId: state.byId.merge(payload.byId),
     offset: payload.nextOffset,
   })
 }
@@ -59,6 +62,7 @@ export const failure = state =>
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
+  [Types.RESET_COMMENTS]: resetComments,
   [Types.GET_COMMENTS_REQUEST]: request,
   [Types.GET_COMMENTS_SUCCESS]: success,
   [Types.GET_COMMENTS_FAILURE]: failure,

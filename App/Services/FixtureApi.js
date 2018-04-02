@@ -58,16 +58,10 @@ export default {
       allData = []
     }
     let partialData = allData.slice(offset, offset+limit)
-    let partialById = {}
-    for (let i = 0; i < partialData.length; i++) {
-      let datum = partialData[i]
-      partialById[datum.id] = offset + i
-    }
     return {
       ok: true,
       data: {
         list: partialData,
-        byId: partialById,
         nextOffset: offset + partialData.length,
       }
     }
