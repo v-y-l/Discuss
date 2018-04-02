@@ -136,7 +136,6 @@ class CommentsScreen extends Component {
       commentsList:nextProps.comments.list
     })
   }
-  
 
   componentDidUpdate() {
     //fix: does not react to the 'reply' button after the first time
@@ -151,6 +150,11 @@ class CommentsScreen extends Component {
   }
 
   _onEndReachedHandler = () => {
+    this.props.getMoreComments(this.state.post.id)
+  }
+
+  _onRefreshHandler = () => {
+    this.props.resetComments()
     this.props.getMoreComments(this.state.post.id)
   }
 
@@ -199,7 +203,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     save: (pseudonym) => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym)),
-    getMoreComments: (postId) => dispatch(CommentsActions.getCommentsRequest(postId))
+    getMoreComments: (postId) => dispatch(CommentsActions.getCommentsRequest(postId)),
+    resetComments: () => dispatch(CommentsActions.resetComments())
+  
   }
 }
 

@@ -495,5 +495,10 @@
 			"author" : "Fixture User",
 			"text" : "Generic comment to test pagination."
 		},
+		{
+			"id" : "100",
+			"author" : "Fixture User",
+			"text" : "Generic comment to test pagination. Also the last comment, as a sanity check."
+		},
 	]
 }
