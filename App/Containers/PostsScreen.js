@@ -121,6 +121,11 @@ class PostsScreen extends Component {
     this.props.getMorePosts()
   }
 
+  _onRefreshHandler = () => {
+    this.props.resetPosts()
+    this.props.getMorePosts()
+  }
+
   componentWillReceiveProps(nextProps) {
     let postsList = (nextProps.posts && nextProps.posts.list) || []
     this.setState({
@@ -143,8 +148,11 @@ class PostsScreen extends Component {
           ListFooterComponent={this.renderFooter}
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
+          // onEndReachedThreshold - adjust this if you want the 
+          // loading of items to be less sensitive, but I think
+          // this is okay for now as it doesn't take away from UX
           onEndReached={this._onEndReachedHandler}
-          onRefresh={this._onEndReachedHandler}
+          onRefresh={this._onRefreshHandler}
           refreshing={this.state.refreshing}
         />
         <SettingsModal 
@@ -169,6 +177,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     selectPost: (postId) => dispatch(PostsActions.selectPostRequest(postId)),
     getMorePosts: () => dispatch(PostsActions.getPostsRequest()),
+    resetPosts: () => dispatch(PostsActions.resetPosts()),
     save: (pseudonym) => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym))
   }
 }

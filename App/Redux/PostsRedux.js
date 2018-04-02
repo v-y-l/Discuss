@@ -4,6 +4,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
+  resetPosts: null,
   getPostsRequest: null,
   getPostsSuccess: ['payload'],
   getPostsFailure: null,
@@ -39,6 +40,14 @@ export const PostsSelectors = {
 
 /* ------------- Reducers ------------- */
 
+
+export const resetPosts = (state, action) => {
+  return state.merge({
+    list: [],
+    offset: 0,
+  })
+}
+
 // ==========================================
 // Reducers that add posts data to the store
 // ==========================================
@@ -62,8 +71,8 @@ export const getPostsSuccess = (state, action) => {
     list: newList,
     offset: payload.nextOffset,
     postId: null, 
-    error: null }
-  )
+    error: null 
+  })
 }
 
 // Something went wrong somewhere.
@@ -106,6 +115,7 @@ export const postCommentToPostFailure = state =>
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
+  [Types.RESET_POSTS]: resetPosts,
   [Types.GET_POSTS_REQUEST]: getPostsRequest,
   [Types.GET_POSTS_SUCCESS]: getPostsSuccess,
   [Types.GET_POSTS_FAILURE]: getPostsFailure,  
