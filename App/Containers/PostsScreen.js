@@ -45,10 +45,12 @@ class PostsScreen extends Component {
   constructor(props) {
     super(props) 
     let postsList = (this.props.posts && this.props.posts.list) || []
-    // let userList = (this.props.user && this.props.user.results) || []
-    // postsList = filterPosts(postsList, userList)
+    let offset = (this.props.posts && this.props.posts.offset) || 0
+    let limit = (this.props.posts && this.props.posts.limit) || 0
     this.state = {
-      postsList: postsList,
+      postsList,
+      offset,
+      limit,
       isModalVisible: false,
       pseudonym: this.props.pseudonym,
       refreshing: false
@@ -115,16 +117,22 @@ class PostsScreen extends Component {
   //   {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index}
   // )}
 
-  // https://github.com/react-native-community/react-native-modal
   _toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   }
 
+  _onEndReachedHandler = () => {
+    this.props.getMorePosts(this.state.offset, this.state.limit)
+  }
+
   componentWillReceiveProps(nextProps) {
     let postsList = (nextProps.posts && nextProps.posts.list) || []
-
+    let offset = (nextProps.posts && nextProps.posts.offset) || 0
+    let limit = (nextProps.posts && nextProps.posts.limit) || 0
     this.setState({
-      posts: postsList, 
+      postsList,
+      offset,
+      limit,
       pseudonym: nextProps.pseudonym
     })
   }
@@ -143,7 +151,7 @@ class PostsScreen extends Component {
           ListFooterComponent={this.renderFooter}
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
-          onEndReached={()=>console.log('replace this with an onEndReached handler')}
+          onEndReached={this._onEndReachedHandler}
           onRefresh={()=>console.log('replace this with an onRefresh handler - set offset to 0')}
           refreshing={this.state.refreshing}
         />
@@ -168,6 +176,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     selectPost: (postId) => dispatch(PostsActions.selectPostRequest(postId)),
+    getMorePosts: (offset, limit) => dispatch(PostsActions.getPostsRequest(offset,limit)),
     save: (pseudonym) => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym))
   }
 }
