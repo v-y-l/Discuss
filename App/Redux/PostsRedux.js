@@ -1,9 +1,11 @@
 import { createReducer, createActions } from 'reduxsauce'
+import { CommentsSelectors } from './CommentsRedux'
 import Immutable from 'seamless-immutable'
 
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
+  setPostNumComments: ['postId', 'numComments'],
   resetPosts: null,
   getPostsRequest: null,
   getPostsSuccess: ['payload'],
@@ -40,6 +42,16 @@ export const PostsSelectors = {
 }
 
 /* ------------- Reducers ------------- */
+
+export const setPostNumComments = (state, action) => {
+  const { postId, numComments } = action
+  const newList = state.list.map(
+    (val) => {
+      return (val.id === postId) ? val.merge({numComments}) : val
+    }
+  )
+  return state.merge({list: newList})
+}
 
 
 export const resetPosts = (state, action) => {
@@ -119,6 +131,7 @@ export const postCommentToPostFailure = state =>
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
+  [Types.SET_POST_NUM_COMMENTS]: setPostNumComments,
   [Types.RESET_POSTS]: resetPosts,
   [Types.GET_POSTS_REQUEST]: getPostsRequest,
   [Types.GET_POSTS_SUCCESS]: getPostsSuccess,

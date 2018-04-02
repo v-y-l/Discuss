@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard } from 'react-native'
 import styles from './Styles/AddCommentStyle'
 import CommentsActions from '../Redux/CommentsRedux'
+import PostsActions from '../Redux/PostsRedux'
 import CurrentUserActions from '../Redux/CurrentUserRedux'
 
 class AddComment extends Component {

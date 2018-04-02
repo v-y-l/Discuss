@@ -32,6 +32,7 @@ export const INITIAL_STATE = Immutable({
 export const CommentsSelectors = {
   getOffset: state => state.comments.offset,
   getLimit: state => state.comments.limit,
+  getNumComments: state => state.comments.list.length
 }
 
 /* ------------- Reducers ------------- */
@@ -48,7 +49,7 @@ export const getCommentsRequest = (state, action) => {
 // successful api lookup
 export const getCommentsSuccess = (state, action) => {
   const { payload } = action
-  return state.merge({ 
+  return state.merge({
     fetching: false, 
     error: null,
     list: state.list.concat(payload.list),

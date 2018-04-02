@@ -38,10 +38,8 @@ class CommentsScreen extends Component {
 
   constructor(props) {
     super(props) 
-
     let postIndex = this.props.posts.byId[this.props.posts.postId]
     let post = this.props.posts.list[postIndex]
-
     let commentsList = this.props.comments.list
 
     this.state = {
@@ -205,7 +203,6 @@ const mapDispatchToProps = (dispatch) => {
     save: (pseudonym) => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym)),
     getMoreComments: (postId) => dispatch(CommentsActions.getCommentsRequest(postId)),
     resetComments: () => dispatch(CommentsActions.resetComments())
-  
   }
 }
 
