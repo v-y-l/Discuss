@@ -42,7 +42,10 @@ export function * startup (action) {
   }
 
   // Discuss App start up actions
-  // this needs to go before posts actions since the profile screen relies on it to filter posts
-  yield put(CurrentUserActions.getUsersRequest("fix: dummy userId",0,20)) 
+  // fix: this needs to go before posts actions
+  // since the profile screen relies on it to filter posts,
+  // but we should relegate the filtering to the API
+
+  yield put(CurrentUserActions.getUsersRequest()) 
   yield put(PostsActions.getPostsRequest())
 }

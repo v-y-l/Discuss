@@ -25,12 +25,13 @@ class Users extends React.PureComponent {
   *************************************************************/
   constructor(props) {
     super(props)
-    let userList = (this.props.users && this.props.users.results) || []
+    let userList = this.props.currentUser.users
     let filteredUserList = userList
     this.state = {
       userList,
       filteredUserList,
-      searchBarText: ""
+      searchBarText: "",
+      refreshing: false
     }
   }
 
@@ -94,9 +95,6 @@ class Users extends React.PureComponent {
   // item reordering.  Otherwise index is fine
   keyExtractor = (item, index) => index
 
-  // How many items should be kept im memory as we scroll?
-  oneScreensWorth = 20
-
   // extraData is for anything that is not indicated in data
   // for instance, if you kept "favorites" in `this.state.favs`
   // pass that in, so changes in favorites will cause a re-render
@@ -112,11 +110,20 @@ class Users extends React.PureComponent {
   // )}
 
   componentWillReceiveProps(nextProps) {
-    let userList = (nextProps.users && nextProps.users.results) || []
+    let userList = nextProps.currentUser.users
     filteredUserList = userList.filter((user) => {
       return filterUser(user, this.state.searchBarText)
     })
     this.setState({userList, filteredUserList})
+  }
+
+  _onEndReachedHandler = () => {
+    this.props.getMoreUsers()
+  }
+
+  _onRefreshHandler = () => {
+    this.props.resetUsers()
+    this.props.getMoreUsers()
   }
 
   render () {
@@ -127,7 +134,9 @@ class Users extends React.PureComponent {
           data={this.state.filteredUserList}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
-          initialNumToRender={this.oneScreensWorth}
+          onEndReached={this._onEndReachedHandler}
+          onRefresh={this._onRefreshHandler}
+          refreshing={this.state.refreshing}
           ListHeaderComponent={this.renderHeader}
           ListFooterComponent={this.renderFooter}
           ListEmptyComponent={this.renderEmpty}
@@ -146,7 +155,7 @@ const filterUser = (user, searchText) => {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.currentUser.users
+    currentUser: state.currentUser
   }
 }
 
@@ -154,7 +163,13 @@ const mapDispatchToProps = (dispatch) => {
   return {
     toggleFollowUser: (userId, toggleUserId) => {
       dispatch(CurrentUserActions.toggleFollowUserRequest(userId, toggleUserId))
-    }
+    },
+    getMoreUsers: ()=> {
+      dispatch(CurrentUserActions.getUsersRequest())
+    },
+    resetUsers: ()=> {
+      dispatch(CurrentUserActions.resetUsers())
+    },
   }
 }
 

@@ -55,7 +55,6 @@ class PostsScreen extends Component {
 
   onPressItem = this.props.selectPost
 
-
   /* ***********************************************************
   * STEP 2
   * `renderRow` function. How each cell/row should be rendered

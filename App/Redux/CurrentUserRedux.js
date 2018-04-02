@@ -4,10 +4,11 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
+  resetUsers: null,
   setPseudonymRequest: ['pseudonym'],
   setPseudonymSuccess: ['pseudonym'],
   setPseudonymFailure: null,
-  getUsersRequest: ['userId','offset','limit'],
+  getUsersRequest: null,
   getUsersSuccess: ['payload'],
   getUsersFailure: null,
   toggleFollowUserRequest: ['userId', 'toggleUserId'],
@@ -23,16 +24,24 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   pseudonym: "Fixture User",
   fetching: null,
-  users: null,
+  users: [],
+  offset: 0,
+  limit: 10,
   error: null,
 })
 
 /* ------------- Selectors ------------- */
 
 export const CurrentUserSelectors = {
+  getOffset: state => state.currentUser.offset,
+  getLimit: state => state.currentUser.limit
 }
 
 /* ------------- Reducers ------------- */
+
+export const resetUsers = (state, action) => {
+  return state.merge({users:[], offset: 0})
+}
 
 // Methods for setting your pseudonym
 
@@ -59,7 +68,12 @@ export const getUsersRequest = (state, action) =>
 // successful api lookup
 export const getUsersSuccess = (state, action) => {
   const { payload } = action
-  return state.merge({ fetching: false, error: null, users: payload })
+  return state.merge({ 
+    fetching: false, 
+    error: null, 
+    users: state.users.concat(payload.list),
+    offset: payload.nextOffset
+  })
 }
 
 // Something went wrong somewhere.
@@ -91,6 +105,7 @@ export const toggleFollowUserFailure = state =>
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
+  [Types.RESET_USERS]: resetUsers,
   [Types.SET_PSEUDONYM_REQUEST]: setPseudonymRequest,
   [Types.SET_PSEUDONYM_SUCCESS]: setPseudonymSuccess,
   [Types.SET_PSEUDONYM_FAILURE]: setPseudonymFailure,

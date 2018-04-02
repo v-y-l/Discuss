@@ -2,17 +2,14 @@ export default {
   //Fixtures for Discuss
 
   // Returns lists of users with information on whether you are following them or not
-  getUsers: (userId, offset, limit) => {
-    let fixture = require('../Fixtures/users.json')
+  getUsers: (offset, limit) => {
+    let allData = require('../Fixtures/users.json').list
+    let partialData = allData.slice(offset, offset+limit)
     return {
       ok: true,
       data: { 
-        //if index 9 is a part of result, then there is no hasNext
-        //that means the reach would be fixture['results'].length
-        'hasNext': offset + limit < fixture['results'].length,  
-        'offset': offset,
-        'limit': limit,
-        'results': fixture['results'].slice(offset,offset+limit)
+        list: partialData,
+        nextOffset: offset + partialData.length
       }
     }
   },

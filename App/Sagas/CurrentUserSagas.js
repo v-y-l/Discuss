@@ -10,8 +10,8 @@
 *    you'll need to define a constant in that file.
 *************************************************************/
 
-import { call, put } from 'redux-saga/effects'
-import CurrentUserActions from '../Redux/CurrentUserRedux'
+import { call, put, select } from 'redux-saga/effects'
+import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
 // import { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
 
 export function * setPseudonym (action) {
@@ -35,10 +35,10 @@ export function * getUsers (api, action) {
   // get current data from Store
   // const currentData = yield select(CurrentUserSelectors.getData)
   // make the call to the api
+  const offset = yield select(CurrentUserSelectors.getOffset)
+  const limit = yield select(CurrentUserSelectors.getLimit)
+  const response = yield call(api.getUsers, offset, limit)
 
-  //fix: replace with actual data
-  const { userId, offset, limit } = action
-  const response = yield call(api.getUsers, userId, offset, limit)
   // success?
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',
