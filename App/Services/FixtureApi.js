@@ -2,8 +2,14 @@ export default {
   //Fixtures for Discuss
 
   // Returns lists of users with information on whether you are following them or not
-  getUsers: (offset, limit) => {
+  getUsers: (offset, limit, searchText) => {
     let allData = require('../Fixtures/users.json').list
+    // if (searchText.length > 0) {
+    //   let filteredData = allData.filter((user)=>{
+    //     let fullName = user.fullName.toLowerCase()
+    //     return fullName.substring(searchText.toLowerCase()) > -1
+    //   })
+    // }
     let partialData = allData.slice(offset, offset+limit)
     return {
       ok: true,
@@ -94,26 +100,5 @@ export default {
       ok: true
     }
   },
-  // Functions return fixtures
-  getRoot: () => {
-    return {
-      ok: true,
-      data: require('../Fixtures/root.json')
-    }
-  },
-  getRate: () => {
-    return {
-      ok: true,
-      data: require('../Fixtures/rateLimit.json')
-    }
-  },
-  getUser: (username) => {
-    // This fixture only supports gantman or else returns skellock
-    const gantmanData = require('../Fixtures/gantman.json')
-    const skellockData = require('../Fixtures/skellock.json')
-    return {
-      ok: true,
-      data: username.toLowerCase() === 'gantman' ? gantmanData : skellockData
-    }
-  }
+
 }

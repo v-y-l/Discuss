@@ -22,7 +22,7 @@ export default StyleSheet.create({
   },
   label: {
     textAlign: 'center',
-    color: Colors.snow
+    color: '#000000'
   },
   listContent: {
     // marginTop: Metrics.baseMargin

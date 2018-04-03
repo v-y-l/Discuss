@@ -7,7 +7,7 @@ import CurrentUserActions from '../Redux/CurrentUserRedux'
 import { SearchBar } from 'react-native-elements'
 
 // Styles
-import styles from './Styles/UsersStyle'
+import styles from './Styles/FollowUsersScreenStyle'
 
 class Users extends React.PureComponent {
 
@@ -85,7 +85,7 @@ class Users extends React.PureComponent {
 
   // Show this when data is empty
   renderEmpty = () =>
-    <Text style={styles.label}> - Nothing to See Here - </Text>
+    <Text style={styles.label}> No results. Adjust your search text! </Text>
 
   renderSeparator = () =>
     <View style={styles.separator}></View>
