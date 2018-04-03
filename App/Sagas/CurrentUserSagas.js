@@ -12,7 +12,7 @@
 
 import { call, put, select } from 'redux-saga/effects'
 import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
-// import { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
+import PostsActions from '../Redux/PostsRedux'
 
 export function * setPseudonym (action) {
   const { pseudonym } = action
@@ -26,9 +26,6 @@ export function * setPseudonym (action) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
   yield put(CurrentUserActions.setPseudonymSuccess(pseudonym))
-  // } else {
-  //   yield put(CurrentUserActions.setPseudonymFailure())
-  // }
 }
 
 export function * getUsers (api, action) {
@@ -55,14 +52,18 @@ export function * toggleFollowUser (api, action) {
   // make the call to the api
 
   //fix: replace with actual data
-  const { userId, toggleUserId } = action
-  const response = yield call(api.toggleFollowUser, userId, toggleUserId)
+  const { toggleUserId } = action
+  const response = yield call(api.toggleFollowUser, toggleUserId)
 
   // success?
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(CurrentUserActions.toggleFollowUserSuccess(response.data))
+    yield put(CurrentUserActions.resetUsers())
+    yield put(CurrentUserActions.getUsersRequest())
+    yield put(PostsActions.resetPosts())
+    yield put(PostsActions.getPostsRequest())
+    yield put(CurrentUserActions.toggleFollowUserSuccess())
   } else {
     yield put(CurrentUserActions.toggleFollowUserFailure())
   }

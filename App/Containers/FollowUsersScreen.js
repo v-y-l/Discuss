@@ -162,7 +162,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleFollowUser: (userId, toggleUserId) => {
-      dispatch(CurrentUserActions.toggleFollowUserRequest(userId, toggleUserId))
+      dispatch(CurrentUserActions.toggleFollowUserRequest(toggleUserId))
     },
     getMoreUsers: ()=> {
       dispatch(CurrentUserActions.getUsersRequest())

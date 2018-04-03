@@ -11,7 +11,7 @@ const { Types, Creators } = createActions({
   getUsersRequest: null,
   getUsersSuccess: ['payload'],
   getUsersFailure: null,
-  toggleFollowUserRequest: ['userId', 'toggleUserId'],
+  toggleFollowUserRequest: ['toggleUserId'],
   toggleFollowUserSuccess: ['payload'],
   toggleFollowUserFailure: null,
 })
@@ -88,14 +88,7 @@ export const toggleFollowUserRequest = (state, action) =>
 
 // successful api lookup
 export const toggleFollowUserSuccess = (state, action) => {
-  const { payload } = action
-  // This is how you update a seamless-immutable array
-  // https://github.com/rtfeldman/seamless-immutable/issues/43
-  let results = state.users.results.map((user) => {
-    return user.id == payload.id ? payload : user
-  })
-  let users = Immutable.set(state.users, 'results', results)
-  return state.merge({ fetching: false, error: null, users })
+  return state.merge({ fetching: false, error: null })
 }
 
 // Something went wrong somewhere.
