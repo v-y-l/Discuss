@@ -57,7 +57,7 @@ export const getPseudonymRequest = (state, action) =>
 
 // successful api lookup
 export const getPseudonymSuccess = (state, { postId, pseudonym }) => {
-  let pseudonymList = pseudonymList.merge({postId, pseudonym})
+  let pseudonymList = state.pseudonymList.merge({[postId]: pseudonym})
   return state.merge({ 
     fetching: false, 
     error: null, 

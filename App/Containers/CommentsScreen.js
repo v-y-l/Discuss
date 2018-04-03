@@ -159,8 +159,6 @@ class CommentsScreen extends Component {
   render() {
     let currentUser = this.props.currentUser
     let posts = this.props.posts
-    console.log(currentUser)
-    console.log(posts)
     const pseudonym = (currentUser && posts) ? currentUser.pseudonymList[posts.postId] : null
     return (
       <View style={styles.container}>

@@ -5,7 +5,7 @@ import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard
 import styles from './Styles/AddCommentStyle'
 import CommentsActions from '../Redux/CommentsRedux'
 import PostsActions from '../Redux/PostsRedux'
-import CurrentUserActions from '../Redux/CurrentUserRedux'
+import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
 
 class AddComment extends Component {
   // // Prop type warnings
@@ -27,7 +27,7 @@ class AddComment extends Component {
   }
 
   _onPress = () => {
-    this.props.submit(this.state.text, this.props.pseudonym, this.props.postId)
+    this.props.submit(this.state.text, this.props.postId)
     this.props.clearReplyTo()
     this.setState({text:""})
     this.blurTextInput()
@@ -77,14 +77,14 @@ class AddComment extends Component {
 const mapStateToProps = (state) => {
   return {
     postId: state.posts.postId,
-    pseudonym: state.currentUser.pseudonym
+    currentUsers: state.currentUsers
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     submit: (commentText, commentAuthor, postId) => {
-      dispatch(CommentsActions.postCommentRequest(postId, commentText, commentAuthor))
+      dispatch(CommentsActions.postCommentRequest(postId, commentText))
       dispatch(CommentsActions.resetComments())
       dispatch(CommentsActions.getCommentsRequest(postId))
     }

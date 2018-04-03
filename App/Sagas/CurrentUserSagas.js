@@ -21,9 +21,9 @@ export function * getPseudonym (api, action) {
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(CurrentUserActions.getUsersSuccess(postId, response.pseudonym))
+    yield put(CurrentUserActions.getPseudonymSuccess(postId, response.pseudonym))
   } else {
-    yield put(CurrentUserActions.getUsersFailure())
+    yield put(CurrentUserActions.getPseudonymFailure())
   }
 }
 
