@@ -5,9 +5,7 @@ import PostsActions, { PostsSelectors } from '../Redux/PostsRedux'
 import CurrentUserActions from '../Redux/CurrentUserRedux'
 
 import { connect } from 'react-redux'
-import SettingsButton from '../Components/SettingsButton'
 import MenuButton from '../Components/MenuButton'
-import SettingsModal from '../Components/SettingsModal'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
@@ -18,22 +16,10 @@ class PostsScreen extends Component {
 
   static navigationOptions = ({navigation}) => {
 
-    const toggleModal = () => {
-      navigation.state.params.toggleModal()
-    }
     return {
       title: 'Feedback',
-      headerRight: <SettingsButton onPress={toggleModal} />,
       headerLeft: <MenuButton onPress={()=>{navigation.navigate("DrawerOpen")}} />
     }
-  }
-
-  // If you needed to access variables inside of navigation options:
-  // https://github.com/react-navigation/react-navigation/issues/147
-  // https://github.com/react-navigation/react-navigation/issues/1789
-  
-  componentWillMount() {
-    this.props.navigation.setParams({toggleModal: this._toggleModal})
   }
 
   /* ***********************************************************
@@ -153,12 +139,6 @@ class PostsScreen extends Component {
           onEndReached={this._onEndReachedHandler}
           onRefresh={this._onRefreshHandler}
           refreshing={this.state.refreshing}
-        />
-        <SettingsModal 
-          isVisible={this.state.isModalVisible} 
-          toggleModal={this._toggleModal} 
-          pseudonym={this.state.pseudonym}
-          save={this.props.save}
         />
       </View>
     )

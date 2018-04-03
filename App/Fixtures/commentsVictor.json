@@ -2,37 +2,37 @@
 	"list" : [
 		{
 			"id" : "1",
-			"author" : "Sam Skinner",
+			"author" : "User 1",
 			"text" : "It's good that you're doing this, but don't forget those OMM emails."
 		},
 		{
 			"id" : "2",
-			"author" : "Christian Lemieux",
+			"author" : "User 2",
 			"text" : "Hello from my honeymoon. I'm sad that I missed out on this first debrief."
 		},
 		{
 			"id" : "3",
-			"author" : "Eric Lee",
+			"author" : "User 3",
 			"text" : "I agree with this. Additionally, John's presentations usually cut to the point. It's good to have him start first because it sets the bar for the rest of the presentations."
 		},
 		{
 			"id" : "4",
-			"author" : "Ramani Dodda",
+			"author" : "User 4",
 			"text" : "It's a good reprieve from the R&R stuff."
 		},
 		{
 			"id" : "5",
-			"author" : "Shardul Dabholkar",
+			"author" : "User 5",
 			"text" : "I also have to work on R&R stuff so this pushes me to also do some React-Native work."
 		},
 		{
 			"id" : "6",
-			"author" : "Henry Wu",
+			"author" : "User 6",
 			"text" : "Doing a lot of EMS-related coding right now, I could see how I could migrate it all into an app, and the progress made in the debriefs inspires me."
 		},
 		{
 			"id" : "7",
-			"author" : "Fixture User",
+			"author" : "User 7",
 			"text" : "Generic comment to test pagination."
 		},
 		{

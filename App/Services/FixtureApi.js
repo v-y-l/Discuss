@@ -103,5 +103,8 @@ export default {
       ok: true
     }
   },
+  getPseudonym: (postId) => {
+    
+  }
 
 }

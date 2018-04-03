@@ -2,13 +2,13 @@
 	"list" : [
 			{
 				"id" : "1",
-				"author" : "Sam Skinner",
+				"author" : "User 1",
 				"text" : "I like working with you on Biz 2."
 			},
 			{
 				"id" : "2",
-				"author" : "Christian Lemieux",
-				"text" : "Wow same."
+				"author" : "User 2",
+				"text" : "John here - thank you."
 			},
 	]
 }
