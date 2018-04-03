@@ -28,26 +28,30 @@ export default class SettingsModal extends Component {
   }
 
   render () {
-    const { isVisible, toggleModal, save, pseudonym } = this.props
+    const { isVisible, toggleModal, pseudonym } = this.props
+    const hasPseudonym = ( 
+      <View style={styles.modalInputs}>
+        <Text style={styles.header}> Your Pseudonym </Text>
+        <Text style={styles.pseudonymBox}> User 10 </Text>
+      </View>
+    )
+
+    const explanation = `Your pseudonym for this discussion will ` + 
+    `be generated for you once you leave a comment.` 
+
+    const noPseudonym = (
+      <View style={styles.modalInputs}>
+        <Text style={styles.explanation}>{explanation}</Text>
+      </View>
+    )
+
     return (
       <View style={styles.container}>
         <Modal isVisible={isVisible}>
           <View style={styles.modalContainer}>
-            <View style={styles.modalInputs}>
-              <Text style={styles.header}> Your Pseudonym </Text>
-              <TextInput
-                style={styles.input}
-                autoCorrect={false}
-                value={this.state.text}
-                onChangeText={(text)=>this.setState({text})}
-              />
-            </View>
+              { noPseudonym }
             <View style={styles.modalButtons}>
               <Button title='Cancel' onPress={toggleModal} />
-              <Button title='Save' onPress={()=>{
-                save(this.state.text)
-                toggleModal()
-              }} />
             </View>
           </View>
         </Modal>

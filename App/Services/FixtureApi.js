@@ -104,7 +104,20 @@ export default {
     }
   },
   getPseudonym: (postId) => {
-    
+    let list
+    if (postId == 1) {
+      list = require('../Fixtures/commentsVictor.json').list
+    } else if (postId == 2) {
+      list = require('../Fixtures/commentsJohn.json').list
+    } else {
+      //Only comments to Victor or John (first two posts) will actually save.
+      list = []
+    }
+    let set = new Set()
+    for (let comment of list) {
+      set.add(comment.author)
+    }
+    return `User ${set.size}`
   }
 
 }

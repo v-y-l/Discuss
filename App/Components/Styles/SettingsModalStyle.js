@@ -21,18 +21,24 @@ export default StyleSheet.create({
   	paddingBottom: 10,
   },
   header: {
+    ...Fonts.style.h5,
+    textAlign: 'center',
+    marginBottom: 10
+  },  
+  explanation: {
   	...Fonts.style.h5,
   	textAlign: 'center',
-  	marginBottom: 10
+    marginBottom: 5,
+  	marginTop: 10
   },
   modalButtons: {
   	paddingBottom: 10,
   	paddingLeft: 5,
   	paddingRight: 5,
   	flexDirection: 'row',
-  	justifyContent: 'space-around'
+  	justifyContent: 'center'
   },
-  input: {
+  pseudonymBox: {
   	...Fonts.style.normal,
   	textAlign: 'center',
   	padding: 8,
