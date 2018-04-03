@@ -14,7 +14,6 @@ import { call, put, select } from 'redux-saga/effects'
 import CommentsActions, { CommentsSelectors } from '../Redux/CommentsRedux'
 import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
 import PostsActions from '../Redux/PostsRedux'
-import { is } from 'ramda'
 
 export function * getComments (api, action) {
   // get current data from Store

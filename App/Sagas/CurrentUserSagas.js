@@ -13,17 +13,21 @@
 import { call, put, select } from 'redux-saga/effects'
 import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
 import PostsActions from '../Redux/PostsRedux'
+import { is } from 'ramda'
 
 export function * getPseudonym (api, action) {
   const { postId } = action
-  const response = yield call(api.getPseudonym, postId)
-  // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(CurrentUserActions.getPseudonymSuccess(postId, response.pseudonym))
-  } else {
-    yield put(CurrentUserActions.getPseudonymFailure())
+  //fix: this
+  let pseudonym = yield select(CurrentUserSelectors.getPseudonym)
+  if (!is(String, pseudonym)) {
+    const response = yield call(api.getPseudonym, postId)
+    if (response.ok) {
+      // You might need to change the response here - do this with a 'transform',
+      // located in ../Transforms/. Otherwise, just pass the data back from the api.
+      yield put(CurrentUserActions.getPseudonymSuccess(postId, response.pseudonym))
+    } else {
+      yield put(CurrentUserActions.getPseudonymFailure())
+    }
   }
 }
 
