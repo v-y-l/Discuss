@@ -88,7 +88,14 @@ export const toggleFollowUserRequest = (state, action) =>
 
 // successful api lookup
 export const toggleFollowUserSuccess = (state, action) => {
-  return state.merge({ fetching: false, error: null })
+  const { payload } = action 
+  let users = state.users.map((user) => {
+    if (user.id == payload) {
+      user = user.merge({following: !user.following})
+    }
+    return user
+  })
+  return state.merge({ fetching: false, error: null, users })
 }
 
 // Something went wrong somewhere.

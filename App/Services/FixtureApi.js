@@ -20,7 +20,7 @@ export default {
     let userIndex = usersById[toggleUserId]
     usersList[userIndex].following = !usersList[userIndex].following
     return {
-      ok: true
+      ok: true,
     }
   },
   getPosts: (offset, limit) => {

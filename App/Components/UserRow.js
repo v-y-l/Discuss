@@ -20,7 +20,7 @@ export default class UserRow extends Component {
   render () {
     const {toggleUserId, fullName, following, toggleFollowUser} = this.props
     const toggleFollowName = () => {
-      toggleFollowUser("userId", toggleUserId)
+      toggleFollowUser(toggleUserId)
     }
     return (
       <View style={styles.container}>

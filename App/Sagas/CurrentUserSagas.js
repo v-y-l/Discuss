@@ -59,11 +59,9 @@ export function * toggleFollowUser (api, action) {
   if (response.ok) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(CurrentUserActions.resetUsers())
-    yield put(CurrentUserActions.getUsersRequest())
     yield put(PostsActions.resetPosts())
     yield put(PostsActions.getPostsRequest())
-    yield put(CurrentUserActions.toggleFollowUserSuccess())
+    yield put(CurrentUserActions.toggleFollowUserSuccess(toggleUserId))
   } else {
     yield put(CurrentUserActions.toggleFollowUserFailure())
   }
