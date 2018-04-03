@@ -1,3 +1,8 @@
+  /* ***********************************************************
+  * This screen presents a list of users you can follow (or not!)
+  * Your preferences filter posts on PostsScreen
+  *************************************************************/
+
 import React from 'react'
 import { View, Text, FlatList } from 'react-native'
 import { connect } from 'react-redux'
@@ -18,11 +23,6 @@ class Users extends React.PureComponent {
     }
   }
 
-  /* ***********************************************************
-  * STEP 1
-  * This is an array of objects with the properties you desire
-  * Usually this should come from Redux mapStateToProps
-  *************************************************************/
   constructor(props) {
     super(props)
     let userList = this.props.currentUser.users
@@ -33,14 +33,6 @@ class Users extends React.PureComponent {
     }
   }
 
-  /* ***********************************************************
-  * STEP 2
-  * `renderRow` function. How each cell/row should be rendered
-  * It's our best practice to place a single component here:
-  *
-  * e.g.
-    return <MyCustomCell title={item.title} description={item.description} />
-  *************************************************************/
   renderRow = ({item}) => {
     return (
       <UserRow 
@@ -50,19 +42,6 @@ class Users extends React.PureComponent {
         toggleFollowUser={this.props.toggleFollowUser} 
       />
     )
-  }
-
-  /* ***********************************************************
-  * STEP 3
-  * Consider the configurations we've set below.  Customize them
-  * to your liking!  Each with some friendly advice.
-  *************************************************************/
-  // Render a header?
-  // https://react-native-training.github.io/react-native-elements/docs/0.19.0/searchbar.html
-  _onChangeText = (searchBarText) => {
-    this.setState({searchBarText})
-    this.props.setSearchText(searchBarText)
-    this._onRefreshHandler()
   }
 
   renderHeader = () =>
@@ -76,7 +55,7 @@ class Users extends React.PureComponent {
         autoCorrect={false}
         placeholder='Search users by name...' />
     </View>
-  // Render a footer?
+
   renderFooter = () =>
     <View style={styles.separator}></View>
 
@@ -92,23 +71,26 @@ class Users extends React.PureComponent {
   // item reordering.  Otherwise index is fine
   keyExtractor = (item, index) => index
 
-  // extraData is for anything that is not indicated in data
-  // for instance, if you kept "favorites" in `this.state.favs`
-  // pass that in, so changes in favorites will cause a re-render
-  // and your renderItem will have access to change depending on state
-  // e.g. `extraData`={this.state.favs}
-
-  // Optimize your list if the height of each item can be calculated
-  // by supplying a constant height, there is no need to measure each
-  // item after it renders.  This can save significant time for lists
-  // of a size 100+
-  // e.g. itemLayout={(data, index) => (
-  //   {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index}
-  // )}
+  /* ***********************************************************
+  * We store offset, limit, and searchText in the currentUserRedux.
+  * When we can getMoreUsers, the currentUsers redux will receive
+  * a userList that complies to the offset, limit, and searchText.
+  *
+  * If we change the search string, this will start building a new
+  * userList based off of the new parameters. If we don't, then we
+  * will be concating to a previous userList as we paginate.
+  *************************************************************/
 
   componentWillReceiveProps(nextProps) {
     let userList = nextProps.currentUser.users
     this.setState({userList})
+  }
+
+  _onChangeText = (searchBarText) => {
+    this.setState({searchBarText}) //sets the state for this component
+    this.props.setSearchText(searchBarText) //passes it to the redux
+    this._onRefreshHandler() //clear the old userList, and then fetch more
+    //based on the new searchText
   }
 
   _onEndReachedHandler = () => {
@@ -140,7 +122,6 @@ class Users extends React.PureComponent {
     )
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
