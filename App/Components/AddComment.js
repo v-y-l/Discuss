@@ -27,7 +27,7 @@ class AddComment extends Component {
   }
 
   _onPress = () => {
-    this.props.submit(this.state.text, this.props.postId)
+    this.props.submit(this.props.postId, this.state.text)
     this.props.clearReplyTo()
     this.setState({text:""})
     this.blurTextInput()
@@ -83,7 +83,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submit: (commentText, commentAuthor, postId) => {
+    submit: (postId, commentText) => {
       dispatch(CommentsActions.postCommentRequest(postId, commentText))
       dispatch(CommentsActions.resetComments())
       dispatch(CommentsActions.getCommentsRequest(postId))

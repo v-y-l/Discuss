@@ -119,7 +119,7 @@ export default {
     }
     return {
       ok: true,
-      pseudonym: `User ${set.size}`
+      pseudonym: `User ${set.size+1}`
     }
   }
 }
