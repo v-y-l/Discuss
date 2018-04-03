@@ -4,6 +4,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
+  setSearchText: ['searchText'],
   resetUsers: null,
   setPseudonymRequest: ['pseudonym'],
   setPseudonymSuccess: ['pseudonym'],
@@ -25,6 +26,7 @@ export const INITIAL_STATE = Immutable({
   pseudonym: "Fixture User",
   fetching: null,
   users: [],
+  searchText: '',
   offset: 0,
   limit: 10,
   error: null,
@@ -34,7 +36,8 @@ export const INITIAL_STATE = Immutable({
 
 export const CurrentUserSelectors = {
   getOffset: state => state.currentUser.offset,
-  getLimit: state => state.currentUser.limit
+  getLimit: state => state.currentUser.limit,
+  getSearchText: state => state.currentUser.searchText
 }
 
 /* ------------- Reducers ------------- */
@@ -42,6 +45,8 @@ export const CurrentUserSelectors = {
 export const resetUsers = (state, action) => {
   return state.merge({users:[], offset: 0})
 }
+
+export const setSearchText = (state, { searchText }) => state.merge({searchText})
 
 // Methods for setting your pseudonym
 
@@ -105,6 +110,7 @@ export const toggleFollowUserFailure = state =>
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
+  [Types.SET_SEARCH_TEXT]: setSearchText,
   [Types.RESET_USERS]: resetUsers,
   [Types.SET_PSEUDONYM_REQUEST]: setPseudonymRequest,
   [Types.SET_PSEUDONYM_SUCCESS]: setPseudonymSuccess,

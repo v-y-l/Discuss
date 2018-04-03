@@ -26,10 +26,8 @@ class Users extends React.PureComponent {
   constructor(props) {
     super(props)
     let userList = this.props.currentUser.users
-    let filteredUserList = userList
     this.state = {
       userList,
-      filteredUserList,
       searchBarText: "",
       refreshing: false
     }
@@ -62,10 +60,9 @@ class Users extends React.PureComponent {
   // Render a header?
   // https://react-native-training.github.io/react-native-elements/docs/0.19.0/searchbar.html
   _onChangeText = (searchBarText) => {
-    let filteredUserList = this.state.userList.filter((user) => {
-      return filterUser(user, searchBarText)
-    })
-    this.setState({searchBarText, filteredUserList})
+    this.setState({searchBarText})
+    this.props.setSearchText(searchBarText)
+    this._onRefreshHandler()
   }
 
   renderHeader = () =>
@@ -111,10 +108,7 @@ class Users extends React.PureComponent {
 
   componentWillReceiveProps(nextProps) {
     let userList = nextProps.currentUser.users
-    filteredUserList = userList.filter((user) => {
-      return filterUser(user, this.state.searchBarText)
-    })
-    this.setState({userList, filteredUserList})
+    this.setState({userList})
   }
 
   _onEndReachedHandler = () => {
@@ -131,7 +125,7 @@ class Users extends React.PureComponent {
       <View style={styles.container}>
         <FlatList
           contentContainerStyle={styles.listContent}
-          data={this.state.filteredUserList}
+          data={this.state.userList}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
           onEndReached={this._onEndReachedHandler}
@@ -147,11 +141,6 @@ class Users extends React.PureComponent {
   }
 }
 
-const filterUser = (user, searchText) => {
-  let haystack = user.fullName.toLowerCase()
-  let needle = searchText.toLowerCase()
-  return haystack.indexOf(needle) > -1
-}
 
 const mapStateToProps = (state) => {
   return {
@@ -170,6 +159,9 @@ const mapDispatchToProps = (dispatch) => {
     resetUsers: ()=> {
       dispatch(CurrentUserActions.resetUsers())
     },
+    setSearchText: (searchText)=> {
+      dispatch(CurrentUserActions.setSearchText(searchText))
+    }
   }
 }
 

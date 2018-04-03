@@ -34,7 +34,8 @@ export function * getUsers (api, action) {
   // make the call to the api
   const offset = yield select(CurrentUserSelectors.getOffset)
   const limit = yield select(CurrentUserSelectors.getLimit)
-  const response = yield call(api.getUsers, offset, limit)
+  const searchText = yield select(CurrentUserSelectors.getSearchText)
+  const response = yield call(api.getUsers, offset, limit, searchText)
 
   // success?
   if (response.ok) {

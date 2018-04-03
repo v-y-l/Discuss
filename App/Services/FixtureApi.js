@@ -4,13 +4,16 @@ export default {
   // Returns lists of users with information on whether you are following them or not
   getUsers: (offset, limit, searchText) => {
     let allData = require('../Fixtures/users.json').list
-    // if (searchText.length > 0) {
-    //   let filteredData = allData.filter((user)=>{
-    //     let fullName = user.fullName.toLowerCase()
-    //     return fullName.substring(searchText.toLowerCase()) > -1
-    //   })
-    // }
-    let partialData = allData.slice(offset, offset+limit)
+    let filteredData
+    if (searchText.length > 0) {
+      filteredData = allData.filter((user)=>{
+        let fullName = user.fullName.toLowerCase()
+        return fullName.indexOf(searchText.toLowerCase()) > -1
+      })
+    } else {
+      filteredData = allData
+    }
+    let partialData = filteredData.slice(offset, offset+limit)
     return {
       ok: true,
       data: { 
