@@ -154,7 +154,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectPost: (postId) => dispatch(PostsActions.selectPostRequest(postId)),
+    selectPost: (postId) => {
+      dispatch(PostsActions.selectPostRequest(postId))
+      dispatch(CurrentUserActions.getPseudonymRequest(postId))
+    },
     getMorePosts: () => dispatch(PostsActions.getPostsRequest()),
     resetPosts: () => dispatch(PostsActions.resetPosts()),
     save: (pseudonym) => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym))

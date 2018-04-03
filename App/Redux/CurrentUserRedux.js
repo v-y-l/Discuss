@@ -23,7 +23,7 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  pseudonymList: {},
+  pseudonymList: {}, //fix: actually a dict
   fetching: null,
   users: [],
   searchText: '',

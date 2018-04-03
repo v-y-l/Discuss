@@ -42,11 +42,6 @@ export function * postComment (api, action) {
   const {postId, commentText} = action
 
   let commentAuthor = yield select(CurrentUserSelectors.getPseudonym)
-  if (!is(String, commentAuthor)) {
-    yield put(CurrentUserActions.getPseudonymRequest(postId))
-    commentAuthor = yield select(CurrentUserSelectors.getPseudonym)
-  }
-
   //This posts the comment to our database
   const postCommentResponse = yield call(api.postComment, postId, commentAuthor, commentText)
 

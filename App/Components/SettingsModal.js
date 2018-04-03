@@ -29,7 +29,7 @@ export default class SettingsModal extends Component {
     const hasPseudonym = ( 
       <View style={styles.modalInputs}>
         <Text style={styles.header}> Your Pseudonym </Text>
-        <Text style={styles.pseudonymBox}> User 10 </Text>
+        <Text style={styles.pseudonymBox}> {pseudonym} </Text>
       </View>
     )
 
