@@ -61,6 +61,7 @@ class CommentsScreen extends Component {
   *************************************************************/
   handleReply = (replyToUser) => {
     this.setState({replyTo: replyToUser})
+    this.addCommentComponent.textInput.focus()
   }
 
   renderRow = ({item}) => {
@@ -139,7 +140,6 @@ class CommentsScreen extends Component {
     //fix: does not react to the 'reply' button after the first time
     if (this.state.replyTo.length > 0) {
       this.addCommentComponent.setState({text:`@${this.state.replyTo} `})
-      this.addCommentComponent.textInput.focus()
     }
   }
 
@@ -183,7 +183,6 @@ class CommentsScreen extends Component {
           addCommentRef={(addCommentComponent) => {this.addCommentComponent = addCommentComponent}}
           clearReplyTo={()=> {this.setState({replyTo:""})}}
         />
-
       </View>
     )
     //Get child component via refs: https://github.com/reactjs/react-redux/pull/270#issuecomment-175217424
