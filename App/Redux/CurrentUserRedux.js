@@ -6,9 +6,9 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   setSearchText: ['searchText'],
   resetUsers: null,
-  setPseudonymRequest: ['pseudonym'],
-  setPseudonymSuccess: ['pseudonym'],
-  setPseudonymFailure: null,
+  getPseudonymRequest: ['postId'],
+  getPseudonymSuccess: ['postId', 'pseudonym'],
+  getPseudonymFailure: null,
   getUsersRequest: null,
   getUsersSuccess: ['payload'],
   getUsersFailure: null,
@@ -23,7 +23,7 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  pseudonym: "Fixture User",
+  pseudonymList: {},
   fetching: null,
   users: [],
   searchText: '',
@@ -37,7 +37,8 @@ export const INITIAL_STATE = Immutable({
 export const CurrentUserSelectors = {
   getOffset: state => state.currentUser.offset,
   getLimit: state => state.currentUser.limit,
-  getSearchText: state => state.currentUser.searchText
+  getSearchText: state => state.currentUser.searchText,
+  getPseudonym: state => state.currentUser.pseudonymList[state.posts.postId]
 }
 
 /* ------------- Reducers ------------- */
@@ -51,17 +52,21 @@ export const setSearchText = (state, { searchText }) => state.merge({searchText}
 // Methods for setting your pseudonym
 
 // request the data from an api
-export const setPseudonymRequest = (state, { pseudonym }) =>
+export const getPseudonymRequest = (state, action) =>
   state.merge({ fetching: true })
 
 // successful api lookup
-export const setPseudonymSuccess = (state, action) => {
-  const { pseudonym } = action
-  return state.merge({ fetching: false, error: null, pseudonym })
+export const getPseudonymSuccess = (state, { postId, pseudonym }) => {
+  let pseudonymList = pseudonymList.merge({postId, pseudonym})
+  return state.merge({ 
+    fetching: false, 
+    error: null, 
+    pseudonymList
+  })
 }
 
 // Something went wrong somewhere.
-export const setPseudonymFailure = state =>
+export const getPseudonymFailure = state =>
   state.merge({ fetching: false, error: true, pseudonym: null })
 
 // Reducers for getting information about who you are and aren't following
@@ -112,9 +117,9 @@ export const toggleFollowUserFailure = state =>
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_SEARCH_TEXT]: setSearchText,
   [Types.RESET_USERS]: resetUsers,
-  [Types.SET_PSEUDONYM_REQUEST]: setPseudonymRequest,
-  [Types.SET_PSEUDONYM_SUCCESS]: setPseudonymSuccess,
-  [Types.SET_PSEUDONYM_FAILURE]: setPseudonymFailure,
+  [Types.GET_PSEUDONYM_REQUEST]: getPseudonymRequest,
+  [Types.GET_PSEUDONYM_SUCCESS]: getPseudonymSuccess,
+  [Types.GET_PSEUDONYM_FAILURE]: getPseudonymFailure,
   [Types.GET_USERS_REQUEST]: getUsersRequest,
   [Types.GET_USERS_SUCCESS]: getUsersSuccess,
   [Types.GET_USERS_FAILURE]: getUsersFailure,

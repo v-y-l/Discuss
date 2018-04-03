@@ -18,9 +18,6 @@ export default class SettingsModal extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      text: this.props.pseudonym
-    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,7 +46,8 @@ export default class SettingsModal extends Component {
       <View style={styles.container}>
         <Modal isVisible={isVisible}>
           <View style={styles.modalContainer}>
-              { noPseudonym }
+              { !pseudonym && noPseudonym }
+              { pseudonym && hasPseudonym }
             <View style={styles.modalButtons}>
               <Button title='Cancel' onPress={toggleModal} />
             </View>

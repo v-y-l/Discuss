@@ -157,7 +157,11 @@ class CommentsScreen extends Component {
   }
 
   render() {
-
+    let currentUser = this.props.currentUser
+    let posts = this.props.posts
+    console.log(currentUser)
+    console.log(posts)
+    const pseudonym = (currentUser && posts) ? currentUser.pseudonymList[posts.postId] : null
     return (
       <View style={styles.container}>
         <FlatList
@@ -176,7 +180,7 @@ class CommentsScreen extends Component {
         <SettingsModal 
           isVisible={this.state.isModalVisible} 
           toggleModal={this._toggleModal} 
-          pseudonym={this.props.pseudonym}
+          pseudonym={pseudonym}
           save={this.props.save}
         />
         <AddComment 
@@ -193,15 +197,16 @@ const mapStateToProps = (state) => {
   return {
     posts: state.posts,
     comments: state.comments,
-    pseudonym: state.currentUser.pseudonym,
+    currentUser: state.currentUser,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    save: (pseudonym) => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym)),
-    getMoreComments: (postId) => dispatch(CommentsActions.getCommentsRequest(postId)),
-    resetComments: () => dispatch(CommentsActions.resetComments())
+    getMoreComments: (postId) => 
+      dispatch(CommentsActions.getCommentsRequest(postId)),
+    resetComments: () => 
+      dispatch(CommentsActions.resetComments())
   }
 }
 

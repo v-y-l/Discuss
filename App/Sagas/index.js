@@ -17,7 +17,7 @@ import { startup } from './StartupSagas'
 import { getUserAvatar } from './GithubSagas'
 import { getPosts, selectPost } from './PostsSagas'
 import { getComments, postComment } from './CommentsSagas'
-import { setPseudonym, getUsers, toggleFollowUser } from './CurrentUserSagas'
+import { getPseudonym, getUsers, toggleFollowUser } from './CurrentUserSagas'
 
 /* ------------- API ------------- */
 
@@ -32,11 +32,12 @@ export default function * root () {
   yield all([
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
+    //fix: this probably doesn't need to be a saga
     takeLatest(PostsTypes.SELECT_POST_REQUEST, selectPost),
-    takeLatest(CurrentUserTypes.SET_PSEUDONYM_REQUEST, setPseudonym),
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
+    takeLatest(CurrentUserTypes.GET_PSEUDONYM_REQUEST, getPseudonym, fixture),
     takeLatest(PostsTypes.GET_POSTS_REQUEST, getPosts, fixture),
     takeLatest(CommentsTypes.GET_COMMENTS_REQUEST, getComments, fixture),
     takeLatest(CommentsTypes.POST_COMMENT_REQUEST, postComment, fixture),

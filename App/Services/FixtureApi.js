@@ -117,7 +117,9 @@ export default {
     for (let comment of list) {
       set.add(comment.author)
     }
-    return `User ${set.size}`
+    return {
+      ok: true,
+      pseudonym: `User ${set.size}`
+    }
   }
-
 }

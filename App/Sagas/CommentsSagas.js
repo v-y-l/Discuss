@@ -12,7 +12,9 @@
 
 import { call, put, select } from 'redux-saga/effects'
 import CommentsActions, { CommentsSelectors } from '../Redux/CommentsRedux'
+import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
 import PostsActions from '../Redux/PostsRedux'
+import { is } from 'ramda'
 
 export function * getComments (api, action) {
   // get current data from Store
@@ -36,17 +38,24 @@ export function * getComments (api, action) {
 }
 
 export function * postComment (api, action) {
-  // get current data from Store
-  // const currentData = yield select(CommentsSelectors.getData)
-  // make the call to the api
 
-  const {postId, commentAuthor, commentText} = action
+  const {postId, commentText} = action
+
+  let commentAuthor = yield select(CurrentUserSelectors.getPseudonym)
+  if (!is(String, commentAuthor)) {
+    yield put(CurrentUserActions.getPseudonymRequest(postId))
+    commentAuthor = yield select(CurrentUserSelectors.getPseudonym)
+  }
+
+  //This posts the comment to our database
   const postCommentResponse = yield call(api.postComment, postId, commentAuthor, commentText)
 
   // success?
   if (postCommentResponse.ok) {
-    // You might need to change the postCommentResponse here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
+    //We actually do not need to do much from the App side,
+    //since the server handles the comment post,
+    //we can just make a fresh getPosts call to the server
+    //if we wanted the new list of comments
     yield put(CommentsActions.postCommentSuccess())
   } else {
     yield put(CommentsActions.postCommentFailure())

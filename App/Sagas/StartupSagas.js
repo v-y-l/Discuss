@@ -3,7 +3,6 @@ import GithubActions, { GithubSelectors } from '../Redux/GithubRedux'
 import PostsActions from '../Redux/PostsRedux'
 import CommentsActions from '../Redux/CommentsRedux'
 import CurrentUserActions from '../Redux/CurrentUserRedux'
-import { is } from 'ramda'
 
 // exported to make available for tests
 export const selectAvatar = GithubSelectors.selectAvatar
@@ -34,11 +33,6 @@ export function * startup (action) {
         someNormalFunction: selectAvatar
       }
     })
-  }
-  const avatar = yield select(selectAvatar)
-  // only get if we don't have it yet
-  if (!is(String, avatar)) {
-    yield put(GithubActions.userRequest('GantMan'))
   }
 
   // Discuss App start up actions
