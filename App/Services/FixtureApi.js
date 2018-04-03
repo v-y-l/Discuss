@@ -16,7 +16,6 @@ export default {
   toggleFollowUser: (userId, toggleUserId) => {
     let usersList = require('../Fixtures/users.json').list
     let postsList = require('../Fixtures/posts.json').list
-    let filteredPostList = require('../Fixtures/filteredPosts.json').list
     // To-do: need to figure out a hack to make toggling work
     // Go through usersList, toggle it, then
     // Go through filteredPostList, make sure that reflects the new toggled
@@ -37,17 +36,30 @@ export default {
   },
   getPosts: (offset, limit) => {
     let allData = require('../Fixtures/posts.json').list
-    let partialData = allData.slice(offset, offset+limit)
+
+    let users = require('../Fixtures/users.json')
+    let usersList = users.list
+    let usersById = users.byId
+    let filteredData = allData.filter((post) => {
+      let userIndex = usersById[post.recipientId]
+      let show = usersList[userIndex] ? usersList[userIndex].following : false
+      return show
+    })
+
+    let partialData = filteredData.slice(offset, offset+limit)
     let partialById = {}
     for (let i = 0; i < partialData.length; i++) {
       let datum = partialData[i]
       partialById[datum.id] = offset + i
-    }
+    } 
+    //hack: we need only a slice of this information 
+    //but we can't slice a dictionary
     return {
       ok: true,
       data: {
         list: partialData,
-        byId: partialById,
+        //need this to display the post header in commentsScreen
+        byId: partialById, 
         nextOffset: offset + partialData.length,
       }
     }
