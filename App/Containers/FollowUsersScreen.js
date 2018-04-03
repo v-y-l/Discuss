@@ -26,6 +26,7 @@ class Users extends React.PureComponent {
   constructor(props) {
     super(props)
     let userList = this.props.currentUser.users
+    this.props.setSearchText("")
     this.state = {
       userList,
       searchBarText: "",
