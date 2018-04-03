@@ -29,12 +29,14 @@ export default {
     let users = require('../Fixtures/users.json')
     let usersList = users.list
     let usersById = users.byId
-    //to-do: follow everyone if you don't follow anyone
     let filteredData = allData.filter((post) => {
       let userIndex = usersById[post.recipientId]
       let show = usersList[userIndex] ? usersList[userIndex].following : false
       return show
     })
+    if (filteredData.length == 0) {
+      filteredData = allData
+    }
 
     let partialData = filteredData.slice(offset, offset+limit)
     let partialById = {}
