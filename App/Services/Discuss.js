@@ -60,6 +60,8 @@ const create = (baseURL) => {
 	};
 
 	const getPseudonym = (responseId, token) => {
+		// to-do: currently, this endpoint auto-increments based on pseudonyms
+		// from any response, redesign later
 		const url = `${baseURL}/v1/app/discuss/pseudonym/${responseId}`;
 		const settings = {
 			method: 'GET',
