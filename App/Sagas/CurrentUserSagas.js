@@ -14,7 +14,7 @@ import { call, put, select } from 'redux-saga/effects'
 import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
 import PostsActions from '../Redux/PostsRedux'
 import { is } from 'ramda'
-import { ConvertFromUserFollowList } from '../Transforms/ConvertFromDiscuss'
+import { ConvertFromUserFollowList, ConvertFromToggleFollow } from '../Transforms/ConvertFromDiscuss'
 
 export function * getPseudonym (api, action) {
   const { postId } = action
@@ -61,7 +61,12 @@ export function * toggleFollowUser (api, action) {
 
   //fix: replace with actual data
   const { toggleUserId } = action
-  const response = yield call(api.toggleFollowUser, toggleUserId)
+  const token = yield select(CurrentUserSelectors.getToken);
+  let response = yield call(api.toggleFollowUser, toggleUserId, token);
+
+  if (response.ErrorCode == 0) {
+    response = ConvertFromToggleFollow(response);
+  }
 
   // success?
   if (response.ok) {

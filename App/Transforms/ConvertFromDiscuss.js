@@ -19,6 +19,13 @@ const ConvertFromUserFollowList = (response, offset) => {
     }
 }
 
+const ConvertFromToggleFollow = (response) => {
+  return {
+    ok: true,
+  }
+}
+
 export {
   ConvertFromUserFollowList,
+  ConvertFromToggleFollow,
 };

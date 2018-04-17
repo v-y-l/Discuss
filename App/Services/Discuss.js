@@ -37,7 +37,8 @@ const create = (baseURL) => {
 		return response;
 	};
 
-	const toggleFollow = (followeeId, token) => {
+	// const toggleFollow = (followeeId, token) => {
+	const toggleFollowUser = (followeeId, token) => {
 		const url = `${baseURL}/v1/app/discuss/togglefollow`;
 		const payload = {
 			followeeId
@@ -114,7 +115,8 @@ const create = (baseURL) => {
 		getStream,
 		// getUserFollowList,
 		getUsers,
-		toggleFollow,
+		// toggleFollow,
+		toggleFollowUser,
 		getPseudonym,
 		addComment,
 		getComments,
