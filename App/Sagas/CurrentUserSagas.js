@@ -14,7 +14,7 @@ import { call, put, select } from 'redux-saga/effects'
 import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
 import PostsActions from '../Redux/PostsRedux'
 import { is } from 'ramda'
-import ConvertFromUserFollowList from '../Transforms/ConvertFromUserFollowList'
+import { ConvertFromUserFollowList } from '../Transforms/ConvertFromDiscuss'
 
 export function * getPseudonym (api, action) {
   const { postId } = action

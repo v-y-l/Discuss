@@ -1,4 +1,4 @@
-export default (response, offset) => {
+const ConvertFromUserFollowList = (response, offset) => {
     let list = [];
     for (let rawDatum of response.Data) {
     	let transDatum = {
@@ -10,7 +10,6 @@ export default (response, offset) => {
     	};
     	list.push(transDatum);
     }
-
     return {
       ok: true,
       data: { 
@@ -19,3 +18,7 @@ export default (response, offset) => {
       }
     }
 }
+
+export {
+  ConvertFromUserFollowList,
+};
