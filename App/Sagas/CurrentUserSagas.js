@@ -14,10 +14,10 @@ import { call, put, select } from 'redux-saga/effects'
 import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
 import PostsActions from '../Redux/PostsRedux'
 import { is } from 'ramda'
+import ConvertFromUserFollowList from '../Transforms/ConvertFromUserFollowList'
 
 export function * getPseudonym (api, action) {
   const { postId } = action
-  //fix: this
   let pseudonym = yield select(CurrentUserSelectors.getPseudonym)
   if (!is(String, pseudonym)) {
     const response = yield call(api.getPseudonym, postId)
@@ -36,9 +36,13 @@ export function * getUsers (api, action) {
   const limit = yield select(CurrentUserSelectors.getLimit);
   const searchText = yield select(CurrentUserSelectors.getSearchText);
   const token = yield select(CurrentUserSelectors.getToken);
-  console.log(api);
-  const response = yield call(api.getUserFollowList, offset, limit, searchText, token);
-  console.log(response);
+  let response = yield call(api.getUsers, offset, limit, searchText, token);
+
+  //this isn't elegant at all, I'm hacking my response to look like my fixture
+  //to-do: redesign fixture to look like API, then convert the whole damn app
+  if (response.ErrorCode == 0) {
+    response = ConvertFromUserFollowList(response, offset);
+  }
 
   // success?
   if (response.ok) {

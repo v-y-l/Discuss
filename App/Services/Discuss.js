@@ -16,7 +16,8 @@ const create = (baseURL) => {
 		return response;
 	};
 
-	const getUserFollowList = (offset, limit, searchText, token) => {
+	// const getUserFollowList = (offset, limit, searchText, token) => {
+	const getUsers = (offset, limit, searchText, token) => {
 		const url = `${baseURL}/v1/app/discuss/userfollowlist?Offset=${offset}&Limit=${limit}`;
 		const payload = {
 			searchText
@@ -111,7 +112,8 @@ const create = (baseURL) => {
 
 	return {
 		getStream,
-		getUserFollowList,
+		// getUserFollowList,
+		getUsers,
 		toggleFollow,
 		getPseudonym,
 		addComment,
