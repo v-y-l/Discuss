@@ -1,4 +1,5 @@
 const create = (baseURL) => {
+	
 	const getStream = (offset, limit, token) => {
 		const url = `${baseURL}/v1/app/discuss/stream?Offset=${offset}&Limit=${limit}`;
 		const settings = {

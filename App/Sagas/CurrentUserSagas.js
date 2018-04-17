@@ -32,13 +32,13 @@ export function * getPseudonym (api, action) {
 }
 
 export function * getUsers (api, action) {
-  // get current data from Store
-  // const currentData = yield select(CurrentUserSelectors.getData)
-  // make the call to the api
-  const offset = yield select(CurrentUserSelectors.getOffset)
-  const limit = yield select(CurrentUserSelectors.getLimit)
-  const searchText = yield select(CurrentUserSelectors.getSearchText)
-  const response = yield call(api.getUsers, offset, limit, searchText)
+  const offset = yield select(CurrentUserSelectors.getOffset);
+  const limit = yield select(CurrentUserSelectors.getLimit);
+  const searchText = yield select(CurrentUserSelectors.getSearchText);
+  const token = yield select(CurrentUserSelectors.getToken);
+  console.log(api);
+  const response = yield call(api.getUserFollowList, offset, limit, searchText, token);
+  console.log(response);
 
   // success?
   if (response.ok) {

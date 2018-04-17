@@ -30,6 +30,7 @@ export const INITIAL_STATE = Immutable({
   offset: 0,
   limit: 10,
   error: null,
+  token: 'a0OMn1D4gzHSYfMtcdkXejnwOTEBSK50PGPYzJzrO4qj',
 })
 
 /* ------------- Selectors ------------- */
@@ -38,7 +39,8 @@ export const CurrentUserSelectors = {
   getOffset: state => state.currentUser.offset,
   getLimit: state => state.currentUser.limit,
   getSearchText: state => state.currentUser.searchText,
-  getPseudonym: state => state.currentUser.pseudonymList[state.posts.postId]
+  getPseudonym: state => state.currentUser.pseudonymList[state.posts.postId],
+  getToken: state => state.currentUser.token
 }
 
 /* ------------- Reducers ------------- */

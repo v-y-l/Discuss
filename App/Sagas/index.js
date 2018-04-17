@@ -1,7 +1,9 @@
 import { takeLatest, all } from 'redux-saga/effects'
 import API from '../Services/Api'
+import Discuss from '../Services/Discuss'
 import FixtureAPI from '../Services/FixtureApi'
 import DebugConfig from '../Config/DebugConfig'
+import AppConfig from '../Config/AppConfig';
 
 /* ------------- Types ------------- */
 
@@ -23,7 +25,8 @@ import { getPseudonym, getUsers, toggleFollowUser } from './CurrentUserSagas'
 
 // The API we use is only used from Sagas, so we create it here and pass along
 // to the sagas which need it.
-const api = API.create()
+const { baseUrl } = AppConfig;
+const api = Discuss.create(baseUrl);
 const fixture = FixtureAPI
 
 /* ------------- Connect Types To Sagas ------------- */
@@ -36,12 +39,11 @@ export default function * root () {
     takeLatest(PostsTypes.SELECT_POST_REQUEST, selectPost),
 
     // some sagas receive extra parameters in addition to an action
-    takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
     takeLatest(CurrentUserTypes.GET_PSEUDONYM_REQUEST, getPseudonym, fixture),
     takeLatest(PostsTypes.GET_POSTS_REQUEST, getPosts, fixture),
     takeLatest(CommentsTypes.GET_COMMENTS_REQUEST, getComments, fixture),
     takeLatest(CommentsTypes.POST_COMMENT_REQUEST, postComment, fixture),
-    takeLatest(CurrentUserTypes.GET_USERS_REQUEST, getUsers, fixture),
+    takeLatest(CurrentUserTypes.GET_USERS_REQUEST, getUsers, api),
     takeLatest(CurrentUserTypes.TOGGLE_FOLLOW_USER_REQUEST, toggleFollowUser, fixture),
   ])
 }
