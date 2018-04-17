@@ -12,6 +12,8 @@
 
 import { call, put, select } from 'redux-saga/effects'
 import PostsActions, { PostsSelectors } from '../Redux/PostsRedux'
+import { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
+import { ConvertFromGetStream } from '../Transforms/ConvertFromDiscuss'
 import CommentsActions from '../Redux/CommentsRedux'
 import { NavigationActions } from 'react-navigation'
 
@@ -23,7 +25,12 @@ export function * getPosts (api, action) {
 
   const offset = yield select(PostsSelectors.getOffset)
   const limit = yield select(PostsSelectors.getLimit)
-  const response = yield call(api.getPosts, offset, limit)
+  const token = yield select(CurrentUserSelectors.getToken)
+  let response = yield call(api.getPosts, offset, limit, token)
+
+  if (response.ErrorCode == 0) {
+    response = ConvertFromGetStream(response, offset);
+  }
 
   // success?
   if (response.ok) {

@@ -56,7 +56,7 @@ class PostsScreen extends Component {
         text={item.feedback}
         rating={+item.rating} 
         numComments={item.numComments} 
-        postId={item.id}
+        postId={+item.id}
         onPressItem={this.props.selectPost}
       />
     )

@@ -1,6 +1,7 @@
 const create = (baseURL) => {
 	
-	const getStream = (offset, limit, token) => {
+	// const getStream = (offset, limit, token) => {
+	const getPosts = (offset, limit, token) => {
 		const url = `${baseURL}/v1/app/discuss/stream?Offset=${offset}&Limit=${limit}`;
 		const settings = {
 			method: 'GET',
@@ -112,7 +113,8 @@ const create = (baseURL) => {
 	}
 
 	return {
-		getStream,
+		// getStream,
+		getPosts,
 		// getUserFollowList,
 		getUsers,
 		// toggleFollow,
