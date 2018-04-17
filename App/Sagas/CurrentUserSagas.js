@@ -14,13 +14,20 @@ import { call, put, select } from 'redux-saga/effects'
 import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
 import PostsActions from '../Redux/PostsRedux'
 import { is } from 'ramda'
-import { ConvertFromUserFollowList, ConvertFromToggleFollow } from '../Transforms/ConvertFromDiscuss'
+import { ConvertFromUserFollowList, ConvertFromToggleFollow, ConvertFromGetPseudonym } from '../Transforms/ConvertFromDiscuss'
 
 export function * getPseudonym (api, action) {
   const { postId } = action
   let pseudonym = yield select(CurrentUserSelectors.getPseudonym)
   if (!is(String, pseudonym)) {
-    const response = yield call(api.getPseudonym, postId)
+    let token = yield select(CurrentUserSelectors.getToken)
+
+    let response = yield call(api.getPseudonym, postId, token)
+
+    if (response.ErrorCode == 0) {
+      response = ConvertFromGetPseudonym(response);
+    }
+
     if (response.ok) {
       // You might need to change the response here - do this with a 'transform',
       // located in ../Transforms/. Otherwise, just pass the data back from the api.

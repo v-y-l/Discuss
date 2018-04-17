@@ -39,7 +39,7 @@ export default function * root () {
     takeLatest(PostsTypes.SELECT_POST_REQUEST, selectPost),
 
     // some sagas receive extra parameters in addition to an action
-    takeLatest(CurrentUserTypes.GET_PSEUDONYM_REQUEST, getPseudonym, fixture),
+    takeLatest(CurrentUserTypes.GET_PSEUDONYM_REQUEST, getPseudonym, api),
     takeLatest(PostsTypes.GET_POSTS_REQUEST, getPosts, api),
     takeLatest(CommentsTypes.GET_COMMENTS_REQUEST, getComments, fixture),
     takeLatest(CommentsTypes.POST_COMMENT_REQUEST, postComment, fixture),

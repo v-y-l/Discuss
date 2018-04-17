@@ -59,8 +59,17 @@ const ConvertFromGetStream = (response, offset) => {
 
 }
 
+const ConvertFromGetPseudonym = (response) => {
+  let pseudonymId = response.Data.PseudonymId;
+  return {
+    ok: true,
+    pseudonym: `User ${pseudonymId}`
+  }
+}
+
 export {
   ConvertFromUserFollowList,
   ConvertFromToggleFollow,
   ConvertFromGetStream,
+  ConvertFromGetPseudonym,
 };
