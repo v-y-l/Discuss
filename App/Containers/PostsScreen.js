@@ -72,6 +72,16 @@ class PostsScreen extends Component {
     });
   }
 
+  // getDerivedStateFromProps(nextProps, prevState) {
+  //   const postsList = nextProps.posts.list;
+  //   return {
+  //     postsList,
+  //     pseudonym: nextProps.pseudonym,
+  //     isModalVisible: false,
+  //     refreshing: false,
+  //   };
+  // }
+
   render() {
     this.onPressItem = this.props.selectPost;
 
