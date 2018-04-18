@@ -64,23 +64,15 @@ class PostsScreen extends Component {
 
   keyExtractor = (item, index) => index
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps, prevState) {
     const postsList = nextProps.posts.list;
-    this.setState({
+    return {
       postsList,
       pseudonym: nextProps.pseudonym,
-    });
+      isModalVisible: false,
+      refreshing: false,
+    };
   }
-
-  // getDerivedStateFromProps(nextProps, prevState) {
-  //   const postsList = nextProps.posts.list;
-  //   return {
-  //     postsList,
-  //     pseudonym: nextProps.pseudonym,
-  //     isModalVisible: false,
-  //     refreshing: false,
-  //   };
-  // }
 
   render() {
     this.onPressItem = this.props.selectPost;
