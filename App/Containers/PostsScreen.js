@@ -1,42 +1,38 @@
-import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableOpacity } from 'react-native'
-import TouchablePost from '../Components/TouchablePost'
-import PostsActions, { PostsSelectors } from '../Redux/PostsRedux'
-import CurrentUserActions from '../Redux/CurrentUserRedux'
+import React, { Component } from 'react';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import TouchablePost from '../Components/TouchablePost';
+import PostsActions, { PostsSelectors } from '../Redux/PostsRedux';
+import CurrentUserActions from '../Redux/CurrentUserRedux';
 
-import { connect } from 'react-redux'
-import MenuButton from '../Components/MenuButton'
+import { connect } from 'react-redux';
+import MenuButton from '../Components/MenuButton';
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
 // Styles
-import styles from './Styles/PostsScreenStyle'
+import styles from './Styles/PostsScreenStyle';
 
 class PostsScreen extends Component {
-
-  static navigationOptions = ({navigation}) => {
-
-    return {
-      title: 'Feedback',
-      headerLeft: <MenuButton onPress={()=>{navigation.navigate("DrawerOpen")}} />
-    }
-  }
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Feedback',
+    headerLeft: <MenuButton onPress={() => { navigation.navigate('DrawerOpen'); }} />,
+  })
 
   /* ***********************************************************
   * STEP 1
   * This is an array of objects with the properties you desire
   * Usually this should come from Redux mapStateToProps
-  *************************************************************/
+  ************************************************************ */
 
   constructor(props) {
-    super(props) 
-    let postsList = (this.props.posts && this.props.posts.list) || []
+    super(props);
+    const postsList = (this.props.posts && this.props.posts.list) || [];
     this.state = {
       postsList,
       isModalVisible: false,
       pseudonym: this.props.pseudonym,
-      refreshing: false
-    }
+      refreshing: false,
+    };
   }
 
   onPressItem = this.props.selectPost
@@ -48,36 +44,34 @@ class PostsScreen extends Component {
   *
   * e.g.
     return <MyCustomCell title={item.title} description={item.description} />
-  *************************************************************/
-  renderRow = ({item}) => {
-    return (
-      <TouchablePost 
-        recipient={item.recipientFullName} 
-        text={item.feedback}
-        rating={+item.rating} 
-        numComments={item.numComments} 
-        postId={+item.id}
-        onPressItem={this.props.selectPost}
-      />
-    )
-  }
+  ************************************************************ */
+  renderRow = ({ item }) => (
+    <TouchablePost
+      recipient={item.recipientFullName}
+      text={item.feedback}
+      rating={+item.rating}
+      numComments={item.numComments}
+      postId={+item.id}
+      onPressItem={this.props.selectPost}
+    />
+  )
 
   /* ***********************************************************
   * STEP 3
   * Consider the configurations we've set below.  Customize them
   * to your liking!  Each with some friendly advice.
-  *************************************************************/
+  ************************************************************ */
 
   // Render a footer?
   renderFooter = () =>
-    <View style={styles.separator}></View>
+    <View style={styles.separator} />
 
   // Show this when data is empty
   renderEmpty = () =>
     <Text style={styles.label}> No posts to see. Go follow someone! </Text>
 
   renderSeparator = () =>
-    <View style={styles.separator}></View>
+    <View style={styles.separator} />
 
   // The default function if no Key is provided is index
   // an identifiable key is important if you plan on
@@ -103,25 +97,24 @@ class PostsScreen extends Component {
   }
 
   _onEndReachedHandler = () => {
-    this.props.getMorePosts()
+    this.props.getMorePosts();
   }
 
   _onRefreshHandler = () => {
-    this.props.resetPosts()
-    this.props.getMorePosts()
+    this.props.resetPosts();
+    this.props.getMorePosts();
   }
 
   componentWillReceiveProps(nextProps) {
-    let postsList = nextProps.posts.list
+    const postsList = nextProps.posts.list;
     this.setState({
       postsList,
-      pseudonym: nextProps.pseudonym
-    })
+      pseudonym: nextProps.pseudonym,
+    });
   }
 
-  render () {
-
-    this.onPressItem = this.props.selectPost
+  render() {
+    this.onPressItem = this.props.selectPost;
 
     return (
       <View style={styles.container}>
@@ -133,7 +126,7 @@ class PostsScreen extends Component {
           ListFooterComponent={this.renderFooter}
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
-          // onEndReachedThreshold - adjust this if you want the 
+          // onEndReachedThreshold - adjust this if you want the
           // loading of items to be less sensitive, but I think
           // this is okay for now as it doesn't take away from UX
           onEndReached={this._onEndReachedHandler}
@@ -141,27 +134,23 @@ class PostsScreen extends Component {
           refreshing={this.state.refreshing}
         />
       </View>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    posts: state.posts,
-    pseudonym: state.currentUser.pseudonym,
-  }
-}
+const mapStateToProps = state => ({
+  posts: state.posts,
+  pseudonym: state.currentUser.pseudonym,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    selectPost: (postId) => {
-      dispatch(PostsActions.selectPostRequest(postId))
-      dispatch(CurrentUserActions.getPseudonymRequest(postId))
-    },
-    getMorePosts: () => dispatch(PostsActions.getPostsRequest()),
-    resetPosts: () => dispatch(PostsActions.resetPosts()),
-    save: (pseudonym) => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym))
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  selectPost: (postId) => {
+    dispatch(PostsActions.selectPostRequest(postId));
+    dispatch(CurrentUserActions.getPseudonymRequest(postId));
+  },
+  getMorePosts: () => dispatch(PostsActions.getPostsRequest()),
+  resetPosts: () => dispatch(PostsActions.resetPosts()),
+  save: pseudonym => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym)),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostsScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(PostsScreen);

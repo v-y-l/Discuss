@@ -1,54 +1,53 @@
-import React, { Component } from 'react'
-import { View, Text, FlatList } from 'react-native'
-import { connect } from 'react-redux'
-import Post from '../Components/Post'
-import Comment from '../Components/Comment'
-import AddComment from '../Components/AddComment'
-import SettingsButton from '../Components/SettingsButton'
-import SettingsModal from '../Components/SettingsModal'
-import CurrentUserActions from '../Redux/CurrentUserRedux'
-import CommentsActions from '../Redux/CommentsRedux'
+import React, { Component } from 'react';
+import { View, Text, FlatList } from 'react-native';
+import { connect } from 'react-redux';
+import Post from '../Components/Post';
+import Comment from '../Components/Comment';
+import AddComment from '../Components/AddComment';
+import SettingsButton from '../Components/SettingsButton';
+import SettingsModal from '../Components/SettingsModal';
+import CurrentUserActions from '../Redux/CurrentUserRedux';
+import CommentsActions from '../Redux/CommentsRedux';
 
 // Styles
-import styles from './Styles/CommentsScreenStyle'
-import navigationStyles from '../Navigation/Styles/NavigationStyles'
+import styles from './Styles/CommentsScreenStyle';
+import navigationStyles from '../Navigation/Styles/NavigationStyles';
 
 class CommentsScreen extends Component {
-
-  static navigationOptions = ({navigation}) => {
+  static navigationOptions = ({ navigation }) => {
     const toggleModal = () => {
       if (navigation.state.params) {
-        navigation.state.params.toggleModal()
+        navigation.state.params.toggleModal();
       }
-    }
+    };
     return {
       title: 'Comments',
       headerStyle: navigationStyles.header,
       headerTitleStyle: navigationStyles.headerTitle,
       headerTintColor: navigationStyles.tintColor,
-      headerRight: <SettingsButton onPress={toggleModal} />
-    }
+      headerRight: <SettingsButton onPress={toggleModal} />,
+    };
   }
 
   /* ***********************************************************
   * STEP 1
   * This is an array of objects with the properties you desire
   * Usually this should come from Redux mapStateToProps
-  *************************************************************/
+  ************************************************************ */
 
   constructor(props) {
-    super(props) 
-    let postIndex = this.props.posts.byId[this.props.posts.postId]
-    let post = this.props.posts.list[postIndex]
-    let commentsList = this.props.comments.list
+    super(props);
+    const postIndex = this.props.posts.byId[this.props.posts.postId];
+    const post = this.props.posts.list[postIndex];
+    const commentsList = this.props.comments.list;
 
     this.state = {
       post,
       commentsList,
-      replyTo: "",
+      replyTo: '',
       isModalVisible: false,
-      refreshing: false
-    }
+      refreshing: false,
+    };
   }
 
   /* ***********************************************************
@@ -58,54 +57,54 @@ class CommentsScreen extends Component {
   *
   * e.g.
     return <MyCustomCell title={item.title} description={item.description} />
-  *************************************************************/
+  ************************************************************ */
   handleReply = (replyToUser) => {
-    this.setState({replyTo: replyToUser})
-    this.addCommentComponent.textInput.focus()
+    this.setState({ replyTo: replyToUser });
+    this.addCommentComponent.textInput.focus();
   }
 
-  renderRow = ({item}) => {
-    return ( 
-      <Comment 
-        author={item.author} 
-        comment={item.text} 
-        handleReply={this.handleReply} 
-      />
-    )
-  }
+  renderRow = ({ item }) => (
+    <Comment
+      author={item.author}
+      comment={item.text}
+      handleReply={this.handleReply}
+    />
+  )
 
   /* ***********************************************************
   * STEP 3
   * Consider the configurations we've set below.  Customize them
   * to your liking!  Each with some friendly advice.
-  *************************************************************/
+  ************************************************************ */
   // Render a header?
   renderHeader = () => {
-    const { recipientFullName, feedback, rating, numComments } = this.state.post
+    const {
+      recipientFullName, feedback, rating, numComments,
+    } = this.state.post;
     return (
       <View>
-        <Post 
-          recipient={recipientFullName} 
+        <Post
+          recipient={recipientFullName}
           text={feedback}
-          rating={+rating} 
+          rating={+rating}
           numComments={numComments}
           showNumComments={false}
         />
-        <View style={styles.separator}></View>
+        <View style={styles.separator} />
       </View>
-    )
+    );
   }
 
   // Render a footer?
   renderFooter = () =>
-    <View style={styles.separator}></View>
+    <View style={styles.separator} />
 
   // Show this when data is empty
   renderEmpty = () =>
     <Text style={styles.label}> No comments yet. Be the first! </Text>
 
   renderSeparator = () =>
-    <View style={styles.separator}></View>
+    <View style={styles.separator} />
 
   // The default function if no Key is provided is index
   // an identifiable key is important if you plan on
@@ -127,19 +126,19 @@ class CommentsScreen extends Component {
   // )}
 
   componentWillMount() {
-    this.props.navigation.setParams({toggleModal: this._toggleModal})    
+    this.props.navigation.setParams({ toggleModal: this._toggleModal });
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      commentsList:nextProps.comments.list
-    })
+      commentsList: nextProps.comments.list,
+    });
   }
 
   componentDidUpdate() {
-    //fix: does not react to the 'reply' button after the first time
+    // fix: does not react to the 'reply' button after the first time
     if (this.state.replyTo.length > 0) {
-      this.addCommentComponent.setState({text:`@${this.state.replyTo} `})
+      this.addCommentComponent.setState({ text: `@${this.state.replyTo} ` });
     }
   }
 
@@ -148,18 +147,18 @@ class CommentsScreen extends Component {
   }
 
   _onEndReachedHandler = () => {
-    this.props.getMoreComments(this.state.post.id)
+    this.props.getMoreComments(this.state.post.id);
   }
 
   _onRefreshHandler = () => {
-    this.props.resetComments()
-    this.props.getMoreComments(this.state.post.id)
+    this.props.resetComments();
+    this.props.getMoreComments(this.state.post.id);
   }
 
   render() {
-    let currentUser = this.props.currentUser
-    let posts = this.props.posts
-    const pseudonym = (currentUser && posts) ? currentUser.pseudonymList[posts.postId] : null
+    const currentUser = this.props.currentUser;
+    const posts = this.props.posts;
+    const pseudonym = (currentUser && posts) ? currentUser.pseudonymList[posts.postId] : null;
     return (
       <View style={styles.container}>
         <FlatList
@@ -175,37 +174,33 @@ class CommentsScreen extends Component {
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.renderSeparator}
         />
-        <SettingsModal 
-          isVisible={this.state.isModalVisible} 
-          toggleModal={this._toggleModal} 
+        <SettingsModal
+          isVisible={this.state.isModalVisible}
+          toggleModal={this._toggleModal}
           pseudonym={pseudonym}
           save={this.props.save}
         />
-        <AddComment 
-          addCommentRef={(addCommentComponent) => {this.addCommentComponent = addCommentComponent}}
-          clearReplyTo={()=> {this.setState({replyTo:""})}}
+        <AddComment
+          addCommentRef={(addCommentComponent) => { this.addCommentComponent = addCommentComponent; }}
+          clearReplyTo={() => { this.setState({ replyTo: '' }); }}
         />
       </View>
-    )
-    //Get child component via refs: https://github.com/reactjs/react-redux/pull/270#issuecomment-175217424
+    );
+    // Get child component via refs: https://github.com/reactjs/react-redux/pull/270#issuecomment-175217424
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    posts: state.posts,
-    comments: state.comments,
-    currentUser: state.currentUser,
-  }
-}
+const mapStateToProps = state => ({
+  posts: state.posts,
+  comments: state.comments,
+  currentUser: state.currentUser,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getMoreComments: (postId) => 
-      dispatch(CommentsActions.getCommentsRequest(postId)),
-    resetComments: () => 
-      dispatch(CommentsActions.resetComments())
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  getMoreComments: postId =>
+    dispatch(CommentsActions.getCommentsRequest(postId)),
+  resetComments: () =>
+    dispatch(CommentsActions.resetComments()),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentsScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(CommentsScreen);

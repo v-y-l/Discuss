@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { View, Text, Image } from 'react-native'
-import styles from './Styles/PostStyle'
-import Colors from '../Themes/Colors'
-import Images from '../Themes/Images'
-import Icon from 'react-native-vector-icons/Entypo'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { View, Text, Image } from 'react-native';
+import styles from './Styles/PostStyle';
+import Colors from '../Themes/Colors';
+import Images from '../Themes/Images';
+import Icon from 'react-native-vector-icons/Entypo';
 
 export default class Post extends Component {
   // // Prop type warnings
@@ -12,35 +12,37 @@ export default class Post extends Component {
     recipient: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    showNumComments: PropTypes.bool
+    showNumComments: PropTypes.bool,
   }
 
   // // Defaults for props
   static defaultProps = {
-    showNumComments: true
+    showNumComments: true,
   }
 
-  render () {
-    const { recipient, text, rating, numComments, showNumComments } = this.props
-    const shortenedRecipient = recipient.substring(0,13) + (recipient.length > 13 ? "." : "")
-    const commentNoun = numComments == 1 ? 'comment' : 'comments'
-    let ratingColor
-    switch(rating) {
+  render() {
+    const {
+      recipient, text, rating, numComments, showNumComments,
+    } = this.props;
+    const shortenedRecipient = recipient.substring(0, 13) + (recipient.length > 13 ? '.' : '');
+    const commentNoun = numComments == 1 ? 'comment' : 'comments';
+    let ratingColor;
+    switch (rating) {
       case 1:
-        ratingColor = Colors.belowExpectations
-        break
+        ratingColor = Colors.belowExpectations;
+        break;
       case 2:
-        ratingColor = Colors.meetsExpectations
-        break
+        ratingColor = Colors.meetsExpectations;
+        break;
       case 3:
-        ratingColor = Colors.exceedsExpectations
-        break
+        ratingColor = Colors.exceedsExpectations;
+        break;
       case 4:
-        ratingColor = Colors.farExceedsExpectations
-        break
+        ratingColor = Colors.farExceedsExpectations;
+        break;
       default:
     }
-    const ratingBackground = {backgroundColor: ratingColor}
+    const ratingBackground = { backgroundColor: ratingColor };
 
     return (
       <View style={styles.container}>
@@ -56,6 +58,6 @@ export default class Post extends Component {
           <Text style={styles.commentText}>{text}</Text>
         </View>
       </View>
-    )
+    );
   }
 }

@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity } from 'react-native'
-import Post from './Post'
-import styles from './Styles/TouchablePostStyle'
+import { View, Text, TouchableOpacity } from 'react-native';
+import Post from './Post';
+import styles from './Styles/TouchablePostStyle';
 
 export default class TouchablePost extends Component {
   // Prop type warnings
@@ -11,7 +11,7 @@ export default class TouchablePost extends Component {
     text: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     postId: PropTypes.number.isRequired,
-    onPressItem: PropTypes.func.isRequired
+    onPressItem: PropTypes.func.isRequired,
   }
   //
   // // Defaults for props
@@ -19,17 +19,17 @@ export default class TouchablePost extends Component {
   //   someSetting: false
   // }
 
-  render () {
+  render() {
     return (
-      <TouchableOpacity onPress={()=> this.props.onPressItem(this.props.postId)}> 
-        <Post 
-          recipient={this.props.recipient} 
-          text={this.props.text} 
-          rating={this.props.rating} 
+      <TouchableOpacity onPress={() => this.props.onPressItem(this.props.postId)}>
+        <Post
+          recipient={this.props.recipient}
+          text={this.props.text}
+          rating={this.props.rating}
           numComments={this.props.numComments}
         />
       </TouchableOpacity>
 
-    )
+    );
   }
 }

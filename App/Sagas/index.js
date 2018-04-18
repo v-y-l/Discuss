@@ -1,25 +1,25 @@
-import { takeLatest, all } from 'redux-saga/effects'
-import API from '../Services/Api'
-import Discuss from '../Services/Discuss'
-import FixtureAPI from '../Services/FixtureApi'
-import DebugConfig from '../Config/DebugConfig'
+import { takeLatest, all } from 'redux-saga/effects';
+import API from '../Services/Api';
+import Discuss from '../Services/Discuss';
+import FixtureAPI from '../Services/FixtureApi';
+import DebugConfig from '../Config/DebugConfig';
 import AppConfig from '../Config/AppConfig';
 
 /* ------------- Types ------------- */
 
-import { StartupTypes } from '../Redux/StartupRedux'
-import { GithubTypes } from '../Redux/GithubRedux'
-import { PostsTypes } from '../Redux/PostsRedux'
-import { CommentsTypes } from '../Redux/CommentsRedux'
-import { CurrentUserTypes } from '../Redux/CurrentUserRedux'
+import { StartupTypes } from '../Redux/StartupRedux';
+import { GithubTypes } from '../Redux/GithubRedux';
+import { PostsTypes } from '../Redux/PostsRedux';
+import { CommentsTypes } from '../Redux/CommentsRedux';
+import { CurrentUserTypes } from '../Redux/CurrentUserRedux';
 
 /* ------------- Sagas ------------- */
 
-import { startup } from './StartupSagas'
-import { getUserAvatar } from './GithubSagas'
-import { getPosts, selectPost } from './PostsSagas'
-import { getComments, postComment } from './CommentsSagas'
-import { getPseudonym, getUsers, toggleFollowUser } from './CurrentUserSagas'
+import { startup } from './StartupSagas';
+import { getUserAvatar } from './GithubSagas';
+import { getPosts, selectPost } from './PostsSagas';
+import { getComments, postComment } from './CommentsSagas';
+import { getPseudonym, getUsers, toggleFollowUser } from './CurrentUserSagas';
 
 /* ------------- API ------------- */
 
@@ -27,15 +27,15 @@ import { getPseudonym, getUsers, toggleFollowUser } from './CurrentUserSagas'
 // to the sagas which need it.
 const { baseUrl } = AppConfig;
 const api = Discuss.create(baseUrl);
-const fixture = FixtureAPI
+const fixture = FixtureAPI;
 
 /* ------------- Connect Types To Sagas ------------- */
 
-export default function * root () {
+export default function* root() {
   yield all([
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
-    //fix: this probably doesn't need to be a saga
+    // fix: this probably doesn't need to be a saga
     takeLatest(PostsTypes.SELECT_POST_REQUEST, selectPost),
 
     // some sagas receive extra parameters in addition to an action
@@ -45,5 +45,5 @@ export default function * root () {
     takeLatest(CommentsTypes.POST_COMMENT_REQUEST, postComment, api),
     takeLatest(CurrentUserTypes.GET_USERS_REQUEST, getUsers, api),
     takeLatest(CurrentUserTypes.TOGGLE_FOLLOW_USER_REQUEST, toggleFollowUser, api),
-  ])
+  ]);
 }

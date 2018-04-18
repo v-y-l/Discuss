@@ -1,9 +1,9 @@
-import { StyleSheet } from 'react-native'
-import Colors from '../../Themes/Colors'
+import { StyleSheet } from 'react-native';
+import Colors from '../../Themes/Colors';
 
 export default StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   buttonBox: {
   	padding: 8,
@@ -13,12 +13,12 @@ export default StyleSheet.create({
   },
   buttonBoxFollowed: {
   	borderWidth: 2,
-  	borderColor: Colors.separator
+  	borderColor: Colors.separator,
   },
   buttonTextFollow: {
-  	color: '#ffffff'
+  	color: '#ffffff',
   },
   buttonTextFollowed: {
-  	color: '#000000'
-  }
-})
+  	color: '#000000',
+  },
+});

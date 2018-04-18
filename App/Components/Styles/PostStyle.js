@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native'
-import Fonts from '../../Themes/Fonts'
-import Colors from '../../Themes/Colors'
-import Metrics from '../../Themes/Metrics'
+import { StyleSheet } from 'react-native';
+import Fonts from '../../Themes/Fonts';
+import Colors from '../../Themes/Colors';
+import Metrics from '../../Themes/Metrics';
 
 export default StyleSheet.create({
   container: {
@@ -9,43 +9,43 @@ export default StyleSheet.create({
     paddingLeft: Metrics.item.paddingLeft,
     paddingRight: Metrics.item.paddingRight,
   },
-  //header
+  // header
   header: {
   	flex: 1,
-  	flexDirection: "row",
-  	justifyContent: "space-between",
-  	alignItems: "center",
+  	flexDirection: 'row',
+  	justifyContent: 'space-between',
+  	alignItems: 'center',
   	paddingBottom: 10,
   	marginBottom: 10,
   	borderBottomWidth: 2,
-  	borderColor: Colors.separator
+  	borderColor: Colors.separator,
   },
-  profileBox: { 
-  	flexDirection: "row",
-  	alignItems: "center",
+  profileBox: {
+  	flexDirection: 'row',
+  	alignItems: 'center',
   },
   profilePicture: {
   	borderRadius: Metrics.profilePicture.borderRadius,
   	height: Metrics.profilePicture.height,
   	width: Metrics.profilePicture.width,
-  	marginRight: Metrics.profilePicture.marginRight
+  	marginRight: Metrics.profilePicture.marginRight,
   },
   headerText: {
     ...Fonts.style.h5,
   },
   icon: {
-  	color: "#000000",
+  	color: '#000000',
   },
-  //comment
+  // comment
   comment: {
   	flex: 1,
-  	flexDirection: "row",
-  	paddingRight: 10
+  	flexDirection: 'row',
+  	paddingRight: 10,
   },
   commentText: {
   	marginLeft: 10,
   	flex: 1,
-    ...Fonts.style.normal,	
+    ...Fonts.style.normal,
   },
   rating: {
   	flexDirection: 'row',
@@ -60,7 +60,7 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0)',
     color: '#FFFFFF',
     textAlign: 'center',
-    flex: 1
-  }
+    flex: 1,
+  },
 
-})
+});

@@ -28,9 +28,9 @@ const colors = {
   headerTitle: '#FFFFFF',
   belowExpectations: '#B71C1C',
   meetsExpectations: '#F57C00',
-  exceedsExpectations: '#7CB342', 
+  exceedsExpectations: '#7CB342',
   farExceedsExpectations: '#03A9F4',
-  separator: "#E0E0E0"
-}
+  separator: '#E0E0E0',
+};
 
-export default colors
+export default colors;

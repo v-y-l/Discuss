@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native'
-import { Colors } from '../../Themes/'
-import { Fonts } from '../../Themes/'
+import { StyleSheet } from 'react-native';
+import { Colors } from '../../Themes/';
+import { Fonts } from '../../Themes/';
 
 export default StyleSheet.create({
   header: {
@@ -11,6 +11,6 @@ export default StyleSheet.create({
   	color: Colors.headerTitle,
   },
   tintColor: {
-  	color: Colors.headerTitle
-  }
-})
+  	color: Colors.headerTitle,
+  },
+});

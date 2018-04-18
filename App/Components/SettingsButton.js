@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import { Text, View, TouchableOpacity } from 'react-native'
-import styles from './Styles/SettingsButtonStyle'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { Text, View, TouchableOpacity } from 'react-native';
+import styles from './Styles/SettingsButtonStyle';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class SettingsButton extends Component {
   // // Prop type warnings
@@ -17,12 +17,12 @@ export default class SettingsButton extends Component {
   // }
 
   render() {
-    const { onPress } = this.props
-    return <TouchableOpacity 
-      style={styles.settingsButton} 
+    const { onPress } = this.props;
+    return (<TouchableOpacity
+      style={styles.settingsButton}
       onPress={onPress}
-    > 
+    >
       <Icon size={30} color="#ffffff" name="ios-settings" />
-    </TouchableOpacity>
+            </TouchableOpacity>);
   }
 }

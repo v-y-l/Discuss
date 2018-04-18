@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity } from 'react-native'
-import Icon from 'react-native-vector-icons/Entypo'
-import styles from './Styles/MenuButtonStyle'
+import { View, Text, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Entypo';
+import styles from './Styles/MenuButtonStyle';
 
 export default class MenuButton extends Component {
   // // Prop type warnings
@@ -16,12 +16,12 @@ export default class MenuButton extends Component {
   //   someSetting: false
   // }
 
-  render () {
-    const { onPress } = this.props
+  render() {
+    const { onPress } = this.props;
     return (
       <TouchableOpacity onPress={onPress} style={styles.container}>
         <Icon size={30} color="#ffffff" name="menu" />
       </TouchableOpacity>
-    )
+    );
   }
 }

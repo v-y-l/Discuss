@@ -11,5 +11,5 @@ if (__DEV__) {
 export default {
   // font scaling override - RN default is on
   allowTextFontScaling: true,
-  baseUrl: apiUrl
-}
+  baseUrl: apiUrl,
+};

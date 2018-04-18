@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import { ApplicationStyles, Metrics, Colors } from '../../Themes'
+import { StyleSheet } from 'react-native';
+import { ApplicationStyles, Metrics, Colors } from '../../Themes';
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -13,20 +13,20 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.fire,
     marginVertical: Metrics.smallMargin,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   boldLabel: {
     fontWeight: 'bold',
     alignSelf: 'center',
     color: Colors.snow,
     textAlign: 'center',
-    marginBottom: Metrics.smallMargin
+    marginBottom: Metrics.smallMargin,
   },
   label: {
     textAlign: 'center',
-    color: '#000000'
+    color: '#000000',
   },
   listContent: {
     marginTop: Metrics.baseMargin,
-  }
-})
+  },
+});

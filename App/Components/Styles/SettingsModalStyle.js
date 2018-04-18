@@ -1,7 +1,8 @@
-import { StyleSheet } from 'react-native'
-import { Fonts } from '../../Themes/'
-import { Colors } from '../../Themes/'
-import { ApplicationStyles } from '../../Themes/'
+import { StyleSheet } from 'react-native';
+import { Fonts } from '../../Themes/';
+import { Colors } from '../../Themes/';
+import { ApplicationStyles } from '../../Themes/';
+
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -23,20 +24,20 @@ export default StyleSheet.create({
   header: {
     ...Fonts.style.h5,
     textAlign: 'center',
-    marginBottom: 10
-  },  
+    marginBottom: 10,
+  },
   explanation: {
   	...Fonts.style.h5,
   	textAlign: 'center',
     marginBottom: 5,
-  	marginTop: 10
+  	marginTop: 10,
   },
   modalButtons: {
   	paddingBottom: 10,
   	paddingLeft: 5,
   	paddingRight: 5,
   	flexDirection: 'row',
-  	justifyContent: 'center'
+  	justifyContent: 'center',
   },
   pseudonymBox: {
   	...Fonts.style.normal,
@@ -45,10 +46,10 @@ export default StyleSheet.create({
   	borderRadius: 5,
   	// borderColor: '#C0C0C0',
   	// borderWidth: 1,
-    backgroundColor: Colors.separator
+    backgroundColor: Colors.separator,
   },
   separator: {
   	borderBottomWidth: 1,
   	borderColor: '#C0C0C0',
-  }
-})
+  },
+});

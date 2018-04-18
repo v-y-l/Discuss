@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import Colors from "../../Themes/Colors"
+import { StyleSheet } from 'react-native';
+import Colors from '../../Themes/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -7,16 +7,16 @@ export default StyleSheet.create({
     flexDirection: 'row',
   	borderColor: Colors.separator,
   	borderRadius: 50,
-  	borderWidth: 1,    
+  	borderWidth: 1,
   	marginLeft: 5,
     marginRight: 5,
     paddingLeft: 10,
-    marginTop: 5
+    marginTop: 5,
   },
   input: {
   	flex: 3,
   	height: 40,
-    opacity: 0.5
+    opacity: 0.5,
   },
   button: {
   	backgroundColor: 'rgba(0,0,0,0)',
@@ -24,10 +24,10 @@ export default StyleSheet.create({
     paddingTop: 10,
   },
   buttonText: {
-    color: "#007AFF"
+    color: '#007AFF',
   },
   disabledButtonText: {
-    color: "rgb(90,200,250)"
-  }
+    color: 'rgb(90,200,250)',
+  },
 
-})
+});
