@@ -77,7 +77,10 @@ const create = (baseURL) => {
 		return response;
 	};
 
-	const addComment = (commentText, responseId, token) => {
+	//To-do: Fix the fixture so we don't have to do something ridiculous like
+	//take in a param we don't need
+	// const addComment = (responseId, _, commentText, token) => {
+	const postComment = (responseId, _, commentText, token) => {
 		const url = `${baseURL}/v1/app/discuss/addcomment`;
 		const payload = {
 			commentText,
@@ -122,7 +125,8 @@ const create = (baseURL) => {
 		// toggleFollow,
 		toggleFollowUser,
 		getPseudonym,
-		addComment,
+		// addComment,
+		postComment,
 		getComments,
 	};
 };

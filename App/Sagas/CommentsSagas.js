@@ -13,6 +13,7 @@
 import { call, put, select } from 'redux-saga/effects'
 import CommentsActions, { CommentsSelectors } from '../Redux/CommentsRedux'
 import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
+import { ConvertFromAddComment } from '../Transforms/ConvertFromDiscuss'
 import PostsActions from '../Redux/PostsRedux'
 
 export function * getComments (api, action) {
@@ -40,9 +41,14 @@ export function * postComment (api, action) {
 
   const {postId, commentText} = action
 
-  let commentAuthor = yield select(CurrentUserSelectors.getPseudonym)
+  const commentAuthor = yield select(CurrentUserSelectors.getPseudonym)
+  const token = yield select(CurrentUserSelectors.getToken)
   //This posts the comment to our database
-  const postCommentResponse = yield call(api.postComment, postId, commentAuthor, commentText)
+  let postCommentResponse = yield call(api.postComment, postId, commentAuthor, commentText, token)
+
+  if (postCommentResponse.ErrorCode == 0) {
+    postCommentResponse = ConvertFromAddComment(postCommentResponse);
+  } 
 
   // success?
   if (postCommentResponse.ok) {

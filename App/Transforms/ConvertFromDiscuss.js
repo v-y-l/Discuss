@@ -67,9 +67,16 @@ const ConvertFromGetPseudonym = (response) => {
   }
 }
 
+const ConvertFromAddComment = (response) => {
+  return {
+    ok: true,
+  }
+}
+
 export {
   ConvertFromUserFollowList,
   ConvertFromToggleFollow,
   ConvertFromGetStream,
   ConvertFromGetPseudonym,
+  ConvertFromAddComment,
 };
