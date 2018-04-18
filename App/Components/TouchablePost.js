@@ -10,7 +10,6 @@ export default class TouchablePost extends Component {
     recipient: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    numComments: PropTypes.number.isRequired,
     postId: PropTypes.number.isRequired,
     onPressItem: PropTypes.func.isRequired
   }

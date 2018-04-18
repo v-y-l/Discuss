@@ -41,7 +41,7 @@ export default function * root () {
     // some sagas receive extra parameters in addition to an action
     takeLatest(CurrentUserTypes.GET_PSEUDONYM_REQUEST, getPseudonym, api),
     takeLatest(PostsTypes.GET_POSTS_REQUEST, getPosts, api),
-    takeLatest(CommentsTypes.GET_COMMENTS_REQUEST, getComments, fixture),
+    takeLatest(CommentsTypes.GET_COMMENTS_REQUEST, getComments, api),
     takeLatest(CommentsTypes.POST_COMMENT_REQUEST, postComment, api),
     takeLatest(CurrentUserTypes.GET_USERS_REQUEST, getUsers, api),
     takeLatest(CurrentUserTypes.TOGGLE_FOLLOW_USER_REQUEST, toggleFollowUser, api),

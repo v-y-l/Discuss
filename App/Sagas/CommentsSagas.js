@@ -13,7 +13,7 @@
 import { call, put, select } from 'redux-saga/effects'
 import CommentsActions, { CommentsSelectors } from '../Redux/CommentsRedux'
 import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux'
-import { ConvertFromAddComment } from '../Transforms/ConvertFromDiscuss'
+import { ConvertFromAddComment, ConvertFromGetComments } from '../Transforms/ConvertFromDiscuss'
 import PostsActions from '../Redux/PostsRedux'
 
 export function * getComments (api, action) {
@@ -24,7 +24,12 @@ export function * getComments (api, action) {
   const { postId } = action
   const offset = yield select(CommentsSelectors.getOffset)
   const limit = yield select(CommentsSelectors.getLimit)
-  const response = yield call(api.getComments, postId, offset, limit)
+  const token = yield select(CurrentUserSelectors.getToken)
+  let response = yield call(api.getComments, postId, offset, limit, token)
+
+  if (response.ErrorCode == 0) {
+    response = ConvertFromGetComments(response, offset);
+  }
 
   // success?
   if (response.ok) {

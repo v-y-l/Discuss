@@ -80,7 +80,7 @@ export default {
       data: {
         list: partialData,
         nextOffset: offset + partialData.length,
-        totalComments: allData.length
+        // totalComments: allData.length
       }
     }
   },

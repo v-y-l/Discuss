@@ -1,15 +1,18 @@
 const ConvertFromUserFollowList = (response, offset) => {
     let list = [];
-    for (let rawDatum of response.Data) {
-    	let transDatum = {
-			"id": rawDatum.FolloweeId,
-			"firstName": rawDatum.FolloweeFirstName, 
-			"lastName": rawDatum.FolloweeLastName, 
-			"fullName": rawDatum.FolloweeFullName, 
-			"following": rawDatum.Follows
-    	};
-    	list.push(transDatum);
+    if (response.Data) {
+      for (let rawDatum of response.Data) {
+        let transDatum = {
+        "id": rawDatum.FolloweeId,
+        "firstName": rawDatum.FolloweeFirstName, 
+        "lastName": rawDatum.FolloweeLastName, 
+        "fullName": rawDatum.FolloweeFullName, 
+        "following": rawDatum.Follows
+        };
+        list.push(transDatum);
+      }
     }
+
     return {
       ok: true,
       data: { 
@@ -73,10 +76,36 @@ const ConvertFromAddComment = (response) => {
   }
 }
 
+const ConvertFromGetComments = (response, offset) => {
+
+    let list = [];
+
+    if (response.Data) {
+      for (let rawDatum of response.Data) {
+        let transDatum = {
+          "id" : rawDatum.CommentId,
+          "author" : rawDatum.Author,
+          "text": rawDatum.Text ,
+        };
+        list.push(transDatum);
+      }
+    }
+
+
+    return {
+      ok: true,
+      data: {
+        list: list,
+        nextOffset: offset + list.length,
+      }
+    }
+}
+
 export {
   ConvertFromUserFollowList,
   ConvertFromToggleFollow,
   ConvertFromGetStream,
   ConvertFromGetPseudonym,
   ConvertFromAddComment,
+  ConvertFromGetComments,
 };

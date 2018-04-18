@@ -12,7 +12,6 @@ export default class Post extends Component {
     recipient: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    numComments: PropTypes.number.isRequired,
     showNumComments: PropTypes.bool
   }
 
