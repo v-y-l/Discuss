@@ -78,6 +78,10 @@ class PostsScreen extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.getMorePosts();
+  }
+
   render() {
     this.onPressItem = this.props.selectPost;
 

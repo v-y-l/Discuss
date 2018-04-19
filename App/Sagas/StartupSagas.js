@@ -41,5 +41,4 @@ export function* startup(action) {
   // but we should relegate the filtering to the API
 
   yield put(CurrentUserActions.getUsersRequest());
-  yield put(PostsActions.getPostsRequest());
 }
