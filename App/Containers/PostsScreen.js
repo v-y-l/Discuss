@@ -7,8 +7,11 @@ import PostsActions from '../Redux/PostsRedux';
 import CurrentUserActions from '../Redux/CurrentUserRedux';
 import MenuButton from '../Components/MenuButton';
 
-// Styles
 import styles from './Styles/PostsScreenStyle';
+
+/**
+ * This component acts as the landing screen of the app 
+ */
 
 const navigationOptions = ({ navigation }) => ({
   title: 'Feedback',
