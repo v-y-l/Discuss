@@ -36,7 +36,7 @@ export function* getComments(api, action) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
     yield put(CommentsActions.getCommentsSuccess(response.data));
-    yield put(PostsActions.setPostNumComments(postId, response.data.totalComments));
+    // yield put(PostsActions.setPostNumComments(postId, response.data.totalComments));
   } else {
     yield put(CommentsActions.getCommentsFailure());
   }
