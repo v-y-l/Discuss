@@ -32,7 +32,6 @@ export default function* root() {
   yield all([
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
-    // fix: this probably doesn't need to be a saga
     takeLatest(PostsTypes.SELECT_POST_REQUEST, selectPost),
 
     // some sagas receive extra parameters in addition to an action

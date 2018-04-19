@@ -106,6 +106,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   selectPost: (postId) => {
+    // selects a post, gets comments for it, then navigates to that screen
     dispatch(PostsActions.selectPostRequest(postId));
     dispatch(CurrentUserActions.getPseudonymRequest(postId));
   },
