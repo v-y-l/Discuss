@@ -1,14 +1,11 @@
 import { takeLatest, all } from 'redux-saga/effects';
-import API from '../Services/Api';
 import Discuss from '../Services/Discuss';
 import FixtureAPI from '../Services/FixtureApi';
-import DebugConfig from '../Config/DebugConfig';
 import AppConfig from '../Config/AppConfig';
 
 /* ------------- Types ------------- */
 
 import { StartupTypes } from '../Redux/StartupRedux';
-import { GithubTypes } from '../Redux/GithubRedux';
 import { PostsTypes } from '../Redux/PostsRedux';
 import { CommentsTypes } from '../Redux/CommentsRedux';
 import { CurrentUserTypes } from '../Redux/CurrentUserRedux';
@@ -16,7 +13,6 @@ import { CurrentUserTypes } from '../Redux/CurrentUserRedux';
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas';
-import { getUserAvatar } from './GithubSagas';
 import { getPosts, selectPost } from './PostsSagas';
 import { getComments, postComment } from './CommentsSagas';
 import { getPseudonym, getUsers, toggleFollowUser } from './CurrentUserSagas';

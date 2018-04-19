@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
+
 import TouchablePost from '../Components/TouchablePost';
 import PostsActions from '../Redux/PostsRedux';
 import CurrentUserActions from '../Redux/CurrentUserRedux';
@@ -10,7 +11,10 @@ import MenuButton from '../Components/MenuButton';
 import styles from './Styles/PostsScreenStyle';
 
 /**
- * This component acts as the landing screen of the app 
+ * This component acts as the landing screen of the app.
+ * It streams the feedback of users you follow.
+ * If you click on any of the posts, it takes you to another
+ * screen which enables you to discuss it.
  */
 
 const navigationOptions = ({ navigation }) => ({
@@ -23,9 +27,8 @@ class PostsScreen extends Component {
 
   constructor(props) {
     super(props);
-    const postsList = (this.props.posts && this.props.posts.list) || [];
     this.state = {
-      postsList,
+      postsList: [],
       isModalVisible: false,
       refreshing: false,
     };
