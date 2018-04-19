@@ -24,7 +24,6 @@ class PostsScreen extends Component {
     this.state = {
       postsList,
       isModalVisible: false,
-      pseudonym: this.props.pseudonym,
       refreshing: false,
     };
   }
@@ -62,13 +61,12 @@ class PostsScreen extends Component {
   renderSeparator = () =>
     <View style={styles.separator} />
 
-  keyExtractor = (item, index) => index
+  keyExtractor = (item, index) => index.toString()
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const postsList = nextProps.posts.list;
     return {
       postsList,
-      pseudonym: nextProps.pseudonym,
       isModalVisible: false,
       refreshing: false,
     };
@@ -98,7 +96,6 @@ class PostsScreen extends Component {
 
 const mapStateToProps = state => ({
   posts: state.posts,
-  pseudonym: state.currentUser.pseudonym,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -108,7 +105,6 @@ const mapDispatchToProps = dispatch => ({
   },
   getMorePosts: () => dispatch(PostsActions.getPostsRequest()),
   resetPosts: () => dispatch(PostsActions.resetPosts()),
-  save: pseudonym => dispatch(CurrentUserActions.setPseudonymRequest(pseudonym)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsScreen);
