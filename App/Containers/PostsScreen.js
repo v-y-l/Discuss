@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
-
 import TouchablePost from '../Components/TouchablePost';
 import PostsActions from '../Redux/PostsRedux';
 import CurrentUserActions from '../Redux/CurrentUserRedux';
@@ -29,13 +28,8 @@ class PostsScreen extends Component {
     super(props);
     this.state = {
       postsList: [],
-      isModalVisible: false,
       refreshing: false,
     };
-  }
-
-  _toggleModal = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible });
   }
 
   _onEndReachedHandler = () => {
@@ -73,7 +67,6 @@ class PostsScreen extends Component {
     const postsList = nextProps.posts.list;
     return {
       postsList,
-      isModalVisible: false,
       refreshing: false,
     };
   }
@@ -111,6 +104,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   selectPost: (postId) => {
     // selects a post, gets comments for it, then navigates to that screen
+    // to-do: change this to just select a post and navigate to it,
+    // and pull comments from commentsScreen instead
     dispatch(PostsActions.selectPostRequest(postId));
     dispatch(CurrentUserActions.getPseudonymRequest(postId));
   },
