@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { ApplicationStyles } from '../../Themes/';
 import { Fonts } from '../../Themes/';
 
 export default StyleSheet.create({
@@ -16,6 +15,9 @@ export default StyleSheet.create({
   },
   loginBox: {
     margin: 8,
+    borderRadius: 2,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
     backgroundColor: 'white',
     alignItems: 'stretch',
   },
@@ -24,6 +26,16 @@ export default StyleSheet.create({
     margin: 8,
     borderBottomWidth: 1,
     borderBottomColor: '#E0E0E0',
-  }
+  },
+  loginButton: {
+    backgroundColor: 'rgba(26,114,249,0.8)',
+    margin: 10,
+    alignItems: 'center',
+    borderRadius: 4,
+  },
+  loginText: {
+    color: 'white',
+    padding: 10,
+  },
 });
 

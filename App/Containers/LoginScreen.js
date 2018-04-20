@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, KeyboardAvoidingView, Button, TextInput } from 'react-native';
+import { View, Text, KeyboardAvoidingView, TouchableOpacity, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 
 // Styles
@@ -33,7 +33,11 @@ class LoginScreen extends Component {
               value={this.state.password}
               placeholder="Enter your Password" 
             />
-            <Button style={styles.loginItem} title="Login" onPress={()=>{this.props.navigation.navigate("AppScreen");}} />
+            <TouchableOpacity 
+              style={styles.loginButton}
+             onPress={()=>{this.props.navigation.navigate("AppScreen");}} >
+              <Text style={styles.loginText}>Login</Text>
+            </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
       </View>
