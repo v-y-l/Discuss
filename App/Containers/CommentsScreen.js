@@ -34,7 +34,13 @@ class CommentsScreen extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     const commentsList = nextProps.comments.list;
     const { pseudonym } = nextProps;
-    const { post, replyTo, isModalVisible, refreshing } = prevState;
+    const {
+      post,
+      replyTo,
+      isModalVisible,
+      refreshing,
+    } = prevState;
+
     return {
       post,
       commentsList,
@@ -127,8 +133,6 @@ class CommentsScreen extends Component {
   }
 
   render() {
-    const currentUser = this.props.currentUser;
-    const posts = this.props.posts;
     return (
       <View style={styles.container}>
         <FlatList
@@ -148,7 +152,6 @@ class CommentsScreen extends Component {
           isVisible={this.state.isModalVisible}
           toggleModal={this._toggleModal}
           pseudonym={this.state.pseudonym}
-          save={this.props.save}
         />
         <AddComment
           addCommentRef={(addCommentComponent) => {
@@ -158,7 +161,6 @@ class CommentsScreen extends Component {
         />
       </View>
     );
-    // Get child component via refs: https://github.com/reactjs/react-redux/pull/270#issuecomment-175217424
   }
 }
 
@@ -166,7 +168,7 @@ const mapStateToProps = state => ({
   posts: state.posts,
   comments: state.comments,
   currentUser: state.currentUser,
-  pseudonym: state.currentUser.pseudonymList[state.posts.postId]
+  pseudonym: state.currentUser.pseudonymList[state.posts.postId],
 });
 
 const mapDispatchToProps = dispatch => ({
