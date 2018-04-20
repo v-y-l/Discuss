@@ -50,13 +50,15 @@ class CommentsScreen extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const commentsList = nextProps.comments.list;
-    const { pseudonym } = nextProps;
+    const { currentUser } = nextProps;
     const {
       post,
       replyTo,
       isModalVisible,
       refreshing,
     } = prevState;
+
+    const pseudonym = currentUser.pseudonymList[post.id];
 
     return {
       post,
@@ -72,10 +74,9 @@ class CommentsScreen extends Component {
     super(props);
     const postIndex = this.props.posts.byId[this.props.posts.postId];
     const post = this.props.posts.list[postIndex];
-    const pseudonym = this.props.pseudonym;
     this.state = {
       post,
-      pseudonym,
+      pseudonym: '',
       commentsList: [],
       replyTo: '',
       isModalVisible: false,
@@ -132,6 +133,8 @@ class CommentsScreen extends Component {
       getMorePosts: this.props.getMorePosts,
     };
     this.props.navigation.setParams(navigationParams);
+    this.props.getPseudonym(this.state.post.id);
+    this.props.resetComments();
     this.props.getMoreComments(this.state.post.id);
   }
 
@@ -190,7 +193,6 @@ const mapStateToProps = state => ({
   posts: state.posts,
   comments: state.comments,
   currentUser: state.currentUser,
-  pseudonym: state.currentUser.pseudonymList[state.posts.postId],
 });
 
 const mapDispatchToProps = dispatch => ({

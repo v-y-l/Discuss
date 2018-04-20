@@ -105,12 +105,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   selectPost: (postId) => {
-    dispatch(CommentsActions.resetComments());
-    dispatch(CurrentUserActions.getPseudonymRequest(postId));
     dispatch(PostsActions.selectPostRequest(postId));
   },
-  getMorePosts: () => dispatch(PostsActions.getPostsRequest()),
-  resetPosts: () => dispatch(PostsActions.resetPosts()),
+  getMorePosts: () => {
+    dispatch(PostsActions.getPostsRequest())
+  },
+  resetPosts: () => {
+    dispatch(PostsActions.resetPosts())
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsScreen);
