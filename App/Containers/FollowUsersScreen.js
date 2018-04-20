@@ -4,32 +4,41 @@
   ************************************************************ */
 
 import React from 'react';
+import { SearchBar } from 'react-native-elements';
 import { View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import UserRow from '../Components/UserRow';
 import MenuButton from '../Components/MenuButton';
 import CurrentUserActions from '../Redux/CurrentUserRedux';
-import { SearchBar } from 'react-native-elements';
 
 // Styles
 import styles from './Styles/FollowUsersScreenStyle';
 
+const navigationOptions = ({ navigation }) => ({
+  title: 'Follow Users',
+  headerLeft: <MenuButton onPress={() => { navigation.navigate('DrawerOpen'); }} />,
+});
+
 class Users extends React.PureComponent {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Follow Users',
-    headerLeft: <MenuButton onPress={() => { navigation.navigate('DrawerOpen'); }} />,
-  })
+  static navigationOptions = navigationOptions;
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return {
+      userList: nextProps.currentUser.users,
+      refreshing: prevState.refreshing,
+    }
+  }
 
   constructor(props) {
     super(props);
-    const userList = this.props.currentUser.users;
-    this.props.setSearchText('');
-    this._onRefreshHandler();
     this.state = {
-      userList,
-      searchBarText: '',
+      userList: [],
       refreshing: false,
     };
+  }
+
+  componentDidUpdate() {
+    this.props.setSearchText('');
   }
 
   renderRow = ({ item }) => (
@@ -45,7 +54,6 @@ class Users extends React.PureComponent {
     (<View>
       <SearchBar
         onChangeText={this._onChangeText}
-        // onClearText={someMethod}
         noIcon
         containerStyle={styles.searchContainer}
         inputStyle={styles.searchInput}
@@ -57,38 +65,18 @@ class Users extends React.PureComponent {
   renderFooter = () =>
     <View style={styles.separator} />
 
-  // Show this when data is empty
   renderEmpty = () =>
     <Text style={styles.label}> No results. Adjust your search text! </Text>
 
   renderSeparator = () =>
     <View style={styles.separator} />
 
-  // The default function if no Key is provided is index
-  // an identifiable key is important if you plan on
-  // item reordering.  Otherwise index is fine
-  keyExtractor = (item, index) => index
-
-  /* ***********************************************************
-  * We store offset, limit, and searchText in the currentUserRedux.
-  * When we can getMoreUsers, the currentUsers redux will receive
-  * a userList that complies to the offset, limit, and searchText.
-  *
-  * If we change the search string, this will start building a new
-  * userList based off of the new parameters. If we don't, then we
-  * will be concating to a previous userList as we paginate.
-  ************************************************************ */
-
-  componentWillReceiveProps(nextProps) {
-    const userList = nextProps.currentUser.users;
-    this.setState({ userList });
-  }
+  keyExtractor = (item, index) => index.toString();
 
   _onChangeText = (searchBarText) => {
     this.setState({ searchBarText }); // sets the state for this component
     this.props.setSearchText(searchBarText); // passes it to the redux
     this._onRefreshHandler(); // clear the old userList, and then fetch more
-    // based on the new searchText
   }
 
   _onEndReachedHandler = () => {

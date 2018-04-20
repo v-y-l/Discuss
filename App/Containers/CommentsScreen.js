@@ -35,6 +35,11 @@ const navigationOptions = ({ navigation }) => {
   };
 };
 
+/**
+ * This component displays the given comments for
+ * a particular feedback post.
+ */
+
 class CommentsScreen extends Component {
   static navigationOptions = navigationOptions;
 
