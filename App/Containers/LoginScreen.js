@@ -35,7 +35,7 @@ class LoginScreen extends Component {
             />
             <TouchableOpacity 
               style={styles.loginButton}
-             onPress={()=>{this.props.navigation.navigate("AppScreen");}} >
+              onPress={()=>{this.props.navigation.navigate("AppScreen");}} >
               <Text style={styles.loginText}>Login</Text>
             </TouchableOpacity>
           </View>

@@ -8,6 +8,7 @@ import AddComment from '../Components/AddComment';
 import SettingsButton from '../Components/SettingsButton';
 import SettingsModal from '../Components/SettingsModal';
 import CommentsActions from '../Redux/CommentsRedux';
+import CurrentUserActions from '../Redux/CurrentUserRedux';
 import PostsActions from '../Redux/PostsRedux';
 
 // Styles
@@ -200,6 +201,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(PostsActions.getPostsRequest()),
   resetPosts: () =>
     dispatch(PostsActions.resetPosts()),
+  getPseudonym: postId => 
+    dispatch(CurrentUserActions.getPseudonymRequest(postId)),
 
 });
 

@@ -27,9 +27,6 @@ export function* getComments(api, action) {
   const token = yield select(CurrentUserSelectors.getToken);
   let response = yield call(api.getComments, postId, offset, limit, token);
 
-  console.log('getComments called');
-  console.log(response);
-
   if (response.ErrorCode === 0) {
     response = ConvertFromGetComments(response, offset);
   }
@@ -39,7 +36,6 @@ export function* getComments(api, action) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
     yield put(CommentsActions.getCommentsSuccess(response.data));
-    // yield put(PostsActions.setPostNumComments(postId, response.data.totalComments));
   } else {
     yield put(CommentsActions.getCommentsFailure());
   }
