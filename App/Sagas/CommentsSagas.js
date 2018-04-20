@@ -27,6 +27,9 @@ export function* getComments(api, action) {
   const token = yield select(CurrentUserSelectors.getToken);
   let response = yield call(api.getComments, postId, offset, limit, token);
 
+  console.log('getComments called');
+  console.log(response);
+
   if (response.ErrorCode === 0) {
     response = ConvertFromGetComments(response, offset);
   }
@@ -50,17 +53,21 @@ export function* postComment(api, action) {
   // This posts the comment to our database
   let postCommentResponse = yield call(api.postComment, postId, commentAuthor, commentText, token);
 
-  if (postCommentResponse.ErrorCode == 0) {
+  if (postCommentResponse.ErrorCode === 0) {
     postCommentResponse = ConvertFromAddComment(postCommentResponse);
   }
 
   // success?
   if (postCommentResponse.ok) {
-    // We actually do not need to do much from the App side,
-    // since the server handles the comment post,
-    // we can just make a fresh getPosts call to the server
-    // if we wanted the new list of comments
+    // These two calls need to be here.
+    // Otherwise, it's possible that that we reset and pull new comments
+    // before the post comment API is actually called.
+    // Ultimately, it's the yield statement that guarantee synchronicity,
+    // not the order which you dispatch actions
     yield put(CommentsActions.postCommentSuccess());
+    yield put(CommentsActions.resetComments());
+    yield put(CommentsActions.getCommentsRequest(postId));
+
   } else {
     yield put(CommentsActions.postCommentFailure());
   }

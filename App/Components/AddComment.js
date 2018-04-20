@@ -69,8 +69,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   submit: (postId, commentText) => {
     dispatch(CommentsActions.postCommentRequest(postId, commentText));
-    dispatch(CommentsActions.resetComments());
-    dispatch(CommentsActions.getCommentsRequest(postId));
   },
 });
 
