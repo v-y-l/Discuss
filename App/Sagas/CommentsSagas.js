@@ -27,7 +27,7 @@ export function* getComments(api, action) {
   const token = yield select(CurrentUserSelectors.getToken);
   let response = yield call(api.getComments, postId, offset, limit, token);
 
-  if (response.ErrorCode == 0) {
+  if (response.ErrorCode === 0) {
     response = ConvertFromGetComments(response, offset);
   }
 

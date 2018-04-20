@@ -1,24 +1,11 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard } from 'react-native';
+import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
 import styles from './Styles/AddCommentStyle';
 import CommentsActions from '../Redux/CommentsRedux';
-import PostsActions from '../Redux/PostsRedux';
-import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRedux';
 
 class AddComment extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
-
   constructor(props) {
     super(props);
     this.state = {
