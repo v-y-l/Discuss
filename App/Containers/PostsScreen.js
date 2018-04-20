@@ -24,6 +24,14 @@ const navigationOptions = ({ navigation }) => ({
 class PostsScreen extends Component {
   static navigationOptions = navigationOptions;
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const postsList = nextProps.posts.list;
+    return {
+      postsList,
+      refreshing: prevState.refreshing,
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -63,13 +71,6 @@ class PostsScreen extends Component {
 
   keyExtractor = (item, index) => index.toString()
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const postsList = nextProps.posts.list;
-    return {
-      postsList,
-      refreshing: false,
-    };
-  }
 
   componentDidMount() {
     this.props.getMorePosts();

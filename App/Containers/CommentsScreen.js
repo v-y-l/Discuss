@@ -34,13 +34,14 @@ class CommentsScreen extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     const commentsList = nextProps.comments.list;
     const { pseudonym } = nextProps;
+    const { post, replyTo, isModalVisible, refreshing } = prevState;
     return {
-      post: prevState.post,
+      post,
       commentsList,
       pseudonym,
-      replyTo: '',
-      isModalVisible: false,
-      refreshing: false,
+      replyTo,
+      isModalVisible,
+      refreshing,
     };
   }
 
