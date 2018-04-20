@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import TouchablePost from '../Components/TouchablePost';
 import PostsActions from '../Redux/PostsRedux';
-import CurrentUserActions from '../Redux/CurrentUserRedux';
+import CommentsActions from '../Redux/CommentsRedux';
 import MenuButton from '../Components/MenuButton';
 
 import styles from './Styles/PostsScreenStyle';
@@ -104,11 +104,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   selectPost: (postId) => {
-    // selects a post, gets comments for it, then navigates to that screen
-    // to-do: change this to just select a post and navigate to it,
-    // and pull comments from commentsScreen instead
+    dispatch(CommentsActions.resetComments()),
     dispatch(PostsActions.selectPostRequest(postId));
-    dispatch(CurrentUserActions.getPseudonymRequest(postId));
   },
   getMorePosts: () => dispatch(PostsActions.getPostsRequest()),
   resetPosts: () => dispatch(PostsActions.resetPosts()),
