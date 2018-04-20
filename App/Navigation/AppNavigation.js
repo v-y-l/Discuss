@@ -42,6 +42,9 @@ const DrawNav = DrawerNavigator({
   FollowUsers: {
     screen: FollowUsersNav,
   },
+  Logout: {
+    screen: LoginScreen,
+  },
 }, {
   initialRouteName: 'Feedback',
   drawerWidth: 300,
@@ -49,7 +52,12 @@ const DrawNav = DrawerNavigator({
 
 const RootNav = StackNavigator({
   LoginScreen: { screen: LoginScreen },
-  App: { screen: DrawNav },
+  AppScreen: { screen: DrawNav },
+}, {
+  initialRouteName: 'LoginScreen',
+  navigationOptions: {
+    header: null,
+  },
 });
 
 export default RootNav;
