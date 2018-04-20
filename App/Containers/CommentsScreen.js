@@ -8,7 +8,6 @@ import AddComment from '../Components/AddComment';
 import SettingsButton from '../Components/SettingsButton';
 import SettingsModal from '../Components/SettingsModal';
 import CommentsActions from '../Redux/CommentsRedux';
-import CurrentUserActions from '../Redux/CurrentUserRedux';
 import PostsActions from '../Redux/PostsRedux';
 
 // Styles
@@ -28,9 +27,11 @@ const navigationOptions = ({ navigation }) => {
     headerTintColor: navigationStyles.tintColor,
     headerRight: <SettingsButton onPress={toggleModal} />,
     headerLeft: <HeaderBackButton title="Feedback" onPress={() => {
-      navigation.state.params.resetPosts();
-      navigation.state.params.getMorePosts();
-      navigation.goBack();
+      if (navigation.state.params) {
+        navigation.state.params.resetPosts();
+        navigation.state.params.getMorePosts();
+        navigation.goBack();
+      }
     }} />,
   };
 };
@@ -188,8 +189,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getPseudonym: postId =>
-    dispatch(CurrentUserActions.getPseudonymRequest(postId)),
   getMoreComments: postId =>
     dispatch(CommentsActions.getCommentsRequest(postId)),
   resetComments: () =>
