@@ -26,7 +26,7 @@ class Users extends React.PureComponent {
     return {
       userList: nextProps.currentUser.users,
       refreshing: prevState.refreshing,
-    }
+    };
   }
 
   constructor(props) {

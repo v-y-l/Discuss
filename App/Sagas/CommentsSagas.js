@@ -67,7 +67,6 @@ export function* postComment(api, action) {
     yield put(CommentsActions.postCommentSuccess());
     yield put(CommentsActions.resetComments());
     yield put(CommentsActions.getCommentsRequest(postId));
-
   } else {
     yield put(CommentsActions.postCommentFailure());
   }

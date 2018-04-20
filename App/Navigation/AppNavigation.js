@@ -1,12 +1,15 @@
 import { StackNavigator } from 'react-navigation';
-import CommentsScreen from '../Containers/CommentsScreen';
-import PostsScreen from '../Containers/PostsScreen';
-import FollowUsersScreen from '../Containers/FollowUsersScreen';
-import styles from './Styles/NavigationStyles';
-// import SettingsButton from '../Components/SettingsButton'
+
 import React from 'react';
 import { Button } from 'react-native';
 import { DrawerNavigator } from 'react-navigation';
+import LoginScreen from '../Containers/LoginScreen';
+import CommentsScreen from '../Containers/CommentsScreen';
+import PostsScreen from '../Containers/PostsScreen';
+import FollowUsersScreen from '../Containers/FollowUsersScreen';
+
+import styles from './Styles/NavigationStyles';
+
 
 // Accessing the navigation object in navigationOptions
 // https://reactnavigation.org/docs/stack-navigator.html#navigationoptions-used-by-stacknavigator
@@ -32,7 +35,7 @@ const FollowUsersNav = StackNavigator({
   navigationOptions,
 });
 
-const RootNav = DrawerNavigator({
+const DrawNav = DrawerNavigator({
   Feedback: {
     screen: FeedbackNav,
   },
@@ -42,6 +45,11 @@ const RootNav = DrawerNavigator({
 }, {
   initialRouteName: 'Feedback',
   drawerWidth: 300,
+});
+
+const RootNav = StackNavigator({
+  LoginScreen: { screen: LoginScreen },
+  App: { screen: DrawNav },
 });
 
 export default RootNav;

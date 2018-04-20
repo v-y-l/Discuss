@@ -26,13 +26,16 @@ const navigationOptions = ({ navigation }) => {
     headerTitleStyle: navigationStyles.headerTitle,
     headerTintColor: navigationStyles.tintColor,
     headerRight: <SettingsButton onPress={toggleModal} />,
-    headerLeft: <HeaderBackButton title="Feedback" onPress={() => {
+    headerLeft: <HeaderBackButton
+      title="Feedback"
+      onPress={() => {
       if (navigation.state.params) {
         navigation.state.params.resetPosts();
         navigation.state.params.getMorePosts();
         navigation.goBack();
       }
-    }} />,
+    }}
+    />,
   };
 };
 
@@ -193,9 +196,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(CommentsActions.getCommentsRequest(postId)),
   resetComments: () =>
     dispatch(CommentsActions.resetComments()),
-  getMorePosts: () => 
+  getMorePosts: () =>
     dispatch(PostsActions.getPostsRequest()),
-  resetPosts: () => 
+  resetPosts: () =>
     dispatch(PostsActions.resetPosts()),
 
 });
