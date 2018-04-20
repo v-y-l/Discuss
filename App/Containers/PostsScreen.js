@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import TouchablePost from '../Components/TouchablePost';
 import PostsActions from '../Redux/PostsRedux';
 import CommentsActions from '../Redux/CommentsRedux';
+import CurrentUserActions from '../Redux/CurrentUserRedux';
 import MenuButton from '../Components/MenuButton';
 
 import styles from './Styles/PostsScreenStyle';
@@ -105,6 +106,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   selectPost: (postId) => {
     dispatch(CommentsActions.resetComments());
+    dispatch(CurrentUserActions.getPseudonymRequest(postId));
     dispatch(PostsActions.selectPostRequest(postId));
   },
   getMorePosts: () => dispatch(PostsActions.getPostsRequest()),

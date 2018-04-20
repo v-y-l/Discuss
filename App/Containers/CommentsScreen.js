@@ -72,9 +72,10 @@ class CommentsScreen extends Component {
     super(props);
     const postIndex = this.props.posts.byId[this.props.posts.postId];
     const post = this.props.posts.list[postIndex];
+    const pseudonym = this.props.pseudonym;
     this.state = {
       post,
-      pseudonym: '',
+      pseudonym,
       commentsList: [],
       replyTo: '',
       isModalVisible: false,
