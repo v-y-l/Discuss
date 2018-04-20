@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
+import { HeaderBackButton } from 'react-navigation';
 import { connect } from 'react-redux';
 import Post from '../Components/Post';
 import Comment from '../Components/Comment';
@@ -8,6 +9,7 @@ import SettingsButton from '../Components/SettingsButton';
 import SettingsModal from '../Components/SettingsModal';
 import CommentsActions from '../Redux/CommentsRedux';
 import CurrentUserActions from '../Redux/CurrentUserRedux';
+import PostsActions from '../Redux/PostsRedux';
 
 // Styles
 import styles from './Styles/CommentsScreenStyle';
@@ -25,6 +27,11 @@ const navigationOptions = ({ navigation }) => {
     headerTitleStyle: navigationStyles.headerTitle,
     headerTintColor: navigationStyles.tintColor,
     headerRight: <SettingsButton onPress={toggleModal} />,
+    headerLeft: <HeaderBackButton title="Feedback" onPress={() => {
+      navigation.state.params.resetPosts();
+      navigation.state.params.getMorePosts();
+      navigation.goBack();
+    }} />,
   };
 };
 
@@ -108,8 +115,12 @@ class CommentsScreen extends Component {
   keyExtractor = (item, index) => index.toString()
 
   componentDidMount() {
-    this.props.getPseudonym(this.state.post.id);
-    this.props.navigation.setParams({ toggleModal: this._toggleModal });
+    const navigationParams = {
+      toggleModal: this._toggleModal,
+      resetPosts: this.props.resetPosts,
+      getMorePosts: this.props.getMorePosts,
+    };
+    this.props.navigation.setParams(navigationParams);
     this.props.getMoreComments(this.state.post.id);
   }
 
@@ -178,6 +189,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch(CommentsActions.getCommentsRequest(postId)),
   resetComments: () =>
     dispatch(CommentsActions.resetComments()),
+  getMorePosts: () => 
+    dispatch(PostsActions.getPostsRequest()),
+  resetPosts: () => 
+    dispatch(PostsActions.resetPosts()),
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentsScreen);
