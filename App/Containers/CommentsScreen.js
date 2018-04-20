@@ -7,6 +7,7 @@ import AddComment from '../Components/AddComment';
 import SettingsButton from '../Components/SettingsButton';
 import SettingsModal from '../Components/SettingsModal';
 import CommentsActions from '../Redux/CommentsRedux';
+import CurrentUserActions from '../Redux/CurrentUserRedux';
 
 // Styles
 import styles from './Styles/CommentsScreenStyle';
@@ -30,15 +31,27 @@ const navigationOptions = ({ navigation }) => {
 class CommentsScreen extends Component {
   static navigationOptions = navigationOptions;
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const commentsList = nextProps.comments.list;
+    const { pseudonym } = nextProps;
+    return {
+      post: prevState.post,
+      commentsList,
+      pseudonym,
+      replyTo: '',
+      isModalVisible: false,
+      refreshing: false,
+    };
+  }
+
   constructor(props) {
     super(props);
     const postIndex = this.props.posts.byId[this.props.posts.postId];
     const post = this.props.posts.list[postIndex];
-    const commentsList = this.props.comments.list;
-
     this.state = {
       post,
-      commentsList,
+      pseudonym: '',
+      commentsList: [],
       replyTo: '',
       isModalVisible: false,
       refreshing: false,
@@ -85,20 +98,12 @@ class CommentsScreen extends Component {
   renderSeparator = () =>
     <View style={styles.separator} />
 
-  keyExtractor = (item, index) => index
-
-  componentWillMount() {
-    this.props.navigation.setParams({ toggleModal: this._toggleModal });
-  }
+  keyExtractor = (item, index) => index.toString()
 
   componentDidMount() {
+    this.props.getPseudonym(this.state.post.id);
+    this.props.navigation.setParams({ toggleModal: this._toggleModal });
     this.props.getMoreComments(this.state.post.id);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      commentsList: nextProps.comments.list,
-    });
   }
 
   componentDidUpdate() {
@@ -123,7 +128,6 @@ class CommentsScreen extends Component {
   render() {
     const currentUser = this.props.currentUser;
     const posts = this.props.posts;
-    const pseudonym = (currentUser && posts) ? currentUser.pseudonymList[posts.postId] : null;
     return (
       <View style={styles.container}>
         <FlatList
@@ -142,11 +146,13 @@ class CommentsScreen extends Component {
         <SettingsModal
           isVisible={this.state.isModalVisible}
           toggleModal={this._toggleModal}
-          pseudonym={pseudonym}
+          pseudonym={this.state.pseudonym}
           save={this.props.save}
         />
         <AddComment
-          addCommentRef={(addCommentComponent) => { this.addCommentComponent = addCommentComponent; }}
+          addCommentRef={(addCommentComponent) => {
+            this.addCommentComponent = addCommentComponent;
+          }}
           clearReplyTo={() => { this.setState({ replyTo: '' }); }}
         />
       </View>
@@ -159,9 +165,12 @@ const mapStateToProps = state => ({
   posts: state.posts,
   comments: state.comments,
   currentUser: state.currentUser,
+  pseudonym: state.currentUser.pseudonymList[state.posts.postId]
 });
 
 const mapDispatchToProps = dispatch => ({
+  getPseudonym: postId =>
+    dispatch(CurrentUserActions.getPseudonymRequest(postId)),
   getMoreComments: postId =>
     dispatch(CommentsActions.getCommentsRequest(postId)),
   resetComments: () =>
