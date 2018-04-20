@@ -74,7 +74,6 @@ class Users extends React.PureComponent {
   keyExtractor = (item, index) => index.toString();
 
   _onChangeText = (searchBarText) => {
-    this.setState({ searchBarText }); // sets the state for this component
     this.props.setSearchText(searchBarText); // passes it to the redux
     this._onRefreshHandler(); // clear the old userList, and then fetch more
   }
