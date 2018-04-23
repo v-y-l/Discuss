@@ -15,7 +15,7 @@ import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRe
 import PostsActions from '../Redux/PostsRedux';
 import { NavigationActions } from 'react-navigation';
 import { ConvertFromUserFollowList, ConvertFromToggleFollow, ConvertFromGetPseudonym } from '../Transforms/ConvertFromDiscuss';
-import { LoginScreen } from '../Containers/LoginScreen';
+import { alert } from '../Containers/LoginScreen';
 
 export function* doLogin(api, action) {
   const { email, password } = action;
@@ -31,7 +31,7 @@ export function* doLogin(api, action) {
     yield put(NavigationActions.navigate({routeName: 'AppScreen'}));
   } else {
     yield put(CurrentUserActions.doLoginFailure());
-    yield call(LoginScreen.alert);
+    yield call(alert);
   }
 }
 

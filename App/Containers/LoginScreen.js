@@ -6,6 +6,17 @@ import CurrentUserActions from '../Redux/CurrentUserRedux';
 // Styles
 import styles from './Styles/LoginScreenStyle';
 
+const alert = () => {
+  Alert.alert(
+    'Incorrect email or password',
+    'Please double-check your email and password combination for any mistakes and try again!',
+    [
+      {text: 'OK'},
+    ],
+    { cancelable: false }
+  )
+}
+
 class LoginScreen extends Component {
 
   constructor(props) {
@@ -14,19 +25,6 @@ class LoginScreen extends Component {
       email: "",
       password: "",
     };
-  }
-
-  static alert = () => {
-    Alert.alert(
-      'Alert Title',
-      'My Alert Msg',
-      [
-        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ],
-      { cancelable: false }
-    )
   }
 
   render() {
@@ -69,3 +67,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+
+export { alert };
