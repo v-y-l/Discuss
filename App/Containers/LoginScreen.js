@@ -9,7 +9,7 @@ import styles from './Styles/LoginScreenStyle';
 const alert = () => {
   Alert.alert(
     'Incorrect email or password',
-    'Please double-check your email and password combination for any mistakes and try again!',
+    'Please double-check your user id and password combination for any mistakes and try again!',
     [
       {text: 'OK'},
     ],

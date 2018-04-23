@@ -116,6 +116,30 @@ const create = (baseURL) => {
     return response;
   };
 
+  //To-do: come back and modify this for app_name and app_version
+  const doLogin = (email, password, orgId) => {
+    const payload = {
+      grant_type: 'client_credentials',
+      client_id: email,
+      client_secret: password,
+      app_name: 'Feedback',
+      app_version: '0.0.1',
+      org_id: 1,
+    };
+    if (orgId) {
+      payload.org_id = orgId;
+    }
+    const r = new Request(
+      `${baseURL}/v2/app/auth/token`,
+      {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      },
+    );
+    const response = fetch(r).then(resp => resp.json());
+    return response;
+  };
+
   return {
     // getStream,
     getPosts,
@@ -127,6 +151,7 @@ const create = (baseURL) => {
     // addComment,
     postComment,
     getComments,
+    doLogin,
   };
 };
 

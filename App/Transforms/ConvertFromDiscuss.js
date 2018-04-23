@@ -95,6 +95,13 @@ const ConvertFromGetComments = (response, offset) => {
   };
 };
 
+const ConvertFromDoLogin = (response) => {
+  return {
+    ok: true,
+    token: response.Data.access_token,
+  }
+}
+
 export {
   ConvertFromUserFollowList,
   ConvertFromToggleFollow,
@@ -102,4 +109,5 @@ export {
   ConvertFromGetPseudonym,
   ConvertFromAddComment,
   ConvertFromGetComments,
+  ConvertFromDoLogin,
 };

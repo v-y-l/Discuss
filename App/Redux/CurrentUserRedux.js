@@ -35,7 +35,6 @@ export const INITIAL_STATE = Immutable({
   offset: 0,
   limit: 10,
   error: null,
-  token: 'a0OMn1D4gzHSYfMtcdkXejnwOTEBSK50PGPYzJzrO4qj',
 });
 
 /* ------------- Selectors ------------- */
