@@ -16,6 +16,7 @@ import PostsActions from '../Redux/PostsRedux';
 import { NavigationActions } from 'react-navigation';
 import { ConvertFromUserFollowList, ConvertFromToggleFollow, ConvertFromGetPseudonym, ConvertFromDoLogin } from '../Transforms/ConvertFromDiscuss';
 import { alert } from '../Containers/LoginScreen';
+import { is } from 'ramda';
 
 export function* doLogin(api, action) {
   const { email, password } = action;
