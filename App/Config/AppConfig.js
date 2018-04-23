@@ -12,5 +12,5 @@ export default {
   // font scaling override - RN default is on
   allowTextFontScaling: true,
   baseUrl: apiUrl,
-  useFixture: false,
+  useFixture: true,
 };

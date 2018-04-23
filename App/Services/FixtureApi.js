@@ -122,4 +122,17 @@ export default {
       pseudonym: `User ${set.size + 1}`,
     };
   },
+  doLogin: (email, password) => {
+    const validOne = email === 'vlin@nextjump.com' && password === '123qwe---';
+    const validTwo = email === 'a' && password === 'a';
+    if (validOne || validTwo) {
+      return {
+        ok: true,
+        token: 'faketoken',
+      };
+    }
+    return {
+      ok: false,
+    };
+  },
 };

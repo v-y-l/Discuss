@@ -31,7 +31,8 @@ class LoginScreen extends Component {
               style={styles.loginItem}
               onChangeText={(password)=>this.setState({password})}
               value={this.state.password}
-              placeholder="Enter your Password" 
+              secureTextEntry={true}
+              placeholder="Enter your Password"
             />
             <TouchableOpacity 
               style={styles.loginButton}

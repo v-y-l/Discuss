@@ -4,6 +4,9 @@ import Immutable from 'seamless-immutable';
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
+  doLoginRequest: ['email', 'password'],
+  doLoginSuccess: ['token'],
+  doLoginFailure: null,
   setSearchText: ['searchText'],
   resetUsers: null,
   getPseudonymRequest: ['postId'],
@@ -23,6 +26,7 @@ export default Creators;
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
+  token: '',
   pseudonymList: {}, // fix: actually a dict
   fetching: null,
   users: [],
@@ -44,6 +48,24 @@ export const CurrentUserSelectors = {
 };
 
 /* ------------- Reducers ------------- */
+
+// request the data from an api
+export const doLoginRequest = (state, action) =>
+  state.merge({ fetching: true });
+
+// successful api lookup
+export const doLoginSuccess = (state, action) => {
+  const { payload } = action;
+  return state.merge({
+    fetching: false,
+    error: null,
+    token: payload.token,
+  });
+};
+
+// Something went wrong somewhere.
+export const doLoginFailure = state =>
+  state.merge({ fetching: false, error: true, token: null });
 
 export const resetUsers = (state, action) => state.merge({ users: [], offset: 0 });
 
@@ -115,6 +137,9 @@ export const toggleFollowUserFailure = state =>
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
+  [Types.DO_LOGIN_REQUEST]: doLoginRequest,
+  [Types.DO_LOGIN_SUCCESS]: doLoginSuccess,
+  [Types.DO_LOGIN_FAILURE]: doLoginFailure,
   [Types.SET_SEARCH_TEXT]: setSearchText,
   [Types.RESET_USERS]: resetUsers,
   [Types.GET_PSEUDONYM_REQUEST]: getPseudonymRequest,
