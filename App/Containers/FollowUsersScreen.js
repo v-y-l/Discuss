@@ -41,6 +41,11 @@ class Users extends React.PureComponent {
     this.props.setSearchText('');
   }
 
+  componentDidMount() {
+    this.props.resetUsers();
+    this.props.getMoreUsers();
+  }
+
   renderRow = ({ item }) => (
     <UserRow
       toggleUserId={item.id} // the userId we are toggling following/unfollowing

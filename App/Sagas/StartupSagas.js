@@ -2,8 +2,8 @@ import { put, select } from 'redux-saga/effects';
 import GithubActions, { GithubSelectors } from '../Redux/GithubRedux';
 import PostsActions from '../Redux/PostsRedux';
 import CommentsActions from '../Redux/CommentsRedux';
-import CurrentUserActions from '../Redux/CurrentUserRedux';
 
+//to-do: rethink this file - no longer a need for it
 // exported to make available for tests
 export const selectAvatar = GithubSelectors.selectAvatar;
 
@@ -35,10 +35,4 @@ export function* startup(action) {
     });
   }
 
-  // Discuss App start up actions
-  // fix: this needs to go before posts actions
-  // since the profile screen relies on it to filter posts,
-  // but we should relegate the filtering to the API
-
-  yield put(CurrentUserActions.getUsersRequest());
 }
