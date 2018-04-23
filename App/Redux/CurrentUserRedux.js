@@ -7,6 +7,7 @@ const { Types, Creators } = createActions({
   doLoginRequest: ['email', 'password'],
   doLoginSuccess: ['token'],
   doLoginFailure: null,
+  clearAuthToken: null,
   setSearchText: ['searchText'],
   resetUsers: null,
   getPseudonymRequest: ['postId'],
@@ -26,7 +27,7 @@ export default Creators;
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  token: '',
+  token: null,
   pseudonymList: {}, // fix: actually a dict
   fetching: null,
   users: [],
@@ -48,6 +49,10 @@ export const CurrentUserSelectors = {
 };
 
 /* ------------- Reducers ------------- */
+export const clearAuthToken = (state, action) => {
+  return state.merge({ token: null });
+};
+
 
 // request the data from an api
 export const doLoginRequest = (state, action) =>
@@ -138,6 +143,7 @@ export const toggleFollowUserFailure = state =>
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
+  [Types.CLEAR_AUTH_TOKEN]: clearAuthToken,
   [Types.DO_LOGIN_REQUEST]: doLoginRequest,
   [Types.DO_LOGIN_SUCCESS]: doLoginSuccess,
   [Types.DO_LOGIN_FAILURE]: doLoginFailure,

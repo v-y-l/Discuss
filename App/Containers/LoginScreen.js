@@ -19,6 +19,11 @@ const alert = () => {
 
 class LoginScreen extends Component {
 
+  componentDidMount() {
+    // Todo: This 'logs you out'. See how FB app does it
+    this.props.clearAuthToken();
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -49,6 +54,7 @@ class LoginScreen extends Component {
             />
             <TouchableOpacity 
               style={styles.loginButton}
+              disabled={this.state.email.length == 0 || this.state.password.length == 0}
               onPress={()=>{this.props.doLogin(this.state.email, this.state.password);}} >
               <Text style={styles.loginText}>Login</Text>
             </TouchableOpacity>
@@ -64,6 +70,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   doLogin: (email, password) => dispatch(CurrentUserActions.doLoginRequest(email, password)),
+  clearAuthToken: () => dispatch(CurrentUserActions.clearAuthToken()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
