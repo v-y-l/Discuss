@@ -21,7 +21,7 @@ class LoginScreen extends Component {
 
   componentDidMount() {
     // Todo: This 'logs you out'. See how FB app does it
-    this.props.clearAuthToken();
+    this.props.doLogout();
   }
 
   constructor(props) {
@@ -70,7 +70,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   doLogin: (email, password) => dispatch(CurrentUserActions.doLoginRequest(email, password)),
-  clearAuthToken: () => dispatch(CurrentUserActions.clearAuthToken()),
+  doLogout: () => dispatch(CurrentUserActions.doLogout()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
