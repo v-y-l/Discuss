@@ -55,11 +55,12 @@ export const doLoginRequest = (state, action) =>
 
 // successful api lookup
 export const doLoginSuccess = (state, action) => {
-  const { payload } = action;
+  const { token } = action;
+
   return state.merge({
     fetching: false,
     error: null,
-    token: payload,
+    token: token,
   });
 };
 
