@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, KeyboardAvoidingView, TouchableOpacity, TextInput } from 'react-native';
 import { connect } from 'react-redux';
+import CurrentUserActions from '../Redux/CurrentUserRedux';
 
 // Styles
 import styles from './Styles/LoginScreenStyle';
@@ -10,7 +11,7 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: "",
     };
   }
@@ -22,9 +23,10 @@ class LoginScreen extends Component {
           <Text style={styles.header}>Discuss</Text>
           <View style={styles.loginBox}>
             <TextInput 
-              style={styles.loginItem} 
-              onChangeText={(username)=>this.setState({username})}
-              value={this.state.username}
+              style={styles.loginItem}
+              autoCapitalize="none"
+              onChangeText={(email)=>this.setState({email})}
+              value={this.state.email}
               placeholder="Enter your User ID"
             />
             <TextInput 
@@ -36,7 +38,7 @@ class LoginScreen extends Component {
             />
             <TouchableOpacity 
               style={styles.loginButton}
-              onPress={()=>{this.props.navigation.navigate("AppScreen");}} >
+              onPress={()=>{this.props.doLogin(this.state.email, this.state.password);}} >
               <Text style={styles.loginText}>Login</Text>
             </TouchableOpacity>
           </View>
@@ -50,6 +52,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  doLogin: (email, password) => dispatch(CurrentUserActions.doLoginRequest(email, password)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

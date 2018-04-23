@@ -15,7 +15,7 @@ import { CurrentUserTypes } from '../Redux/CurrentUserRedux';
 import { startup } from './StartupSagas';
 import { getPosts, selectPost } from './PostsSagas';
 import { getComments, postComment } from './CommentsSagas';
-import { getPseudonym, getUsers, toggleFollowUser } from './CurrentUserSagas';
+import { getPseudonym, getUsers, toggleFollowUser, doLogin } from './CurrentUserSagas';
 
 /* ------------- API ------------- */
 
@@ -35,6 +35,7 @@ export default function* root() {
     takeLatest(PostsTypes.SELECT_POST_REQUEST, selectPost),
 
     // some sagas receive extra parameters in addition to an action
+    takeLatest(CurrentUserTypes.DO_LOGIN_REQUEST, doLogin, service),
     takeLatest(CurrentUserTypes.GET_PSEUDONYM_REQUEST, getPseudonym, service),
     takeLatest(PostsTypes.GET_POSTS_REQUEST, getPosts, service),
     takeLatest(CommentsTypes.GET_COMMENTS_REQUEST, getComments, service),

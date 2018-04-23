@@ -59,7 +59,7 @@ export const doLoginSuccess = (state, action) => {
   return state.merge({
     fetching: false,
     error: null,
-    token: payload.token,
+    token: payload,
   });
 };
 

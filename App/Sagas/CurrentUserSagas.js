@@ -15,6 +15,24 @@ import CurrentUserActions, { CurrentUserSelectors } from '../Redux/CurrentUserRe
 import PostsActions from '../Redux/PostsRedux';
 import { is } from 'ramda';
 import { ConvertFromUserFollowList, ConvertFromToggleFollow, ConvertFromGetPseudonym } from '../Transforms/ConvertFromDiscuss';
+import { NavigationActions } from 'react-navigation';
+
+export function* doLogin(api, action) {
+  const { email, password } = action;
+  const response = yield call(api.doLogin, email, password);
+
+  // if (response.ErrorCode == 0) {
+  //   response = ConvertFromDoLogin(response, offset);
+  // }
+
+  // success?
+  if (response.ok) {
+    yield put(CurrentUserActions.doLoginSuccess(response.token));
+    yield put(NavigationActions.navigate({routeName: 'AppScreen'}));
+  } else {
+    yield put(CurrentUserActions.doLoginFailure());
+  }
+}
 
 export function* getPseudonym(api, action) {
   const { postId } = action;
@@ -45,7 +63,7 @@ export function* getUsers(api, action) {
   let response = yield call(api.getUsers, offset, limit, searchText, token);
 
   // this isn't elegant at all, I'm hacking my response to look like my fixture
-  // to-do: redesign fixture to look like API, then convert the whole damn app
+  // to-do: redesign fixture to look like API, then convert the whole app
   if (response.ErrorCode == 0) {
     response = ConvertFromUserFollowList(response, offset);
   }
