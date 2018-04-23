@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, KeyboardAvoidingView, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, KeyboardAvoidingView, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import CurrentUserActions from '../Redux/CurrentUserRedux';
 
@@ -14,6 +14,19 @@ class LoginScreen extends Component {
       email: "",
       password: "",
     };
+  }
+
+  static alert = () => {
+    Alert.alert(
+      'Alert Title',
+      'My Alert Msg',
+      [
+        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      { cancelable: false }
+    )
   }
 
   render() {
