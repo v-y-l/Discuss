@@ -39,7 +39,7 @@ const DrawNav = DrawerNavigator({
   Feedback: {
     screen: FeedbackNav,
   },
-  FollowUsers: {
+  'Follow Users': {
     screen: FollowUsersNav,
   },
   Logout: {

@@ -9,15 +9,23 @@ import { View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import UserRow from '../Components/UserRow';
 import MenuButton from '../Components/MenuButton';
+import ScrollUpTitle from '../Components/ScrollUpTitle';
 import CurrentUserActions from '../Redux/CurrentUserRedux';
 
 // Styles
 import styles from './Styles/FollowUsersScreenStyle';
 
-const navigationOptions = ({ navigation }) => ({
-  title: 'Follow Users',
-  headerLeft: <MenuButton onPress={() => { navigation.navigate('DrawerOpen'); }} />,
-});
+const navigationOptions = ({ navigation }) => {
+  const scrollToTop = () => {
+    if (navigation.state.params) {
+      navigation.state.params.scrollToTop();
+    }
+  };
+  return {
+    title: <ScrollUpTitle title="Follow Users" onPress={scrollToTop} />,
+    headerLeft: <MenuButton onPress={() => { navigation.navigate('DrawerOpen'); }} />,
+  };
+};
 
 class Users extends React.PureComponent {
   static navigationOptions = navigationOptions;
@@ -42,6 +50,12 @@ class Users extends React.PureComponent {
   }
 
   componentDidMount() {
+    const navigationParams = {
+      scrollToTop: () => {
+        this.userFlatList.scrollToOffset(0, true);
+      },
+    };
+    this.props.navigation.setParams(navigationParams);
     this.props.resetUsers();
     this.props.getMoreUsers();
   }
@@ -96,6 +110,7 @@ class Users extends React.PureComponent {
     return (
       <View style={styles.container}>
         <FlatList
+          ref={(list)=>{this.userFlatList = list;}}
           contentContainerStyle={styles.listContent}
           data={this.state.userList}
           renderItem={this.renderRow}

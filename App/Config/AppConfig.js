@@ -7,7 +7,6 @@ if (__DEV__) {
   apiUrl = 'http://192.168.56.103:8081';
 }
 
-
 export default {
   // font scaling override - RN default is on
   allowTextFontScaling: true,
