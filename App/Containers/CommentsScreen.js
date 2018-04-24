@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { HeaderBackButton } from 'react-navigation';
 import { connect } from 'react-redux';
 import Post from '../Components/Post';
@@ -15,6 +15,17 @@ import PostsActions from '../Redux/PostsRedux';
 import styles from './Styles/CommentsScreenStyle';
 import navigationStyles from '../Navigation/Styles/NavigationStyles';
 
+
+class ScrollUpTitle extends Component {
+  render() {
+    return (
+      <TouchableOpacity onPress={()=>console.log('hi')}>
+        <Text style={navigationStyles.headerTitle}>Comments</Text>
+      </TouchableOpacity>
+    );
+  }
+};
+
 const navigationOptions = ({ navigation }) => {
   const toggleModal = () => {
     if (navigation.state.params) {
@@ -22,10 +33,8 @@ const navigationOptions = ({ navigation }) => {
     }
   };
   return {
-    title: 'Comments',
+    headerTitle: <ScrollUpTitle />,
     headerStyle: navigationStyles.header,
-    headerTitleStyle: navigationStyles.headerTitle,
-    headerTintColor: navigationStyles.tintColor,
     headerRight: <SettingsButton onPress={toggleModal} />,
     headerLeft: <HeaderBackButton
       title="Feedback"

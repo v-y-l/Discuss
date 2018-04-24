@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 import TouchablePost from '../Components/TouchablePost';
@@ -9,6 +9,7 @@ import CurrentUserActions from '../Redux/CurrentUserRedux';
 import MenuButton from '../Components/MenuButton';
 
 import styles from './Styles/PostsScreenStyle';
+import navigationStyles from '../Navigation/Styles/NavigationStyles';
 
 /**
  * This component acts as the landing screen of the app.
@@ -18,9 +19,19 @@ import styles from './Styles/PostsScreenStyle';
  */
 
 const navigationOptions = ({ navigation }) => ({
-  title: 'Feedback',
+  headerTitle: <ScrollUpTitle />,
   headerLeft: <MenuButton onPress={() => { navigation.navigate('DrawerOpen'); }} />,
 });
+
+class ScrollUpTitle extends Component {
+  render() {
+    return (
+      <TouchableOpacity onPress={()=>console.log('hi')}>
+        <Text style={navigationStyles.headerTitle}>Feedback</Text>
+      </TouchableOpacity>
+    );
+  }
+};
 
 class PostsScreen extends Component {
   static navigationOptions = navigationOptions;
