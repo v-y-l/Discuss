@@ -7,9 +7,9 @@ import PostsActions from '../Redux/PostsRedux';
 import CommentsActions from '../Redux/CommentsRedux';
 import CurrentUserActions from '../Redux/CurrentUserRedux';
 import MenuButton from '../Components/MenuButton';
+import ScrollUpTitle from '../Components/ScrollUpTitle';
 
 import styles from './Styles/PostsScreenStyle';
-import navigationStyles from '../Navigation/Styles/NavigationStyles';
 
 /**
  * This component acts as the landing screen of the app.
@@ -18,19 +18,16 @@ import navigationStyles from '../Navigation/Styles/NavigationStyles';
  * screen which enables you to discuss it.
  */
 
-const navigationOptions = ({ navigation }) => ({
-  headerTitle: <ScrollUpTitle />,
-  headerLeft: <MenuButton onPress={() => { navigation.navigate('DrawerOpen'); }} />,
-});
-
-class ScrollUpTitle extends Component {
-  render() {
-    return (
-      <TouchableOpacity onPress={()=>console.log('hi')}>
-        <Text style={navigationStyles.headerTitle}>Feedback</Text>
-      </TouchableOpacity>
-    );
-  }
+const navigationOptions = ({ navigation }) => {
+  const scrollToTop = () => {
+    if (navigation.state.params) {
+      navigation.state.params.scrollToTop();
+    }
+  };
+  return {
+    headerTitle: <ScrollUpTitle onPress={scrollToTop} title={'Feedback'} />,
+    headerLeft: <MenuButton onPress={() => { navigation.navigate('DrawerOpen'); }} />,
+  };
 };
 
 class PostsScreen extends Component {
@@ -85,6 +82,10 @@ class PostsScreen extends Component {
 
 
   componentDidMount() {
+    navigationParams = {
+      scrollToTop: () => { this.postsFlatList.scrollToOffset(0,true);},
+    };
+    this.props.navigation.setParams(navigationParams);
     this.props.getMorePosts();
   }
 
@@ -94,6 +95,7 @@ class PostsScreen extends Component {
     return (
       <View style={styles.container}>
         <FlatList
+          ref={(list)=> {this.postsFlatList = list;}}
           contentContainerStyle={styles.listContent}
           data={this.state.postsList}
           renderItem={this.renderRow}

@@ -4,6 +4,7 @@ import { HeaderBackButton } from 'react-navigation';
 import { connect } from 'react-redux';
 import Post from '../Components/Post';
 import Comment from '../Components/Comment';
+import ScrollUpTitle from '../Components/ScrollUpTitle';
 import AddComment from '../Components/AddComment';
 import SettingsButton from '../Components/SettingsButton';
 import SettingsModal from '../Components/SettingsModal';
@@ -15,17 +16,6 @@ import PostsActions from '../Redux/PostsRedux';
 import styles from './Styles/CommentsScreenStyle';
 import navigationStyles from '../Navigation/Styles/NavigationStyles';
 
-
-class ScrollUpTitle extends Component {
-  render() {
-    return (
-      <TouchableOpacity onPress={this.props.onPress}>
-        <Text style={navigationStyles.headerTitle}>Comments</Text>
-      </TouchableOpacity>
-    );
-  }
-};
-
 const navigationOptions = ({ navigation }) => {
   const toggleModal = () => {
     if (navigation.state.params) {
@@ -36,9 +26,9 @@ const navigationOptions = ({ navigation }) => {
     if (navigation.state.params) {
       navigation.state.params.scrollToTop();
     }
-  }
+  };
   return {
-    headerTitle: <ScrollUpTitle onPress={scrollToTop} />,
+    headerTitle: <ScrollUpTitle onPress={scrollToTop} title={"Comments"} />,
     headerStyle: navigationStyles.header,
     headerRight: <SettingsButton onPress={toggleModal} />,
     headerLeft: <HeaderBackButton
@@ -145,7 +135,7 @@ class CommentsScreen extends Component {
       toggleModal: this._toggleModal,
       resetPosts: this.props.resetPosts,
       getMorePosts: this.props.getMorePosts,
-      scrollToTop: () => {this.commentsList.scrollToOffset(0, true)}
+      scrollToTop: () => {this.commentsFlatList.scrollToOffset(0, true)}
     };
     this.props.navigation.setParams(navigationParams);
     this.props.getPseudonym(this.state.post.id);
@@ -176,7 +166,7 @@ class CommentsScreen extends Component {
     return (
       <View style={styles.container}>
         <FlatList
-          ref={(list)=> this.commentsList = list}
+          ref={(list)=> {this.commentsFlatList = list;}}
           contentContainerStyle={styles.listContent}
           data={this.state.commentsList}
           renderItem={this.renderRow}
