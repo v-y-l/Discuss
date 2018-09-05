@@ -3,6 +3,8 @@
 
 An app that lets you discuss various topics.
 
+![Alt Text](https://github.com/v-y-l/Discuss/blob/master/demo/demo.gif)
+
 ## How to Setup
 
 **Step 1:** git clone this repo:
