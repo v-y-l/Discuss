@@ -1,7 +1,7 @@
 #  Discuss
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 
-An app that lets you discuss the feedback on feedback app. 'Feedback' on 'Feedback', if you will. See the sql schema for the project here: https://gitlab.nextjump.com/vlin/discuss-sql
+An app that lets you discuss various topics.
 
 ## How to Setup
 
